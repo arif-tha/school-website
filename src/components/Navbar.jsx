@@ -1,511 +1,568 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
-import { gsap } from 'gsap';
+import { useEffect, useRef, useState } from "react";
+import { gsap } from "gsap";
+import logoImg from "../assets/building/logo.jpeg";
 
-const MENU_ITEMS = [
-  { label: 'Home', path: '/' },
-  { label: 'About', path: '/about' },
-  { label: 'Academics', path: '/academics' },
-  { label: 'Facilities', path: '/facilities' },
-  { label: 'Activities', path: '/activities' },
-  { label: 'Information', path: '/information' },
-  { label: 'Contact', path: '/contact' },
+const NAV_LINKS = [
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Academics", href: "/academics" },
+  { label: "Facilities", href: "/facilities" },
+  { label: "Activities", href: "/activities" },
+  { label: "Information", href: "/information" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [activePath, setActivePath] = useState("/");
+
   const navRef = useRef(null);
   const logoRef = useRef(null);
-  const menuItemsRef = useRef([]);
+  const linksRef = useRef([]);
+  const ctaRef = useRef(null);
+  const drawerRef = useRef(null);
+  const overlayRef = useRef(null);
+  const drawerLinksRef = useRef([]);
+  const hamburgerRef = useRef(null);
 
+  // Set active path on mount
   useEffect(() => {
-    // Navbar entrance animation
-    if (navRef.current) {
-      gsap.fromTo(
-        navRef.current,
-        { y: -100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.3 }
-      );
-    }
-
-    // Scroll listener
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    setActivePath(window.location.pathname);
   }, []);
 
-  // Stagger menu items on mobile menu open
+  // Navbar entrance animation
   useEffect(() => {
-    if (menuOpen && menuItemsRef.current.length > 0) {
-      gsap.fromTo(
-        menuItemsRef.current,
-        { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: 'power2.out' }
-      );
-    }
-  }, [menuOpen]);
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-  const handleMenuClose = () => {
-    setMenuOpen(false);
+    tl.fromTo(
+      logoRef.current,
+      { opacity: 0, x: -24 },
+      { opacity: 1, x: 0, duration: 0.8, delay: 0.2 }
+    )
+      .fromTo(
+        linksRef.current,
+        { opacity: 0, y: -12 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.55,
+          stagger: 0.07,
+        },
+        "-=0.4"
+      )
+      .fromTo(
+        ctaRef.current,
+        { opacity: 0, x: 20 },
+        { opacity: 1, x: 0, duration: 0.6 },
+        "-=0.5"
+      );
+  }, []);
+
+  // Scroll listener
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Smooth scroll-based navbar style
+  useEffect(() => {
+    if (!navRef.current) return;
+    if (scrolled) {
+      gsap.to(navRef.current, {
+        backgroundColor: "#0A2342",
+        boxShadow: "0 2px 24px 0 rgba(10,35,66,0.18)",
+        duration: 0.38,
+        ease: "power2.out",
+      });
+    } else {
+      gsap.to(navRef.current, {
+        backgroundColor: "rgba(10,35,66,0)",
+        boxShadow: "none",
+        duration: 0.38,
+        ease: "power2.out",
+      });
+    }
+  }, [scrolled]);
+
+  // Drawer open/close animation
+  useEffect(() => {
+    if (!drawerRef.current || !overlayRef.current) return;
+    if (drawerOpen) {
+      document.body.style.overflow = "hidden";
+
+      gsap.set(drawerRef.current, { display: "flex" });
+      gsap.set(overlayRef.current, { display: "block" });
+
+      gsap.fromTo(
+        overlayRef.current,
+        { opacity: 0 },
+        { opacity: 1, duration: 0.32, ease: "power2.out" }
+      );
+      gsap.fromTo(
+        drawerRef.current,
+        { x: "100%" },
+        { x: "0%", duration: 0.45, ease: "power3.out" }
+      );
+      gsap.fromTo(
+        drawerLinksRef.current,
+        { opacity: 0, x: 28 },
+        {
+          opacity: 1,
+          x: 0,
+          duration: 0.4,
+          stagger: 0.07,
+          ease: "power2.out",
+          delay: 0.18,
+        }
+      );
+    } else {
+      document.body.style.overflow = "";
+
+      gsap.to(overlayRef.current, {
+        opacity: 0,
+        duration: 0.28,
+        ease: "power2.in",
+        onComplete: () => {
+          if (overlayRef.current) gsap.set(overlayRef.current, { display: "none" });
+        },
+      });
+      gsap.to(drawerRef.current, {
+        x: "100%",
+        duration: 0.38,
+        ease: "power3.in",
+        onComplete: () => {
+          if (drawerRef.current) gsap.set(drawerRef.current, { display: "none" });
+        },
+      });
+    }
+  }, [drawerOpen]);
+
+  // Link hover animation
+  const handleLinkHover = (el, enter) => {
+    gsap.to(el, {
+      color: enter ? "#D4AF37" : "#FFFFFF",
+      duration: 0.22,
+      ease: "power1.out",
+    });
+  };
+
+  // CTA button hover
+  const handleCtaHover = (enter) => {
+    if (!ctaRef.current) return;
+    gsap.to(ctaRef.current, {
+      backgroundColor: enter ? "#D4AF37" : "transparent",
+      color: enter ? "#0A2342" : "#D4AF37",
+      duration: 0.25,
+      ease: "power2.out",
+    });
   };
 
   return (
     <>
-      {/* Navbar */}
+      {/* ── NAVBAR ── */}
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-[999] transition-all duration-500 ${
-          scrolled
-            ? 'crescent-nav--scrolled py-3'
-            : 'crescent-nav--top py-5'
-        }`}
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          zIndex: 999,
+          backgroundColor: "rgba(10,35,66,0)",
+          transition: "none",
+        }}
+        className="w-full"
       >
-        <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
+        <div className="w-full px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
+            <div className="flex items-center justify-between h-16 sm:h-20">
 
-          {/* Logo & School Identity */}
-          <Link to="/" ref={logoRef} className="flex items-center gap-4 min-w-fit crescent-logo-link">
-            {/* School Crest Emblem */}
-            <div className="crescent-emblem">
-              <svg width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="44" height="44" rx="4" fill="#0A2342"/>
-                <path d="M22 8 L22 8" stroke="#D4AF37" strokeWidth="0"/>
-                {/* Crescent arc */}
-                <path d="M14 22 A10 10 0 0 1 30 22" stroke="#D4AF37" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-                {/* Stars */}
-                <circle cx="22" cy="14" r="1.5" fill="#D4AF37"/>
-                <circle cx="16" cy="17" r="1" fill="#D4AF37" opacity="0.7"/>
-                <circle cx="28" cy="17" r="1" fill="#D4AF37" opacity="0.7"/>
-                {/* Divider rule */}
-                <line x1="12" y1="27" x2="32" y2="27" stroke="#D4AF37" strokeWidth="0.75" opacity="0.6"/>
-                {/* Monogram */}
-                <text x="22" y="37" textAnchor="middle" fontFamily="Georgia, serif" fontSize="9" fontWeight="700" fill="#D4AF37" letterSpacing="2">CS</text>
-              </svg>
-            </div>
-
-            {/* School Name Stack */}
-            <div className="flex flex-col leading-tight">
-              <span className="crescent-school-name">The Crescent School</span>
-              <span className="crescent-school-sub">Nursery to Higher Secondary</span>
-              <span className="crescent-school-affil">Affiliated to WBBSE &amp; WBCHSE</span>
-            </div>
-          </Link>
-
-          {/* Desktop Navigation Links */}
-          <ul className="hidden lg:flex items-center gap-0">
-            {MENU_ITEMS.map((item) => (
-              <li key={item.label}>
-                <Link
-                  to={item.path}
-                  className="crescent-nav-link"
+              {/* ── LOGO ── */}
+              <a
+                ref={logoRef}
+                href="/"
+                className="flex items-center gap-2 sm:gap-3 no-underline flex-shrink-0"
+                style={{ opacity: 0 }}
+                aria-label="The Crescent School Home"
+              >
+                {/* Logo Image */}
+                <div className="flex-shrink-0 rounded-full overflow-hidden"
+                  style={{
+                    width: "40px",
+                    height: "40px",
+                    border: "2px solid #D4AF37",
+                  }}
                 >
-                  {item.label}
-                  <span className="crescent-nav-underline" />
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  <img
+                    src={logoImg}
+                    alt="The Crescent School Logo"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
 
-          {/* Admission Button — Desktop */}
-          <div className="hidden lg:flex items-center">
-            <Link
-              to="/information"
-              className="crescent-admission-btn"
-            >
-              Admission Open
-            </Link>
+                {/* Text - Responsive */}
+                <div className="flex flex-col leading-tight min-w-0">
+                  <span
+                    className="font-bold tracking-tight text-white text-sm sm:text-base whitespace-nowrap"
+                    style={{
+                      fontFamily: "'Georgia', 'Times New Roman', serif",
+                      lineHeight: 1.1,
+                    }}
+                  >
+                    The Crescent School
+                  </span>
+                  <span
+                    className="hidden sm:inline text-xs text-yellow-600"
+                    style={{
+                      fontFamily: "'Georgia', serif",
+                      letterSpacing: "0.15em",
+                      textTransform: "uppercase",
+                      fontStyle: "italic",
+                      lineHeight: 1.2,
+                    }}
+                  >
+                    Nursery to Higher Secondary
+                  </span>
+                </div>
+              </a>
+
+              {/* ── DESKTOP NAV ── */}
+              <div className="hidden lg:flex items-center gap-1">
+                {NAV_LINKS.map((link, i) => {
+                  const isActive = activePath === link.href;
+                  return (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      ref={(el) => (linksRef.current[i] = el)}
+                      style={{
+                        opacity: 0,
+                        fontFamily: "'Georgia', serif",
+                        fontSize: "0.8rem",
+                        letterSpacing: "0.08em",
+                        textTransform: "uppercase",
+                        color: isActive ? "#D4AF37" : "#FFFFFF",
+                        textDecoration: "none",
+                        padding: "8px 14px",
+                        position: "relative",
+                        transition: "color 0s",
+                        fontWeight: isActive ? 600 : 400,
+                      }}
+                      onMouseEnter={(e) => !isActive && handleLinkHover(e.currentTarget, true)}
+                      onMouseLeave={(e) => !isActive && handleLinkHover(e.currentTarget, false)}
+                    >
+                      {link.label}
+                      {/* Active underline */}
+                      {isActive && (
+                        <span
+                          style={{
+                            position: "absolute",
+                            bottom: 2,
+                            left: "50%",
+                            transform: "translateX(-50%)",
+                            width: "70%",
+                            height: 2,
+                            background: "#D4AF37",
+                            borderRadius: 1,
+                          }}
+                        />
+                      )}
+                    </a>
+                  );
+                })}
+              </div>
+
+              {/* ── CTA + HAMBURGER ── */}
+              <div className="flex items-center gap-2 sm:gap-4">
+                {/* CTA Button */}
+                <a
+                  ref={ctaRef}
+                  href="/admissions"
+                  style={{
+                    opacity: 0,
+                    display: "inline-block",
+                    fontFamily: "'Georgia', serif",
+                    fontSize: "0.7rem",
+                    letterSpacing: "0.15em",
+                    textTransform: "uppercase",
+                    color: "#D4AF37",
+                    textDecoration: "none",
+                    padding: "8px 16px",
+                    border: "1.5px solid #D4AF37",
+                    borderRadius: 3,
+                    backgroundColor: "transparent",
+                    fontWeight: 600,
+                    cursor: "pointer",
+                    transition: "color 0s, background-color 0s",
+                    whiteSpace: "nowrap",
+                  }}
+                  className="hidden sm:inline-block"
+                  onMouseEnter={() => handleCtaHover(true)}
+                  onMouseLeave={() => handleCtaHover(false)}
+                >
+                  Admission
+                </a>
+
+                {/* Hamburger (mobile) */}
+                <button
+                  ref={hamburgerRef}
+                  onClick={() => setDrawerOpen(true)}
+                  aria-label="Open menu"
+                  className="lg:hidden flex flex-col justify-center items-center gap-1.5 p-2"
+                  style={{ background: "none", border: "none", cursor: "pointer" }}
+                >
+                  {[0, 1, 2].map((n) => (
+                    <span
+                      key={n}
+                      style={{
+                        display: "block",
+                        width: n === 1 ? 18 : 24,
+                        height: 2,
+                        background: "#D4AF37",
+                        borderRadius: 1,
+                        transition: "width 0.2s",
+                      }}
+                    />
+                  ))}
+                </button>
+              </div>
+            </div>
           </div>
-
-          {/* Mobile Hamburger */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="lg:hidden crescent-hamburger"
-            aria-label="Toggle menu"
-          >
-            <span className={`crescent-bar ${menuOpen ? 'crescent-bar--top-open' : ''}`} />
-            <span className={`crescent-bar ${menuOpen ? 'crescent-bar--mid-open' : ''}`} />
-            <span className={`crescent-bar ${menuOpen ? 'crescent-bar--bot-open' : ''}`} />
-          </button>
         </div>
+
+        {/* ── HAIRLINE ── */}
+        <div
+          style={{
+            height: 1,
+            background: scrolled
+              ? "rgba(212,175,55,0.18)"
+              : "rgba(212,175,55,0.10)",
+            transition: "background 0.4s",
+          }}
+        />
       </nav>
 
-      {/* Mobile Overlay */}
+      {/* ── OVERLAY ── */}
       <div
-        className={`fixed inset-0 z-[998] transition-all duration-300 ${
-          menuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
-        }`}
-        style={{ background: 'rgba(10,35,66,0.45)', backdropFilter: 'blur(4px)' }}
-        onClick={handleMenuClose}
+        ref={overlayRef}
+        onClick={() => setDrawerOpen(false)}
+        style={{
+          display: "none",
+          position: "fixed",
+          inset: 0,
+          zIndex: 1000,
+          backgroundColor: "rgba(10,35,66,0.55)",
+          backdropFilter: "blur(2px)",
+          WebkitBackdropFilter: "blur(2px)",
+        }}
       />
 
-      {/* Mobile Drawer — Premium School Style */}
-      <div
-        className={`fixed top-0 right-0 bottom-0 z-[997] crescent-drawer transform transition-transform duration-300 ${
-          menuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
+      {/* ── MOBILE DRAWER ── */}
+      <aside
+        ref={drawerRef}
+        style={{
+          display: "none",
+          position: "fixed",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 1001,
+          width: "min(85vw, 320px)",
+          maxWidth: "320px",
+          backgroundColor: "#0A2342",
+          flexDirection: "column",
+          boxShadow: "-8px 0 40px rgba(10,35,66,0.35)",
+          transform: "translateX(100%)",
+          borderLeft: "1px solid rgba(212,175,55,0.18)",
+          overflowY: "auto",
+        }}
       >
         {/* Drawer Header */}
-        <div className="crescent-drawer-header">
-          <div className="flex items-center gap-3">
-            <svg width="36" height="36" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="44" height="44" rx="4" fill="#0A2342"/>
-              <path d="M14 22 A10 10 0 0 1 30 22" stroke="#D4AF37" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-              <circle cx="22" cy="14" r="1.5" fill="#D4AF37"/>
-              <circle cx="16" cy="17" r="1" fill="#D4AF37" opacity="0.7"/>
-              <circle cx="28" cy="17" r="1" fill="#D4AF37" opacity="0.7"/>
-              <line x1="12" y1="27" x2="32" y2="27" stroke="#D4AF37" strokeWidth="0.75" opacity="0.6"/>
-              <text x="22" y="37" textAnchor="middle" fontFamily="Georgia, serif" fontSize="9" fontWeight="700" fill="#D4AF37" letterSpacing="2">CS</text>
-            </svg>
-            <div>
-              <p className="crescent-drawer-school-name">The Crescent School</p>
-              <p className="crescent-drawer-school-sub">Nursery to Higher Secondary</p>
+        <div
+          className="flex items-center justify-between px-5 sm:px-6"
+          style={{
+            paddingTop: 24,
+            paddingBottom: 20,
+            borderBottom: "1px solid rgba(212,175,55,0.13)",
+            flexShrink: 0,
+          }}
+        >
+          {/* Mini Logo */}
+          <div className="flex items-center gap-2 min-w-0">
+            <div
+              style={{
+                width: 36,
+                height: 36,
+                borderRadius: "50%",
+                border: "1.5px solid #D4AF37",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0,
+                overflow: "hidden",
+              }}
+            >
+              <img
+                src={logoImg}
+                alt="The Crescent School Logo"
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="min-w-0">
+              <p
+                style={{
+                  fontFamily: "'Georgia', serif",
+                  fontSize: "0.85rem",
+                  color: "#fff",
+                  margin: 0,
+                  fontWeight: 700,
+                  letterSpacing: "0.02em",
+                  lineHeight: 1.2,
+                  whiteSpace: "nowrap",
+                  overflow: "hidden",
+                  textOverflow: "ellipsis",
+                }}
+              >
+                The Crescent
+              </p>
+              <p
+                style={{
+                  fontFamily: "'Georgia', serif",
+                  fontSize: "0.5rem",
+                  color: "#D4AF37",
+                  margin: 0,
+                  letterSpacing: "0.15em",
+                  textTransform: "uppercase",
+                  fontStyle: "italic",
+                  lineHeight: 1.1,
+                }}
+              >
+                School
+              </p>
             </div>
           </div>
-          {/* Close Button */}
-          <button onClick={handleMenuClose} className="crescent-drawer-close" aria-label="Close menu">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M2 2L16 16M16 2L2 16" stroke="#0A2342" strokeWidth="1.75" strokeLinecap="round"/>
+
+          {/* Close button */}
+          <button
+            onClick={() => setDrawerOpen(false)}
+            aria-label="Close menu"
+            style={{
+              background: "none",
+              border: "1px solid rgba(212,175,55,0.3)",
+              cursor: "pointer",
+              padding: "6px 8px",
+              borderRadius: 2,
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexShrink: 0,
+            }}
+          >
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path
+                d="M2 2L14 14M14 2L2 14"
+                stroke="#D4AF37"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+              />
             </svg>
           </button>
         </div>
 
-        {/* Gold Rule */}
-        <div className="crescent-drawer-rule" />
-
-        {/* Nav Links */}
-        <nav className="crescent-drawer-nav">
-          {MENU_ITEMS.map((item, index) => (
-            <Link
-              key={item.label}
-              to={item.path}
-              ref={(el) => (menuItemsRef.current[index] = el)}
-              onClick={handleMenuClose}
-              className="crescent-drawer-link"
-            >
-              <span className="crescent-drawer-link-num">{String(index + 1).padStart(2, '0')}</span>
-              {item.label}
-            </Link>
-          ))}
+        {/* Drawer Links */}
+        <nav className="flex flex-col px-5 sm:px-6 pt-4 flex-1 overflow-y-auto">
+          {NAV_LINKS.map((link, i) => {
+            const isActive = activePath === link.href;
+            return (
+              <a
+                key={link.href}
+                href={link.href}
+                ref={(el) => (drawerLinksRef.current[i] = el)}
+                style={{
+                  opacity: 0,
+                  fontFamily: "'Georgia', serif",
+                  fontSize: "0.95rem",
+                  letterSpacing: "0.08em",
+                  textTransform: "uppercase",
+                  color: isActive ? "#D4AF37" : "rgba(255,255,255,0.88)",
+                  textDecoration: "none",
+                  padding: "12px 0",
+                  borderBottom: "1px solid rgba(255,255,255,0.07)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                  transition: "color 0.2s",
+                  fontWeight: isActive ? 700 : 400,
+                }}
+                onMouseEnter={(e) => {
+                  if (!isActive) e.currentTarget.style.color = "#D4AF37";
+                }}
+                onMouseLeave={(e) => {
+                  if (!isActive) e.currentTarget.style.color = "rgba(255,255,255,0.88)";
+                }}
+                onClick={() => setDrawerOpen(false)}
+              >
+                {link.label}
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path
+                    d="M3 7h8M7.5 3.5L11 7l-3.5 3.5"
+                    stroke={isActive ? "#D4AF37" : "rgba(255,255,255,0.3)"}
+                    strokeWidth="1.4"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </a>
+            );
+          })}
         </nav>
 
-        {/* Drawer Footer — Admission CTA */}
-        <div className="crescent-drawer-footer">
-          <Link
-            to="/information"
-            onClick={handleMenuClose}
-            className="crescent-drawer-admission"
+        {/* Drawer CTA */}
+        <div
+          className="px-5 sm:px-6"
+          style={{ paddingBottom: 32, paddingTop: 24, flexShrink: 0 }}
+        >
+          <a
+            href="/admissions"
+            style={{
+              display: "block",
+              textAlign: "center",
+              fontFamily: "'Georgia', serif",
+              fontSize: "0.75rem",
+              letterSpacing: "0.18em",
+              textTransform: "uppercase",
+              color: "#0A2342",
+              textDecoration: "none",
+              padding: "12px 0",
+              backgroundColor: "#D4AF37",
+              borderRadius: 3,
+              fontWeight: 700,
+            }}
+            onClick={() => setDrawerOpen(false)}
           >
-            Apply for Admission
-          </Link>
-          <p className="crescent-drawer-tagline">Shaping Tomorrow's Leaders Since 1985</p>
+            Admission Open
+          </a>
+
+          {/* Branding Info */}
+          <p
+            style={{
+              fontFamily: "'Georgia', serif",
+              fontSize: "0.65rem",
+              color: "rgba(212,175,55,0.6)",
+              textAlign: "center",
+              marginTop: 16,
+              letterSpacing: "0.03em",
+              lineHeight: 1.6,
+            }}
+          >
+            English Medium • Girls & Boys
+            <br />
+            WBBSE & WBCHSE Affiliated
+          </p>
         </div>
-      </div>
-
-      {/* All Crescent School Styles */}
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=EB+Garamond:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
-
-        /* ── Navbar base states ── */
-        .crescent-nav--top {
-          background: transparent;
-        }
-        .crescent-nav--scrolled {
-          background: rgba(255,255,255,0.94);
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-          border-bottom: 1px solid rgba(212,175,55,0.18);
-          box-shadow: 0 2px 24px rgba(10,35,66,0.08);
-        }
-
-        /* ── Logo link ── */
-        .crescent-logo-link {
-          transition: opacity 0.2s ease;
-          text-decoration: none;
-        }
-        .crescent-logo-link:hover { opacity: 0.85; }
-
-        /* ── Emblem ── */
-        .crescent-emblem {
-          flex-shrink: 0;
-          border-radius: 5px;
-          box-shadow: 0 2px 12px rgba(10,35,66,0.22);
-        }
-
-        /* ── School name typography ── */
-        .crescent-school-name {
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-weight: 700;
-          font-size: 1.125rem;
-          letter-spacing: 0.01em;
-          color: #ffffff;
-          line-height: 1.1;
-          transition: color 0.4s ease;
-        }
-        .crescent-nav--scrolled .crescent-school-name {
-          color: #0A2342;
-        }
-        .crescent-school-sub {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 400;
-          font-size: 0.65rem;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.72);
-          line-height: 1.3;
-          margin-top: 1px;
-          transition: color 0.4s ease;
-        }
-        .crescent-nav--scrolled .crescent-school-sub {
-          color: rgba(10,35,66,0.55);
-        }
-        .crescent-school-affil {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 400;
-          font-size: 0.6rem;
-          letter-spacing: 0.03em;
-          color: rgba(212,175,55,0.85);
-          line-height: 1.3;
-          transition: color 0.4s ease;
-        }
-        .crescent-nav--scrolled .crescent-school-affil {
-          color: rgba(212,175,55,0.9);
-        }
-
-        /* ── Desktop nav links ── */
-        .crescent-nav-link {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 500;
-          font-size: 0.8125rem;
-          letter-spacing: 0.04em;
-          text-transform: uppercase;
-          color: rgba(255,255,255,0.82);
-          text-decoration: none;
-          padding: 0.5rem 0.875rem;
-          position: relative;
-          display: block;
-          transition: color 0.25s ease;
-        }
-        .crescent-nav--scrolled .crescent-nav-link {
-          color: rgba(10,35,66,0.72);
-        }
-        .crescent-nav-link:hover {
-          color: #ffffff;
-        }
-        .crescent-nav--scrolled .crescent-nav-link:hover {
-          color: #0A2342;
-        }
-        .crescent-nav-underline {
-          position: absolute;
-          bottom: 2px;
-          left: 0.875rem;
-          right: 0.875rem;
-          height: 1.5px;
-          background: #D4AF37;
-          transform: scaleX(0);
-          transform-origin: left center;
-          transition: transform 0.3s cubic-bezier(0.4,0,0.2,1);
-          border-radius: 1px;
-        }
-        .crescent-nav-link:hover .crescent-nav-underline {
-          transform: scaleX(1);
-        }
-
-        /* ── Admission button ── */
-        .crescent-admission-btn {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 600;
-          font-size: 0.75rem;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          text-decoration: none;
-          color: #ffffff;
-          background: #0A2342;
-          border: 1.5px solid #D4AF37;
-          padding: 0.625rem 1.5rem;
-          border-radius: 2px;
-          display: inline-block;
-          transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-        }
-        .crescent-nav--scrolled .crescent-admission-btn {
-          background: #0A2342;
-          border-color: #D4AF37;
-          color: #ffffff;
-        }
-        .crescent-admission-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 6px 20px rgba(10,35,66,0.28);
-        }
-
-        /* ── Mobile hamburger ── */
-        .crescent-hamburger {
-          display: flex;
-          flex-direction: column;
-          gap: 5px;
-          padding: 8px;
-          background: transparent;
-          border: none;
-          cursor: pointer;
-        }
-        .crescent-bar {
-          display: block;
-          width: 22px;
-          height: 1.5px;
-          background: #ffffff;
-          border-radius: 2px;
-          transition: all 0.3s ease;
-        }
-        .crescent-nav--scrolled .crescent-bar {
-          background: #0A2342;
-        }
-        .crescent-bar--top-open {
-          transform: rotate(45deg) translate(4.5px, 4.5px);
-        }
-        .crescent-bar--mid-open {
-          opacity: 0;
-        }
-        .crescent-bar--bot-open {
-          transform: rotate(-45deg) translate(4.5px, -4.5px);
-        }
-
-        /* ── Mobile drawer ── */
-        .crescent-drawer {
-          width: min(360px, 88vw);
-          background: #ffffff;
-          display: flex;
-          flex-direction: column;
-          box-shadow: -8px 0 40px rgba(10,35,66,0.16);
-        }
-
-        .crescent-drawer-header {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          padding: 1.5rem 1.5rem 1.25rem;
-        }
-
-        .crescent-drawer-school-name {
-          font-family: 'Cormorant Garamond', Georgia, serif;
-          font-weight: 700;
-          font-size: 0.9375rem;
-          color: #0A2342;
-          margin: 0;
-          line-height: 1.2;
-        }
-
-        .crescent-drawer-school-sub {
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 400;
-          font-size: 0.65rem;
-          letter-spacing: 0.05em;
-          text-transform: uppercase;
-          color: rgba(10,35,66,0.5);
-          margin: 2px 0 0;
-        }
-
-        .crescent-drawer-close {
-          width: 32px;
-          height: 32px;
-          border-radius: 50%;
-          border: 1px solid rgba(10,35,66,0.12);
-          background: transparent;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          cursor: pointer;
-          transition: background 0.2s ease, border-color 0.2s ease;
-          flex-shrink: 0;
-        }
-        .crescent-drawer-close:hover {
-          background: rgba(10,35,66,0.06);
-          border-color: rgba(10,35,66,0.2);
-        }
-
-        .crescent-drawer-rule {
-          height: 1px;
-          margin: 0 1.5rem;
-          background: linear-gradient(to right, #D4AF37, rgba(212,175,55,0.1));
-        }
-
-        .crescent-drawer-nav {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          padding: 1rem 0;
-          overflow-y: auto;
-        }
-
-        .crescent-drawer-link {
-          font-family: 'EB Garamond', Georgia, serif;
-          font-weight: 500;
-          font-size: 1.1875rem;
-          color: #0A2342;
-          text-decoration: none;
-          padding: 0.875rem 1.5rem;
-          display: flex;
-          align-items: center;
-          gap: 1rem;
-          border-bottom: 1px solid rgba(10,35,66,0.05);
-          transition: background 0.2s ease, color 0.2s ease, padding-left 0.2s ease;
-        }
-        .crescent-drawer-link:hover {
-          background: rgba(212,175,55,0.06);
-          color: #0A2342;
-          padding-left: 1.875rem;
-        }
-
-        .crescent-drawer-link-num {
-          font-family: 'DM Sans', sans-serif;
-          font-size: 0.65rem;
-          font-weight: 500;
-          letter-spacing: 0.08em;
-          color: #D4AF37;
-          flex-shrink: 0;
-          margin-top: 2px;
-        }
-
-        .crescent-drawer-footer {
-          padding: 1.5rem;
-          border-top: 1px solid rgba(10,35,66,0.08);
-        }
-
-        .crescent-drawer-admission {
-          display: block;
-          text-align: center;
-          font-family: 'DM Sans', sans-serif;
-          font-weight: 600;
-          font-size: 0.8125rem;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          text-decoration: none;
-          color: #ffffff;
-          background: #0A2342;
-          border: 1.5px solid #D4AF37;
-          padding: 0.875rem 1.5rem;
-          border-radius: 2px;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .crescent-drawer-admission:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 4px 16px rgba(10,35,66,0.22);
-        }
-
-        .crescent-drawer-tagline {
-          font-family: 'EB Garamond', Georgia, serif;
-          font-size: 0.75rem;
-          font-style: italic;
-          color: rgba(10,35,66,0.4);
-          text-align: center;
-          margin: 0.875rem 0 0;
-          letter-spacing: 0.01em;
-        }
-
-        /* ── Remove old tech animations ── */
-        nav { animation: none !important; }
-        nav:hover { animation: none !important; }
-      `}</style>
+      </aside>
     </>
   );
 }
