@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import ssImage from "../assets/building/side angle.jpeg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -137,89 +138,112 @@ export default function About() {
   const [statsTriggered, setStatsTriggered] = useState(false);
 
   useEffect(() => {
-
-    const ctx = gsap.context(() => {
-      // Image reveal
-      gsap.fromTo(
-        imageWrapRef.current,
-        { opacity: 0, x: -40, scale: 0.97 },
-        {
-          opacity: 1, x: 0, scale: 1, duration: 1.2, ease: "power3.out",
-          scrollTrigger: { trigger: imageWrapRef.current, start: "top 80%", once: true },
+    // Wait for DOM to be ready
+    const timer = setTimeout(() => {
+      const ctx = gsap.context(() => {
+        // Image reveal
+        if (imageWrapRef.current) {
+          gsap.fromTo(
+            imageWrapRef.current,
+            { opacity: 0, x: -40, scale: 0.97 },
+            {
+              opacity: 1, x: 0, scale: 1, duration: 1.2, ease: "power3.out",
+              scrollTrigger: { 
+                trigger: imageWrapRef.current, 
+                start: "top 80%", 
+                once: true,
+                markers: false
+              },
+            }
+          );
         }
-      );
-      gsap.fromTo(
-        imageInnerRef.current,
-        { scale: 1.12 },
-        {
-          scale: 1, duration: 1.4, ease: "power3.out",
-          scrollTrigger: { trigger: imageWrapRef.current, start: "top 80%", once: true },
+        
+        if (imageInnerRef.current) {
+          gsap.fromTo(
+            imageInnerRef.current,
+            { scale: 1.12 },
+            {
+              scale: 1, duration: 1.4, ease: "power3.out",
+              scrollTrigger: { 
+                trigger: imageWrapRef.current, 
+                start: "top 80%", 
+                once: true,
+                markers: false
+              },
+            }
+          );
         }
-      );
 
-      // Label
-      gsap.fromTo(
-        labelRef.current,
-        { opacity: 0, y: 16 },
-        {
-          opacity: 1, y: 0, duration: 0.7, ease: "power2.out",
-          scrollTrigger: { trigger: labelRef.current, start: "top 85%", once: true },
+        // Label
+        if (labelRef.current) {
+          gsap.fromTo(
+            labelRef.current,
+            { opacity: 0, y: 16 },
+            {
+              opacity: 1, y: 0, duration: 0.7, ease: "power2.out",
+              scrollTrigger: { trigger: labelRef.current, start: "top 85%", once: true, markers: false },
+            }
+          );
         }
-      );
 
-      // Heading
-      gsap.fromTo(
-        headingRef.current,
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
-          scrollTrigger: { trigger: headingRef.current, start: "top 85%", once: true },
+        // Heading
+        if (headingRef.current) {
+          gsap.fromTo(
+            headingRef.current,
+            { opacity: 0, y: 30 },
+            {
+              opacity: 1, y: 0, duration: 0.9, ease: "power3.out",
+              scrollTrigger: { trigger: headingRef.current, start: "top 85%", once: true, markers: false },
+            }
+          );
         }
-      );
 
-      // Divider
-      gsap.fromTo(
-        dividerRef.current,
-        { scaleX: 0, opacity: 0 },
-        {
-          scaleX: 1, opacity: 1, duration: 0.8, ease: "power2.out",
-          transformOrigin: "left center",
-          scrollTrigger: { trigger: dividerRef.current, start: "top 88%", once: true },
+        // Divider
+        if (dividerRef.current) {
+          gsap.fromTo(
+            dividerRef.current,
+            { scaleX: 0, opacity: 0 },
+            {
+              scaleX: 1, opacity: 1, duration: 0.8, ease: "power2.out",
+              transformOrigin: "left center",
+              scrollTrigger: { trigger: dividerRef.current, start: "top 88%", once: true, markers: false },
+            }
+          );
         }
-      );
 
-      // Paragraph
-      gsap.fromTo(
-        paraRef.current,
-        { opacity: 0, y: 20 },
-        {
-          opacity: 1, y: 0, duration: 0.8, ease: "power2.out",
-          scrollTrigger: { trigger: paraRef.current, start: "top 88%", once: true },
+        // Paragraph
+        if (paraRef.current) {
+          gsap.fromTo(
+            paraRef.current,
+            { opacity: 0, y: 20 },
+            {
+              opacity: 1, y: 0, duration: 0.8, ease: "power2.out",
+              scrollTrigger: { trigger: paraRef.current, start: "top 88%", once: true, markers: false },
+            }
+          );
         }
-      );
 
-      // Cards stagger
-      gsap.fromTo(
-        cardsRef.current,
-        { opacity: 0, y: 32, scale: 0.97 },
-        {
-          opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out",
-          stagger: 0.13,
-          scrollTrigger: { trigger: cardsRef.current[0], start: "top 88%", once: true },
+        // Cards stagger
+        if (cardsRef.current && cardsRef.current.length > 0) {
+          gsap.fromTo(
+            cardsRef.current,
+            { opacity: 0, y: 32, scale: 0.97 },
+            {
+              opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out",
+              stagger: 0.13,
+              scrollTrigger: { trigger: cardsRef.current[0], start: "top 88%", once: true, markers: false },
+            }
+          );
         }
-      );
 
-      // Stats trigger
-      ScrollTrigger.create({
-        trigger: statsRowRef.current,
-        start: "top 88%",
-        once: true,
-        onEnter: () => setStatsTriggered(true),
-      });
+        // Refresh ScrollTrigger after setup
+        ScrollTrigger.refresh();
+      }, sectionRef);
 
-    }, sectionRef);
+      return () => ctx.revert();
+    }, 100);
 
-    return () => ctx.revert();
+    return () => clearTimeout(timer);
   }, []);
 
   // Proper useState via hook (needs real React)
@@ -336,60 +360,14 @@ export default function About() {
               <div className="relative z-10 rounded-2xl overflow-hidden" style={{ aspectRatio: "4/5" }}>
                 <div
                   ref={imageInnerRef}
-                  className="absolute inset-0 w-full h-full"
-                  style={{
-                    background: `
-                      linear-gradient(160deg, #1a1208 0%, #0f0c06 30%, #1c1610 60%, #0d0b07 100%)
-                    `,
-                  }}
+                  className="absolute inset-0 w-full h-full overflow-hidden"
                 >
-                  {/* Architectural illustration */}
-                  <svg viewBox="0 0 480 600" className="absolute inset-0 w-full h-full" preserveAspectRatio="xMidYMid slice">
-                    {/* Sky gradient */}
-                    <defs>
-                      <radialGradient id="skyGrad" cx="50%" cy="30%" r="60%">
-                        <stop offset="0%" stopColor="#2a1e08" />
-                        <stop offset="100%" stopColor="#080604" />
-                      </radialGradient>
-                      <linearGradient id="wallGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor="#1e1608" />
-                        <stop offset="100%" stopColor="#0d0a04" />
-                      </linearGradient>
-                      <radialGradient id="glowGrad" cx="50%" cy="40%" r="40%">
-                        <stop offset="0%" stopColor="#c9a96e" stopOpacity="0.08" />
-                        <stop offset="100%" stopColor="transparent" />
-                      </radialGradient>
-                    </defs>
-                    <rect width="480" height="600" fill="url(#skyGrad)" />
-                    <rect width="480" height="600" fill="url(#glowGrad)" />
-                    {/* Main building */}
-                    <rect x="80" y="220" width="320" height="380" fill="url(#wallGrad)" />
-                    {/* Columns */}
-                    {[120, 180, 240, 300, 360].map((x, i) => (
-                      <rect key={i} x={x} y="200" width="18" height="400" fill="#1a1208" rx="3" />
-                    ))}
-                    {/* Pediment */}
-                    <polygon points="70,220 240,120 410,220" fill="#1c1508" stroke="#2a1e08" strokeWidth="2" />
-                    {/* Entablature */}
-                    <rect x="70" y="210" width="340" height="20" fill="#251c0a" />
-                    {/* Steps */}
-                    <rect x="60" y="590" width="360" height="10" fill="#1a1208" />
-                    <rect x="70" y="582" width="340" height="10" fill="#1c1508" />
-                    <rect x="80" y="574" width="320" height="10" fill="#201808" />
-                    {/* Windows */}
-                    {[100, 175, 250, 325].map((x) =>
-                      [270, 350, 430].map((y, j) => (
-                        <rect key={`${x}-${y}`} x={x} y={y} width="40" height="55"
-                          fill={j === 0 ? "#1e1608" : "#160f04"} stroke="#2a1e08" strokeWidth="1" rx="2"
-                        />
-                      ))
-                    )}
-                    {/* Door */}
-                    <rect x="200" y="480" width="80" height="120" fill="#120e04" stroke="#2a1e0a" strokeWidth="1.5" rx="2" />
-                    <ellipse cx="240" cy="480" rx="40" ry="20" fill="#120e04" stroke="#2a1e0a" strokeWidth="1.5" />
-                    {/* Golden shimmer overlay */}
-                    <rect width="480" height="600" fill="rgba(201,169,110,0.03)" />
-                  </svg>
+                  {/* School Image */}
+                  <img
+                    src={ssImage}
+                    alt="The Crescent School Campus"
+                    className="absolute inset-0 w-full h-full object-cover"
+                  />
 
                   {/* Overlay gradient at bottom */}
                   <div className="absolute inset-0" style={{
@@ -446,8 +424,8 @@ export default function About() {
                   opacity: 0,
                 }}
               >
-                A Legacy of Learning<br />
-                <em style={{ color: "#C9A96E", fontStyle: "italic", fontWeight: 400 }}>Since 2002</em>
+                A Journey of Academic<br />
+                <em style={{ color: "#C9A96E", fontStyle: "italic", fontWeight: 400 }}>Excellence & Values</em>
               </h2>
 
               {/* Gold divider */}
@@ -533,27 +511,42 @@ function StatItemInner({ stat, statsRowRef }) {
 
   useEffect(() => {
     if (stat.value === null) return;
+    if (!statsRowRef?.current) return;
+
+    const obj = { val: 0 };
 
     const st = ScrollTrigger.create({
       trigger: statsRowRef.current,
       start: "top 88%",
       once: true,
+
       onEnter: () => {
         if (triggered.current) return;
         triggered.current = true;
+
         const el = numRef.current;
         if (!el) return;
+
         gsap.fromTo(
+          obj,
           { val: 0 },
-          { val: stat.value, duration: 1.8, ease: "power3.out",
-            onUpdate: function() { el.textContent = Math.floor(this.targets()[0].val); },
-            onComplete: function() { el.textContent = stat.value; }
+          {
+            val: stat.value,
+            duration: 1.8,
+            ease: "power3.out",
+            onUpdate: function () {
+              el.textContent = Math.floor(obj.val);
+            },
+            onComplete: function () {
+              el.textContent = stat.value;
+            }
           }
         );
-      },
+      }
     });
+
     return () => st.kill();
-  }, []);
+  }, [stat.value, statsRowRef]);
 
   return (
     <div className="flex flex-col items-center md:items-start py-2">
@@ -562,21 +555,52 @@ function StatItemInner({ stat, statsRowRef }) {
           <>
             <span
               ref={numRef}
-              style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", color: "#C9A96E", fontSize: "clamp(1.8rem, 4vw, 2.6rem)", fontWeight: 700, lineHeight: 1 }}
+              style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                color: "#C9A96E",
+                fontSize: "clamp(1.8rem, 4vw, 2.6rem)",
+                fontWeight: 700,
+                lineHeight: 1
+              }}
             >
               0
             </span>
-            <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", color: "#C9A96E", fontSize: "clamp(1.5rem, 3vw, 2rem)", fontWeight: 700 }}>
+
+            <span
+              style={{
+                fontFamily: "'Cormorant Garamond', Georgia, serif",
+                color: "#C9A96E",
+                fontSize: "clamp(1.5rem, 3vw, 2rem)",
+                fontWeight: 700
+              }}
+            >
               {stat.suffix}
             </span>
           </>
         ) : (
-          <span style={{ fontFamily: "'Cormorant Garamond', Georgia, serif", color: "#C9A96E", fontSize: "clamp(1.6rem, 3vw, 2.2rem)", fontWeight: 700 }}>
+          <span
+            style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              color: "#C9A96E",
+              fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
+              fontWeight: 700
+            }}
+          >
             ✦
           </span>
         )}
       </div>
-      <span style={{ color: "rgba(255,255,255,0.38)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "4px", fontFamily: "'DM Sans', sans-serif" }}>
+
+      <span
+        style={{
+          color: "rgba(255,255,255,0.38)",
+          fontSize: "0.65rem",
+          letterSpacing: "0.2em",
+          textTransform: "uppercase",
+          marginTop: "4px",
+          fontFamily: "'DM Sans', sans-serif"
+        }}
+      >
         {stat.label}
       </span>
     </div>
