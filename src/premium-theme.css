@@ -1,0 +1,261 @@
+/* PREMIUM SCHOOL WEBSITE REDESIGN - THEME TRANSFORMATION */
+/* Apply this comprehensive CSS to transform entire site to premium light theme */
+
+/* ──────────────────────────────────────────────────────────────
+   GLOBAL OVERRIDES FOR SECTION TRANSFORMATION
+   ────────────────────────────────────────────────────────────── */
+
+/* Override dark navy/black backgrounds to light theme */
+[style*="background:#0a1628"],
+[style*="background: #0a1628"],
+[style*="background: #0a1122"],
+[style*="background:#0c0b0e"],
+[style*="background:#050812"] {
+  background: white !important;
+  color: #0f172a !important;
+}
+
+[style*="background: linear-gradient(180deg, #0a1122"],
+[style*="background: linear-gradient(180deg, #0a1628"],
+[style*="background: linear-gradient(135deg, #0891b2"]  {
+  background: linear-gradient(180deg, #f8fafc 0%, #f0f5ff 100%) !important;
+  color: #0f172a !important;
+}
+
+/* Section backgrounds */
+section {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+}
+
+/* Alternating section backgrounds */
+section:nth-of-type(even) {
+  background: linear-gradient(180deg, #f8fafc 0%, #f0f5ff 100%) !important;
+}
+
+/* Text color overrides */
+h1, h2, h3, h4, h5, h6 {
+  color: #0f172a !important;
+}
+
+p, span, a {
+  color: #475569 !important;
+}
+
+/* Card styling */
+.glass,
+[style*="background: rgba(255, 255, 255, 0.06"],
+[style*="backdropFilter: blur"],
+[className*="card"],
+[className*="rounded-2xl"] {
+  background: white !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+  backdrop-filter: none !important;
+}
+
+/* Hover effects */
+.glass:hover,
+[className*="card"]:hover,
+[className*="rounded-2xl"]:hover {
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12) !important;
+  transform: translateY(-4px);
+}
+
+/* Typography color updates */
+[style*="color: #ffffff"],
+[style*="color:#ffffff"],
+[style*="color: rgba(255,255,255"] {
+  color: #0f172a !important;
+}
+
+/* Button styling */
+button,
+[role="button"],
+.btn {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+  color: white !important;
+  border-radius: 9999px !important;
+}
+
+button:hover {
+  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25) !important;
+  transform: translateY(-2px);
+}
+
+/* Cyan/teal to blue accent conversion */
+[style*="#0891b2"],
+[style*="#06b6d4"],
+[style*="#38bdf8"],
+[className*="cyan"],
+[className*="sky"] {
+  color: #2563eb !important;
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%) !important;
+}
+
+/* Gold to blue conversion */
+[style*="#D4AF37"],
+[style*="#d4af37"],
+[style*="#C9A96E"],
+[className*="gold"],
+[className*="amber"],
+[className*="yellow"] {
+  color: #2563eb !important;
+  border-color: #2563eb !important;
+  background: #2563eb !important;
+}
+
+/* Border color updates */
+[style*="border.*rgba(6, 182, 212"],
+[style*="border.*rgba(201,169,110"],
+[className*="border-cyan"],
+[className*="border-amber"],
+[className*="border-yellow"] {
+  border-color: #e2e8f0 !important;
+}
+
+/* Section heading styling */
+[className*="section-label"],
+[className*="section-tag"] {
+  color: #2563eb !important;
+}
+
+[className*="section-label"]::before {
+  background-color: #2563eb !important;
+}
+
+/* Underline effects */
+[style*="underline"] {
+  border-bottom-color: #2563eb !important;
+}
+
+/* Navbar modifications */
+nav {
+  background: transparent !important;
+}
+
+/* Stats and count styling */
+.stat-item,
+[className*="stat"],
+[className*="count"] {
+  color: #0f172a !important;
+}
+
+/* Animation keyframe colors */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; color: #0f172a; }
+}
+
+/* Input/form styling */
+input,
+textarea,
+select {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #e2e8f0 !important;
+}
+
+input::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Link styling */
+a {
+  color: #2563eb !important;
+}
+
+a:hover {
+  color: #1d4ed8 !important;
+}
+
+/* Specific section overrides */
+
+/* Hero section */
+[id*="hero"] {
+  background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(241,245,255,1) 100%) !important;
+  color: #0f172a !important;
+}
+
+/* Navbar specific */
+.crescent-nav--scrolled {
+  background: rgba(255,255,255,0.94) !important;
+  border-bottom-color: rgba(226,232,240,0.5) !important;
+  box-shadow: 0 2px 24px rgba(15, 23, 42, 0.08) !important;
+}
+
+.crescent-school-name,
+.crescent-nav-link {
+  color: #0f172a !important;
+}
+
+/* Footer styling */
+footer {
+  background: linear-gradient(180deg, #f8fafc 0%, #f0f5ff 100%) !important;
+  border-top-color: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+footer h2, footer h3, footer h4 {
+  color: #0f172a !important;
+}
+
+footer p, footer a {
+  color: #475569 !important;
+}
+
+/* Adjustments for text visibility */
+.text-white {
+  color: #0f172a !important;
+}
+
+.text-white\/60 {
+  color: rgba(15, 23, 42, 0.6) !important;
+}
+
+.text-white\/80 {
+  color: rgba(15, 23, 42, 0.8) !important;
+}
+
+/* Icon styling */
+.icon,
+[className*="icon"] {
+  color: #2563eb !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2563eb;
+  border-radius: 3px;
+}
+
+/* Media queries for responsive adjustments */
+@media (max-width: 768px) {
+  h1 { font-size: 2rem !important; }
+  h2 { font-size: 1.5rem !important; }
+  h3 { font-size: 1.25rem !important; }
+}
+
+/* Ensure text is always readable */
+* {
+  color-scheme: light;
+}
+
+/* Remove any remaining dark theme filters/inversions */
+[style*="filter: invert"],
+[style*="filter: brightness(0"],
+[style*="filter: contrast("] {
+  filter: none !important;
+}
