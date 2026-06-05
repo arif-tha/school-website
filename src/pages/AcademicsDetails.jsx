@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import About from '../sections/About';
+import AcademicsFull from '../sections/AcademicsFull';
 import Footer from '../sections/Footer';
 
-export default function AboutPage() {
+export default function AcademicsDetailsPage() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -10,7 +10,7 @@ export default function AboutPage() {
   return (
     <div className="relative bg-white text-slate-900 overflow-x-hidden">
       <div className="pt-32" />
-      <About />
+      <AcademicsFull />
       <Footer />
     </div>
   );

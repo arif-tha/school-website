@@ -3,28 +3,13 @@ import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const featuredFacilities = [
-  {
-    title: "Computer Laboratory",
-    desc: "Air-conditioned labs with high-speed internet and latest multimedia technology to match international learning standards.",
-    icon: "💻",
-    accent: "#38BDF8"
-  },
-  {
-    title: "Science Laboratories",
-    desc: "Separate high-spec labs for Physics, Chemistry, and Biology to foster curiosity and practical understanding.",
-    icon: "🔬",
-    accent: "#34D399"
-  },
-  {
-    title: "Library & Hub",
-    desc: "A vast collection of titles and resources designed to cultivate lifelong reading habits and research skills.",
-    icon: "📚",
-    accent: "#A78BFA"
-  }
+const highlights = [
+  { icon: "👔", label: "Uniform Standards", desc: "Detailed dress code for all sessions." },
+  { icon: "🛡️", label: "Strict Discipline", desc: "Values of respect and responsibility." },
+  { icon: "🏠", label: "House System", desc: "The four-house competitive structure." },
 ];
 
-export default function FacilitiesPreview() {
+export default function HandbookPreview() {
   const sectionRef = useRef(null);
   const headerRef = useRef(null);
   const cardsRef = useRef([]);
@@ -75,7 +60,7 @@ export default function FacilitiesPreview() {
   return (
     <>
       <style>{`
-        .facilities-preview {
+        .handbook-preview {
           background: #03092E;
           position: relative;
           overflow: hidden;
@@ -88,13 +73,13 @@ export default function FacilitiesPreview() {
           font-weight: 500;
           text-transform: uppercase;
         }
-        .preview-card {
+        .handbook-card {
           background: rgba(255,255,255,0.035);
           backdrop-filter: blur(20px);
           border: 1px solid rgba(255,255,255,0.07);
           transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        .preview-card:hover {
+        .handbook-card:hover {
           background: rgba(255,255,255,0.06);
           border-color: rgba(201,168,76,0.25);
           transform: translateY(-8px);
@@ -113,44 +98,50 @@ export default function FacilitiesPreview() {
         }
       `}</style>
 
-      <section ref={sectionRef} className="facilities-preview py-24 lg:py-40 px-6 sm:px-12">
+      <section ref={sectionRef} className="handbook-preview py-24 lg:py-40 px-6 sm:px-12">
         <div className="max-w-7xl mx-auto">
           <div ref={headerRef} className="mb-20 grid lg:grid-cols-2 gap-12 items-end opacity-0">
             <div>
-              <span className="gold-label">Our Campus</span>
+              <span className="gold-label">Student Life</span>
               <h2 className="display-font text-4xl md:text-5xl lg:text-6xl text-white font-light mt-4 leading-tight">
-                Facilities Designed for <br />
-                <em className="text-amber-300/90 font-light italic">Inspiring Excellence</em>
+                Student <em className="text-amber-300/90 font-light italic">Handbook</em> <br />
+                & Guidelines
               </h2>
             </div>
             <div>
               <p className="text-blue-100/40 text-lg leading-relaxed max-w-md pb-2">
-                Every corner of our campus is engineered to spark curiosity, support collaboration, and foster a healthy, disciplined environment for students.
+                Our handbook serves as a comprehensive guide for student conduct, institutional discipline, and official uniform regulations to foster an environment of excellence.
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {featuredFacilities.map((f, i) => (
+            {highlights.map((h, i) => (
               <div
                 key={i}
                 ref={el => cardsRef.current[i] = el}
-                className="preview-card rounded-[2rem] p-8 lg:p-10 flex flex-col items-start opacity-0"
+                className="handbook-card rounded-[2rem] p-8 lg:p-10 flex flex-col items-start opacity-0"
               >
-                <div className="text-5xl mb-8 group-hover:scale-110 transition-transform duration-300">{f.icon}</div>
-                <h3 className="display-font text-2xl lg:text-3xl text-white font-semibold mb-4">{f.title}</h3>
-                <p style={paragraphStyle} className="mb-8">{f.desc}</p>
+                <div className="text-5xl mb-8 transition-transform duration-300">{h.icon}</div>
+                <h3 className="display-font text-2xl lg:text-3xl text-white font-semibold mb-4">{h.label}</h3>
+                <p style={paragraphStyle} className="mb-8">{h.desc}</p>
                 <div className="mt-auto w-12 h-[1px] bg-amber-400/30 group-hover:w-20 transition-all duration-300" />
               </div>
             ))}
           </div>
 
-          <div className="mt-20 text-center">
+          <div className="mt-20 flex flex-col sm:flex-row items-center justify-center gap-8 lg:gap-16">
             <Link 
-              to="/facilities-details" 
+              to="/handbook-details" 
               className="learn-more-link flex items-center justify-center gap-3 inline-flex"
             >
-              Learn More About Our Infrastructure <span>→</span>
+              Learn More About Student Policies <span>→</span>
+            </Link>
+            <Link 
+              to="/academic-calendar" 
+              className="learn-more-link flex items-center justify-center gap-3 inline-flex opacity-80 hover:opacity-100"
+            >
+              Academic Calendar 2026-27 <span>→</span>
             </Link>
           </div>
         </div>

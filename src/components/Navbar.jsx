@@ -8,7 +8,9 @@ const NAV_LINKS = [
   { label: "Academics", href: "/academics" },
   { label: "Facilities", href: "/facilities" },
   { label: "Activities", href: "/activities" },
+  { label: "Parent Corner", href: "/parent-corner" },
   { label: "Information", href: "/information" },
+  { label: "Calendar", href: "/academic-calendar" },
   { label: "Contact", href: "/contact" },
 ];
 
