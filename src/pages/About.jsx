@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import About from '../sections/About';
+import About from '../sections/AboutFull';
 import Footer from '../sections/Footer';
 
 export default function AboutPage() {

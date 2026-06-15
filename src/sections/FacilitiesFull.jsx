@@ -3,13 +3,13 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Placeholder Image Variables - Replace these with real school photographs
-const playroomImage = "https://images.unsplash.com/photo-1566350600484-7231730bbac4?q=80&w=2070&auto=format&fit=crop";
+import playroomImage from "../assets/activity/playroom.jpeg";
 const canteenImage = "https://images.unsplash.com/photo-1567521464027-f127ff144326?q=80&w=1974&auto=format&fit=crop";
 const infirmaryImage = "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=2053&auto=format&fit=crop";
-const curricularImage = "https://images.unsplash.com/photo-1541339907198-e08756eaa539?q=80&w=2070&auto=format&fit=crop";
-const computerLabImage = "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop";
-const scienceLabImage = "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1986&auto=format&fit=crop";
-const libraryImage = "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=2070&auto=format&fit=crop";
+import curricularImage from "../assets/activity/activity.jpeg";
+import computerLabImage from "../assets/activity/computer-lab.jpeg";
+import scienceLabImage from "../assets/activity/science-lab.jpeg";
+import libraryImage from "../assets/activity/library.jpeg";
 
 const facilitiesData = [
   {

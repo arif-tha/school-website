@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import ssImage from "../assets/building/side angle.jpeg";
@@ -100,7 +101,7 @@ export default function About() {
   const subHeadingSrtyle = {
     fontFamily: "'Cormorant Garamond', serif",
     fontSize: "1.25rem",
-    color: "#C9A96E",
+    color: "#2563eb",
     fontWeight: 600,
     textTransform: "uppercase",
     letterSpacing: "0.15em",
@@ -112,8 +113,8 @@ export default function About() {
     fontFamily: "'DM Sans', sans-serif",
     fontSize: "1rem",
     lineHeight: "1.85",
-    color: "rgba(255,255,255,0.65)",
-    fontWeight: 300,
+    color: "#475569",
+    fontWeight: 400,
     marginBottom: "1.5rem"
   };
 
@@ -178,9 +179,9 @@ export default function About() {
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,6,3,0.7) 0%, transparent 50%)" }} />
                 </div>
               </div>
-              <div className="absolute -bottom-5 -right-4 md:-right-6 z-20 rounded-xl px-5 py-4" style={{ background: "linear-gradient(135deg, #1a1508, #100d04)", border: "1px solid rgba(201,169,110,0.35)", boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#C9A96E", fontSize: "1.75rem", fontWeight: 700, lineHeight: 1 }}>2002</p>
-                <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "2px" }}>Est.</p>
+              <div className="absolute -bottom-5 -right-4 md:-right-6 z-20 rounded-xl px-5 py-4" style={{ background: "linear-gradient(135deg, #ffffff, #f1f5f9)", border: "1px solid #e2e8f0", boxShadow: "0 8px 32px rgba(37,99,235,0.1)" }}>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2563eb", fontSize: "1.75rem", fontWeight: 700, lineHeight: 1 }}>2002</p>
+                <p style={{ color: "#64748b", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "2px" }}>Est.</p>
               </div>
             </div>
 
@@ -189,13 +190,13 @@ export default function About() {
               
               {/* Label */}
               <div ref={labelRef} className="flex items-center gap-3" style={{ opacity: 0 }}>
-                <div className="w-6 h-px" style={{ background: "#C9A96E" }} />
+                <div className="w-6 h-px" style={{ background: "#2563eb" }} />
                 <span style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.75rem",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "#C9A96E",
+                  color: "#2563eb",
                   fontWeight: 600,
                 }}>
                   About The School
@@ -210,12 +211,12 @@ export default function About() {
                   fontSize: "clamp(2.5rem, 5vw, 3.8rem)",
                   fontWeight: 700,
                   lineHeight: 1.1,
-                  color: "#f5efe0",
+                  color: "#1e40af",
                   opacity: 0,
                 }}
               >
                 A Journey of Academic<br />
-                <span style={{ color: "#C9A96E", fontStyle: "italic", fontWeight: 400 }}>Excellence & Values</span>
+                <span style={{ color: "#2563eb", fontStyle: "italic", fontWeight: 400 }}>Excellence & Values</span>
               </h2>
 
               {/* Paragraphs */}
@@ -236,7 +237,7 @@ export default function About() {
               <div 
                 ref={el => contentSectionsRef.current[2] = el} 
                 style={{ opacity: 0 }}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-white/5"
+                className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-6 border-y border-slate-200"
               >
                 {[
                   { label: "Established 2002", icon: "✦" },
@@ -244,11 +245,11 @@ export default function About() {
                   { label: "NIOS Accredited Centre", icon: "★" }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <span style={{ color: "#C9A96E", fontSize: "1.1rem" }}>{item.icon}</span>
+                    <span style={{ color: "#2563eb", fontSize: "1.1rem" }}>{item.icon}</span>
                     <span style={{ 
                       fontFamily: "'DM Sans', sans-serif", 
                       fontSize: "0.8rem", 
-                      color: "rgba(255,255,255,0.8)", 
+                      color: "#475569", 
                       fontWeight: 500,
                       letterSpacing: "0.02em"
                     }}>
@@ -260,24 +261,12 @@ export default function About() {
 
               {/* Button */}
               <div ref={el => contentSectionsRef.current[3] = el} style={{ opacity: 0 }}>
-                <a 
-                  href="/about"
-                  className="inline-flex items-center group"
-                  style={{
-                    fontFamily: "'DM Sans', sans-serif",
-                    color: "#C9A96E",
-                    fontSize: "0.95rem",
-                    fontWeight: 600,
-                    letterSpacing: "0.05em",
-                    transition: "all 0.3s ease"
-                  }}
+                <Link 
+                  to="/about"
+                  className="learn-more-btn"
                 >
-                  <span className="relative">
-                    Learn More About Us
-                    <span className="absolute -bottom-1 left-0 w-0 h-px bg-[#C9A96E] transition-all duration-300 group-hover:w-full"></span>
-                  </span>
-                  <span className="ml-2 transform transition-transform duration-300 group-hover:translate-x-2">→</span>
-                </a>
+                  Learn More About Us <span>→</span>
+                </Link>
               </div>
 
             </div>

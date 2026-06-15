@@ -1,261 +1,269 @@
-/* PREMIUM SCHOOL WEBSITE REDESIGN - THEME TRANSFORMATION */
-/* Apply this comprehensive CSS to transform entire site to premium light theme */
+/* PREMIUM SCHOOL WEBSITE - LIGHT THEME WITH UNIFIED BUTTONS */
+/* ======================================================================
+   🔒 ABSOLUTELY NO CHANGES TO HEADER/NAVBAR!
+   Every selector below is explicitly scoped ONLY to sections
+   ====================================================================== */
 
-/* ──────────────────────────────────────────────────────────────
-   GLOBAL OVERRIDES FOR SECTION TRANSFORMATION
-   ────────────────────────────────────────────────────────────── */
-
-/* Override dark navy/black backgrounds to light theme */
-[style*="background:#0a1628"],
-[style*="background: #0a1628"],
-[style*="background: #0a1122"],
-[style*="background:#0c0b0e"],
-[style*="background:#050812"] {
-  background: white !important;
-  color: #0f172a !important;
+:root {
+  --primary-blue: #1e40af;
+  --accent-blue: #2563eb;
+  --accent-purple: #4f46e5;
+  --hover-blue: #1d4ed8;
+  --hover-purple: #4338ca;
+  --text-dark: #1e293b;
+  --text-muted: #475569;
+  --bg-white: #ffffff;
+  --border-color: #e2e8f0;
+  --shadow-soft: 0 4px 14px 0 rgba(37, 99, 235, 0.1);
+  --shadow-medium: 0 12px 20px -5px rgba(0, 0, 0, 0.08);
 }
 
-[style*="background: linear-gradient(180deg, #0a1122"],
-[style*="background: linear-gradient(180deg, #0a1628"],
-[style*="background: linear-gradient(135deg, #0891b2"]  {
-  background: linear-gradient(180deg, #f8fafc 0%, #f0f5ff 100%) !important;
-  color: #0f172a !important;
+/* --- OVERRIDE DARK BACKGROUNDS TO LIGHT (ONLY SECTIONS) --- */
+section,
+#about-section,
+#academics-section,
+#cocurricular-section,
+#facilities-section,
+#notices-section,
+.notice-section,
+.anniversary-banner,
+.houses-section,
+#discipline-section,
+#uniform-section,
+#timings-section {
+  background: var(--bg-white) !important;
+  color: var(--text-dark) !important;
 }
 
-/* Section backgrounds */
-section {
-  background-color: #ffffff !important;
-  color: #0f172a !important;
+/* --- REMOVE MESH/NOISE BACKGROUNDS (ONLY IN SECTIONS) --- */
+section .mesh-bg,
+section .bg-noise,
+section .bg-noise::before {
+  display: none !important;
 }
 
-/* Alternating section backgrounds */
-section:nth-of-type(even) {
-  background: linear-gradient(180deg, #f8fafc 0%, #f0f5ff 100%) !important;
+/* --- TEXT COLORS (ONLY IN SECTIONS) --- */
+section .text-white,
+section [style*="color: #ffffff"],
+section [style*="color:#ffffff"],
+section [style*="color: rgba(255,255,255"] {
+  color: var(--text-muted) !important;
 }
 
-/* Text color overrides */
-h1, h2, h3, h4, h5, h6 {
-  color: #0f172a !important;
+/* --- HEADINGS (ONLY IN SECTIONS) --- */
+section h1,
+section h2,
+section h3,
+section h4,
+section h5,
+section h6 {
+  color: var(--primary-blue) !important;
+  font-family: 'Playfair Display', 'Cormorant Garamond', serif !important;
+  font-weight: 700 !important;
+  line-height: 1.25 !important;
 }
 
-p, span, a {
-  color: #475569 !important;
+section h1 { font-size: clamp(2.5rem, 8vw, 4.5rem) !important; }
+section h2 { font-size: clamp(2rem, 6vw, 3.5rem) !important; }
+section h3 { font-size: clamp(1.5rem, 4vw, 2.25rem) !important; }
+section h4 { font-size: clamp(1.25rem, 3vw, 1.75rem) !important; }
+
+/* --- BODY TEXT (ONLY IN SECTIONS) --- */
+section p,
+section span:not(.btn-text) {
+  color: var(--text-muted) !important;
+  line-height: 1.8 !important;
 }
 
-/* Card styling */
-.glass,
-[style*="background: rgba(255, 255, 255, 0.06"],
-[style*="backdropFilter: blur"],
-[className*="card"],
-[className*="rounded-2xl"] {
-  background: white !important;
-  border: 1px solid #e2e8f0 !important;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+/* --- GOLD/AMBER TO BLUE (ONLY IN SECTIONS) --- */
+section .text-amber-400,
+section .text-amber-300,
+section .gold-label,
+section [style*="#D4AF37"],
+section [style*="#d4af37"],
+section [style*="#C9A96E"] {
+  color: var(--accent-blue) !important;
+  border-color: var(--accent-blue) !important;
+}
+
+/* --- DECORATIVE LINES (ONLY IN SECTIONS) --- */
+section .divider-line,
+section [style*="border-top: 1px solid rgba(201,169,110"],
+section [style*="border-bottom: 1px solid rgba(201,169,110"] {
+  border-color: var(--accent-blue) !important;
+  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent) !important;
+}
+
+/* --- CARDS (ONLY IN SECTIONS) --- */
+section .glass,
+section .glass-card,
+section .stream-card,
+section .notice-card,
+section .feature-pill {
+  background: var(--bg-white) !important;
+  border: 1px solid var(--border-color) !important;
+  color: var(--text-dark) !important;
+  box-shadow: var(--shadow-soft) !important;
   backdrop-filter: none !important;
+  border-radius: 16px !important;
+  transition: all 0.3s ease !important;
 }
 
-/* Hover effects */
-.glass:hover,
-[className*="card"]:hover,
-[className*="rounded-2xl"]:hover {
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12) !important;
-  transform: translateY(-4px);
+section .glass:hover,
+section .glass-card:hover,
+section .stream-card:hover,
+section .notice-card:hover {
+  box-shadow: var(--shadow-medium) !important;
+  transform: translateY(-4px) !important;
+  border-color: #bfdbfe !important;
 }
 
-/* Typography color updates */
-[style*="color: #ffffff"],
-[style*="color:#ffffff"],
-[style*="color: rgba(255,255,255"] {
-  color: #0f172a !important;
-}
-
-/* Button styling */
-button,
-[role="button"],
-.btn {
-  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%) !important;
+/* --- UNIFIED BUTTONS (ONLY IN SECTIONS/PAGES) --- */
+section button,
+section [role="button"],
+section .btn,
+section .btn-primary,
+section [class*="button"],
+section [class*="btn-"],
+section a[href*="notices"],
+section a[href*="calendar"],
+section a[href*="details"],
+section a[href*="more"],
+section .learn-more-btn,
+section input[type="submit"],
+section input[type="button"],
+section input[type="reset"],
+.admin-page button,
+.admin-page [role="button"],
+.admin-page .btn,
+.admin-page input[type="submit"] {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-purple) 100%) !important;
   color: white !important;
-  border-radius: 9999px !important;
+  border-radius: 12px !important;
+  padding: 0.875rem 2rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.025em !important;
+  box-shadow: var(--shadow-soft) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  outline: none !important;
 }
 
-button:hover {
-  box-shadow: 0 10px 25px rgba(37, 99, 235, 0.25) !important;
-  transform: translateY(-2px);
+section button:hover,
+section [role="button"]:hover,
+section .btn:hover,
+section .btn-primary:hover,
+section [class*="button"]:hover,
+section [class*="btn-"]:hover,
+section a[href*="notices"]:hover,
+section a[href*="calendar"]:hover,
+section a[href*="details"]:hover,
+section a[href*="more"]:hover,
+section .learn-more-btn:hover,
+section input[type="submit"]:hover,
+.admin-page button:hover,
+.admin-page [role="button"]:hover,
+.admin-page .btn:hover {
+  background: linear-gradient(135deg, var(--hover-blue) 0%, var(--hover-purple) 100%) !important;
+  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.23) !important;
+  transform: translateY(-2px) !important;
+  color: white !important;
 }
 
-/* Cyan/teal to blue accent conversion */
-[style*="#0891b2"],
-[style*="#06b6d4"],
-[style*="#38bdf8"],
-[className*="cyan"],
-[className*="sky"] {
-  color: #2563eb !important;
+section button:active,
+section [role="button"]:active,
+section .btn:active,
+section a[href*="details"]:active,
+section a[href*="more"]:active {
+  transform: translateY(0) !important;
+  box-shadow: var(--shadow-soft) !important;
+  filter: brightness(0.9) !important;
 }
 
-/* Gradient text */
-.text-gradient {
-  background: linear-gradient(135deg, #2563eb 0%, #38bdf8 100%) !important;
+section button *,
+section .btn *,
+section [role="button"] *,
+section a[href*="notices"] *,
+section a[href*="more"] * {
+  color: white !important;
 }
 
-/* Gold to blue conversion */
-[style*="#D4AF37"],
-[style*="#d4af37"],
-[style*="#C9A96E"],
-[className*="gold"],
-[className*="amber"],
-[className*="yellow"] {
-  color: #2563eb !important;
-  border-color: #2563eb !important;
-  background: #2563eb !important;
-}
-
-/* Border color updates */
-[style*="border.*rgba(6, 182, 212"],
-[style*="border.*rgba(201,169,110"],
-[className*="border-cyan"],
-[className*="border-amber"],
-[className*="border-yellow"] {
-  border-color: #e2e8f0 !important;
-}
-
-/* Section heading styling */
-[className*="section-label"],
-[className*="section-tag"] {
-  color: #2563eb !important;
-}
-
-[className*="section-label"]::before {
-  background-color: #2563eb !important;
-}
-
-/* Underline effects */
-[style*="underline"] {
-  border-bottom-color: #2563eb !important;
-}
-
-/* Navbar modifications */
-nav {
-  background: transparent !important;
-}
-
-/* Stats and count styling */
-.stat-item,
-[className*="stat"],
-[className*="count"] {
-  color: #0f172a !important;
-}
-
-/* Animation keyframe colors */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; color: #0f172a; }
-}
-
-/* Input/form styling */
-input,
-textarea,
-select {
+/* --- ACADEMICS SECTION --- */
+.academics-section,
+#academics-section {
+  background-color: #ffffff !important;
   background: #ffffff !important;
-  color: #0f172a !important;
+}
+.academics-section *,
+.academics-section .text-white,
+.academics-section .text-blue-200\/60,
+.academics-section .text-blue-100\/70,
+.academics-section .text-amber-300\/90,
+.academics-section .text-white\/30,
+.academics-section .text-amber-400\/40 {
+  color: #1e293b !important;
+}
+.academics-section .gold-label { color: #2563eb !important; }
+.academics-section .divider-line {
+  background: linear-gradient(90deg, transparent, #2563eb, transparent) !important;
+}
+.academics-section .feature-pill {
+  background: rgba(37,99,235,0.05) !important;
+  border-color: rgba(37,99,235,0.2) !important;
+}
+.academics-section .feature-pill:hover {
+  background: rgba(37,99,235,0.1) !important;
+  border-color: rgba(37,99,235,0.35) !important;
+}
+.academics-section .mesh-bg,
+.academics-section .bg-noise {
+  display: none !important;
+}
+.academics-section .glass-card,
+.academics-section .stream-card {
+  background-color: #ffffff !important;
+  background: #ffffff !important;
   border-color: #e2e8f0 !important;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.1) !important;
+}
+.academics-section .glass-card:hover,
+.academics-section .stream-card:hover {
+  background-color: #f8fafc !important;
+  background: #f8fafc !important;
+  border-color: #bfdbfe !important;
+  box-shadow: 0 12px 20px -5px rgba(0,0,0,0.08) !important;
+}
+.academics-section [style*="background: linear-gradient(180deg, transparent, rgba(201,168,76,0.5)"] {
+  background: linear-gradient(180deg, transparent, #2563eb, transparent) !important;
+}
+.academics-section .level-number {
+  color: rgba(37,99,235,0.15) !important;
 }
 
-input::placeholder {
-  color: #94a3b8 !important;
+/* --- HERO EXCEPTION (KEEP DARK) --- */
+#hero {
+  background: #020817 !important;
+  color: white !important;
 }
+#hero .text-white,
+#hero h1, #hero h2, #hero h3, #hero p, #hero span { color: white !important; }
+#hero .gold-label { color: #C9A84C !important; }
 
-/* Link styling */
-a {
-  color: #2563eb !important;
-}
-
-a:hover {
-  color: #1d4ed8 !important;
-}
-
-/* Specific section overrides */
-
-/* Hero section */
-[id*="hero"] {
-  background: linear-gradient(135deg, rgba(255,255,255,1) 0%, rgba(241,245,255,1) 100%) !important;
-  color: #0f172a !important;
-}
-
-/* Navbar specific */
-.crescent-nav--scrolled {
-  background: rgba(255,255,255,0.94) !important;
-  border-bottom-color: rgba(226,232,240,0.5) !important;
-  box-shadow: 0 2px 24px rgba(15, 23, 42, 0.08) !important;
-}
-
-.crescent-school-name,
-.crescent-nav-link {
-  color: #0f172a !important;
-}
-
-/* Footer styling */
+/* --- FOOTER --- */
 footer {
   background: linear-gradient(180deg, #f8fafc 0%, #f0f5ff 100%) !important;
   border-top-color: #e2e8f0 !important;
-  color: #0f172a !important;
+  color: #1e293b !important;
 }
+footer h2, footer h3, footer h4 { color: #1e40af !important; }
+footer p, footer a { color: #475569 !important; }
 
-footer h2, footer h3, footer h4 {
-  color: #0f172a !important;
-}
-
-footer p, footer a {
-  color: #475569 !important;
-}
-
-/* Adjustments for text visibility */
-.text-white {
-  color: #0f172a !important;
-}
-
-.text-white\/60 {
-  color: rgba(15, 23, 42, 0.6) !important;
-}
-
-.text-white\/80 {
-  color: rgba(15, 23, 42, 0.8) !important;
-}
-
-/* Icon styling */
-.icon,
-[className*="icon"] {
-  color: #2563eb !important;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-
-::-webkit-scrollbar-track {
-  background: #f8fafc;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #2563eb;
-  border-radius: 3px;
-}
-
-/* Media queries for responsive adjustments */
-@media (max-width: 768px) {
-  h1 { font-size: 2rem !important; }
-  h2 { font-size: 1.5rem !important; }
-  h3 { font-size: 1.25rem !important; }
-}
-
-/* Ensure text is always readable */
-* {
-  color-scheme: light;
-}
-
-/* Remove any remaining dark theme filters/inversions */
-[style*="filter: invert"],
-[style*="filter: brightness(0"],
-[style*="filter: contrast("] {
-  filter: none !important;
-}
+/* --- SCROLLBAR --- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f8fafc; }
+::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 3px; }

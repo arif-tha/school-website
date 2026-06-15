@@ -100,7 +100,7 @@ export default function About() {
   const subHeadingSrtyle = {
     fontFamily: "'Cormorant Garamond', serif",
     fontSize: "1.25rem",
-    color: "#C9A96E",
+    color: "#2563eb",
     fontWeight: 600,
     textTransform: "uppercase",
     letterSpacing: "0.15em",
@@ -112,8 +112,8 @@ export default function About() {
     fontFamily: "'DM Sans', sans-serif",
     fontSize: "1rem",
     lineHeight: "1.85",
-    color: "rgba(255,255,255,0.65)",
-    fontWeight: 300,
+    color: "#475569",
+    fontWeight: 400,
     marginBottom: "1.5rem"
   };
 
@@ -178,9 +178,9 @@ export default function About() {
                   <div className="absolute inset-0" style={{ background: "linear-gradient(to top, rgba(8,6,3,0.7) 0%, transparent 50%)" }} />
                 </div>
               </div>
-              <div className="absolute -bottom-5 -right-4 md:-right-6 z-20 rounded-xl px-5 py-4" style={{ background: "linear-gradient(135deg, #1a1508, #100d04)", border: "1px solid rgba(201,169,110,0.35)", boxShadow: "0 8px 32px rgba(0,0,0,0.5)" }}>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#C9A96E", fontSize: "1.75rem", fontWeight: 700, lineHeight: 1 }}>2002</p>
-                <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "2px" }}>Est.</p>
+              <div className="absolute -bottom-5 -right-4 md:-right-6 z-20 rounded-xl px-5 py-4" style={{ background: "linear-gradient(135deg, #ffffff, #f1f5f9)", border: "1px solid #e2e8f0", boxShadow: "0 8px 32px rgba(37,99,235,0.1)" }}>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2563eb", fontSize: "1.75rem", fontWeight: 700, lineHeight: 1 }}>2002</p>
+                <p style={{ color: "#64748b", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "2px" }}>Est.</p>
               </div>
             </div>
 
@@ -188,8 +188,8 @@ export default function About() {
             <div className="flex flex-col">
               
               <div ref={labelRef} className="flex items-center gap-3 mb-4" style={{ opacity: 0 }}>
-                <div className="w-6 h-px" style={{ background: "#C9A96E" }} />
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#C9A96E", fontWeight: 500 }}>
+                <div className="w-6 h-px" style={{ background: "#2563eb" }} />
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#2563eb", fontWeight: 500 }}>
                   Institutional Profile
                 </span>
               </div>
@@ -201,12 +201,12 @@ export default function About() {
                   fontSize: "clamp(2.5rem, 5vw, 4rem)",
                   fontWeight: 700,
                   lineHeight: 1.1,
-                  color: "#f5efe0",
+                  color: "#1e40af",
                   marginBottom: "2.5rem",
                   opacity: 0,
                 }}
               >
-                About The <span style={{ color: "#C9A96E" }}>School</span>
+                About The <span style={{ color: "#2563eb" }}>School</span>
               </h2>
 
               <div className="space-y-12">
@@ -273,15 +273,7 @@ export default function About() {
                 </div>
 
                 {/* 5. ACADEMIC YEAR */}
-                <div ref={el => contentSectionsRef.current[4] = el} style={{ opacity: 0 }}>
-                  <span style={subHeadingSrtyle}>Academic Year</span>
-                  <p style={paragraphStyle}>
-                    The school observes the calendar year from January to December as its Academic Session for class Nursery to class X, going by the stipulation of the West Bengal Board of Secondary Education.
-                  </p>
-                  <p style={paragraphStyle}>
-                    As for classes XI and XII, the session starts from the month of April of a certain year and goes on up to the month of March of the following year, going by the stipulation of the West Bengal Council of Higher Secondary Education.
-                  </p>
-                </div>
+                
 
                 {/* 6. CHARACTER EDUCATION */}
                 <div ref={el => contentSectionsRef.current[5] = el} style={{ opacity: 0 }}>
@@ -294,30 +286,7 @@ export default function About() {
                 </div>
 
                 {/* 7. SCHOOL HOUSES */}
-                <div ref={el => contentSectionsRef.current[6] = el} style={{ opacity: 0 }}>
-                  <span style={subHeadingSrtyle}>School Houses</span>
-                  <p style={paragraphStyle}>
-                    The students are grouped under four Houses for the convenience of organising intra-class first and then inter-house activities and competitions.
-                  </p>
-                  <div className="grid grid-cols-2 gap-4 mt-6">
-                    <div className="house-item">
-                      <span style={{ color: "#ff4d4d", fontWeight: 600, fontFamily: "'Cormorant Garamond', serif" }}>Einstein</span>
-                      <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Red House</p>
-                    </div>
-                    <div className="house-item">
-                      <span style={{ color: "#4d94ff", fontWeight: 600, fontFamily: "'Cormorant Garamond', serif" }}>Tagore</span>
-                      <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Blue House</p>
-                    </div>
-                    <div className="house-item">
-                      <span style={{ color: "#ffd633", fontWeight: 600, fontFamily: "'Cormorant Garamond', serif" }}>Leonardo</span>
-                      <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Yellow House</p>
-                    </div>
-                    <div className="house-item">
-                      <span style={{ color: "#4dff88", fontWeight: 600, fontFamily: "'Cormorant Garamond', serif" }}>Khayyam</span>
-                      <p style={{ fontSize: "0.8rem", color: "rgba(255,255,255,0.4)", textTransform: "uppercase", letterSpacing: "0.1em" }}>Green House</p>
-                    </div>
-                  </div>
-                </div>
+               
 
               </div>
             </div>
@@ -326,4 +295,4 @@ export default function About() {
       </section>
     </>
   );
-}
+}

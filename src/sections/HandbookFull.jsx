@@ -6,9 +6,14 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 const handbookOverviewImage = "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=2073&auto=format&fit=crop";
 const uniformImage = "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop";
 const disciplineImage = "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=2104&auto=format&fit=crop";
-const housesImage = "https://images.unsplash.com/photo-1510070112810-d4e9a46d9e91?q=80&w=2069&auto=format&fit=crop";
+import housesImage from "../assets/houses/houses.jpeg";
 const calendarImage = "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=2068&auto=format&fit=crop";
 const girlsEducationImage = "https://images.unsplash.com/photo-1544717297-fa936f014e7a?q=80&w=1974&auto=format&fit=crop";
+
+import redHouse from "../assets/houses/red.jpeg";
+import blueHouse from "../assets/houses/blue.jpeg";
+import yellowHouse from "../assets/houses/yellow.jpeg";
+import greenHouse from "../assets/houses/green.jpeg";
 
 const handbookSections = [
   {
@@ -75,34 +80,80 @@ const handbookSections = [
       </div>
     )
   },
-  {
-    id: "houses",
-    tag: "Competition",
-    icon: "🏠",
-    title: "School Houses",
-    image: housesImage,
-    content: (
-      <div>
-        <p className="mb-8">The students are grouped under four Houses for the convenience of organising intra-class first and then inter-house activities and competitions.</p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          {[
-            { name: "Einstein", color: "Red House", hex: "#ef4444" },
-            { name: "Tagore", color: "Blue House", hex: "#3b82f6" },
-            { name: "Leonardo", color: "Yellow House", hex: "#eab308" },
-            { name: "Khayyam", color: "Green House", hex: "#22c55e" }
-          ].map(house => (
-            <div key={house.name} className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
-              <div className="w-10 h-10 rounded-full" style={{ backgroundColor: house.hex }} />
-              <div>
-                <h5 className="font-bold text-white">{house.name}</h5>
-                <p className="text-xs text-white/50 uppercase tracking-tighter">{house.color}</p>
-              </div>
-            </div>
-          ))}
+{
+  id: "houses",
+  tag: "Competition",
+  icon: "🏠",
+  title: "School Houses",
+  image: housesImage,
+  content: (
+    <div>
+      <p className="mb-8">
+        The students are grouped under four Houses for the convenience of organising intra-class first and then inter-house activities and competitions.
+      </p>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+          <img
+            src={redHouse}
+            alt="Einstein House"
+            className="w-20 h-20 rounded-full object-cover border border-white/20"
+          />
+          <div>
+            <h5 className="font-bold text-white">Einstein</h5>
+            <p className="text-xs text-white/50 uppercase tracking-tighter">
+              Red House
+            </p>
+          </div>
         </div>
+
+        <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+          <img
+            src={blueHouse}
+            alt="Tagore House"
+            className="w-20 h-20 rounded-full object-cover border border-white/20"
+          />
+          <div>
+            <h5 className="font-bold text-white">Tagore</h5>
+            <p className="text-xs text-white/50 uppercase tracking-tighter">
+              Blue House
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+          <img
+            src={yellowHouse}
+            alt="Leonardo House"
+            className="w-20 h-20 rounded-full object-cover border border-white/20"
+          />
+          <div>
+            <h5 className="font-bold text-white">Leonardo</h5>
+            <p className="text-xs text-white/50 uppercase tracking-tighter">
+              Yellow House
+            </p>
+          </div>
+        </div>
+
+        <div className="flex items-center gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+          <img
+            src={greenHouse}
+            alt="Khayyam House"
+            className="w-20 h-20 rounded-full object-cover border border-white/20"
+          />
+          <div>
+            <h5 className="font-bold text-white">Khayyam</h5>
+            <p className="text-xs text-white/50 uppercase tracking-tighter">
+              Green House
+            </p>
+          </div>
+        </div>
+
       </div>
-    )
-  },
+    </div>
+  )
+},
   {
     id: "calendar",
     tag: "Schedule",

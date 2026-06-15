@@ -21,10 +21,10 @@ export default function AcademicsPreview() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    // Left intro fade
+    // Left intro fade - Start with opacity 1
     gsap.fromTo(
       leftRef.current,
-      { opacity: 0, x: -60 },
+      { opacity: 1, x: -60 },
       {
         opacity: 1,
         x: 0,
@@ -34,11 +34,11 @@ export default function AcademicsPreview() {
       }
     );
 
-    // Academic Year & Teaching reveal
+    // Academic Year & Teaching reveal - Start with opacity 1
     if (academicYearRef.current) {
       gsap.fromTo(
         academicYearRef.current,
-        { opacity: 0, y: 30 },
+        { opacity: 1, y: 30 },
         {
           opacity: 1,
           y: 0,
@@ -52,7 +52,7 @@ export default function AcademicsPreview() {
     if (teachingRef.current) {
       gsap.fromTo(
         teachingRef.current,
-        { opacity: 0, y: 30 },
+        { opacity: 1, y: 30 },
         {
           opacity: 1,
           y: 0,
@@ -63,12 +63,12 @@ export default function AcademicsPreview() {
       );
     }
 
-    // Features
+    // Features - Start with opacity 1
     featuresRef.current.forEach((el, i) => {
       if (!el) return;
       gsap.fromTo(
         el,
-        { opacity: 0, scale: 0.8 },
+        { opacity: 1, scale: 0.8 },
         {
           opacity: 1,
           scale: 1,

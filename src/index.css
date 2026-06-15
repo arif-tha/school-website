@@ -25,7 +25,7 @@ html {
 
 body {
   background-color: #FFFFFF;
-  color: #0F172A;
+  color: #1e293b;
   font-family: 'Inter', 'DM Sans', sans-serif;
   overflow-x: hidden;
 }
@@ -35,86 +35,25 @@ body {
 ::-webkit-scrollbar-track { background: #F8FAFC; }
 ::-webkit-scrollbar-thumb { background: #2563EB; border-radius: 3px; }
 
-/* Premium card */
-.premium-card {
-  background: #FFFFFF;
-  border-radius: 24px;
-  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
-  border: 1px solid #E2E8F0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+/* Section Spacing */
+section {
+  padding-top: 5rem !important;
+  padding-bottom: 5rem !important;
 }
 
-.premium-card:hover {
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
-  transform: translateY(-4px);
-}
-
-/* Glass effect */
-.glass {
-  background: rgba(248, 250, 252, 0.8);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.5);
+@media (max-width: 768px) {
+  section {
+    padding-top: 3rem !important;
+    padding-bottom: 3rem !important;
+  }
 }
 
 /* Text gradient */
 .text-gradient {
-  background: linear-gradient(135deg, #2563EB, #38BDF8);
+  background: linear-gradient(135deg, #2563EB, #4f46e5);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-}
-
-.text-gradient-accent {
-  background: linear-gradient(135deg, #38BDF8, #2563EB);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Section label */
-.section-label {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: #2563EB;
-  margin-bottom: 1rem;
-}
-
-.section-label::before {
-  content: '';
-  display: block;
-  width: 28px;
-  height: 2px;
-  background: #2563EB;
-}
-
-/* Noise texture overlay */
-.noise::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 0;
-}
-
-/* Grid bg */
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(56, 189, 248, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(56, 189, 248, 0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-
-/* Magnetic button */
-.btn-magnetic {
-  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
 /* Hide scrollbar for marquee */
@@ -141,15 +80,6 @@ body {
   50% { transform: translateY(-12px); }
 }
 .float { animation: float 4s ease-in-out infinite; }
-.float-delay { animation: float 4s ease-in-out 1s infinite; }
-.float-delay2 { animation: float 4s ease-in-out 2s infinite; }
-
-/* Pulse dot */
-@keyframes pulseDot {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.4; transform: scale(0.7); }
-}
-.pulse-dot { animation: pulseDot 2s ease-in-out infinite; }
 
 /* Scroll indicator */
 @keyframes scrollLine {
@@ -159,6 +89,7 @@ body {
   100% { transform: scaleY(0); transform-origin: bottom; }
 }
 .scroll-line { animation: scrollLine 1.8s ease infinite; }
+
 
 /* Step progress */
 .step-active { background: #2563eb; color: white; border-color: #2563eb; }
@@ -175,10 +106,10 @@ body {
   color: #0f172a;
 }
 
-/* Ensure body bg stays dark for rest of page */
-body > div > section:not(#hero) {
+/* Premium theme takes over, remove old dark theme rule */
+/* body > div > section:not(#hero) {
   color: #ffffff;
-}
+} */
 
 /* Float animations already defined above */
 /* Extra smooth float for hero cards */

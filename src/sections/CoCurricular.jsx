@@ -410,19 +410,7 @@ export default function CoCurricular() {
           </div>
 
           {/* Multimedia Learning Card */}
-          <div className="multimedia-card mt-12 rounded-2xl overflow-hidden backdrop-blur-xl bg-gradient-to-br from-blue-500/10 to-indigo-600/10 border border-blue-400/30 shadow-xl p-8 hover:shadow-2xl transition-all duration-300">
-            <div className="flex items-center gap-6">
-              <div className="text-5xl">🖥️</div>
-              <div>
-                <h3 className="text-xl font-bold text-navy-900 mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1e3a8a" }}>
-                  Multimedia Learning Experience
-                </h3>
-                <p className="text-gray-700" style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.95rem", lineHeight: 1.6 }}>
-                  3M Multimedia Projector based smart learning is used to make education more interactive, meaningful and enjoyable for all students.
-                </p>
-              </div>
-            </div>
-          </div>
+        
         </div>
       </section>
     </>

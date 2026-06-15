@@ -28,6 +28,7 @@ import AdminDashboard from './pages/Admin/AdminDashboard';
 import AcademicCalendar from './pages/AcademicCalendar';
 import ParentCorner from './pages/ParentCorner';
 import Contact from './pages/Contact';
+import Gallery from './pages/Gallery';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,6 +72,7 @@ export default function App() {
         <Route path="/handbook-details" element={<HandbookDetails />} />
         <Route path="/academic-calendar" element={<AcademicCalendar />} />
         <Route path="/parent-corner" element={<ParentCorner />} />
+        <Route path="/gallery" element={<Gallery />} />
 
         {/* Notice Board Routes */}
         <Route path="/notices" element={<Notices />} />

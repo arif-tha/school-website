@@ -6,9 +6,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 const achievements = [
-  { icon: "🏛️", title: "20+ Years Legacy", desc: "Trusted by families for over two decades of academic excellence" },
+  { icon: "🏛️", title: "25+ Years Legacy", desc: "Trusted by families for over two decades of academic excellence" },
   { icon: "🇬🇧", title: "English Medium", desc: "Complete English-medium instruction for global readiness" },
-  { icon: "📜", title: "WBBSE Affiliated", desc: "Recognized affiliation with West Bengal Board of Secondary Education" },
+  { icon: "📜", title: "WBBSE Affiliated", desc: "Affiliated with the West Bengal Board of Secondary Education" },
   { icon: "🎓", title: "WBCHSE Affiliated", desc: "Higher Secondary affiliation ensuring quality board education" },
   { icon: "🏅", title: "NIOS Accredited", desc: "Accredited centre for National Institute of Open Schooling" },
   { icon: "🕌", title: "Minority Institution", desc: "Recognized Minority Educational Institution with inclusive values" },
@@ -18,10 +18,10 @@ const achievements = [
 ];
 
 const stats = [
-  { value: 20, suffix: "+", label: "Years of Excellence", icon: "✦" },
-  { value: 3000, suffix: "+", label: "Students Enrolled", icon: "✦" },
-  { value: 100, suffix: "+", label: "Qualified Teachers", icon: "✦" },
-  { value: 95, suffix: "%", label: "Academic Success", icon: "✦" },
+  { value: 25, suffix: "+", label: "Years of Excellence", icon: "✦" },
+  { value: 5000, suffix: "+", label: "Students Enrolled", icon: "✦" },
+  { value: 50, suffix: "+", label: "Qualified Teachers", icon: "✦" },
+  { value: 100, suffix: "%", label: "Academic Success", icon: "✦" },
 ];
 
 const toppers = [

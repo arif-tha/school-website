@@ -118,22 +118,48 @@ export default function Footer() {
               <div className="flex gap-3">
                 <span className="text-blue-600 flex-shrink-0 text-lg">📍</span>
                 <div className="flex-1">
-                  <p className="font-['Inter'] text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Address</p>
-                  <p className="font-['Inter'] text-sm text-slate-700">41/1/3 & 41/2/1, Rai Charan Ghosh Lane, Kolkata – 700039</p>
+                  <p className="font-['Inter'] text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                    Address
+                  </p>
+
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=41/1/3+Rai+Charan+Ghosh+Lane+Kolkata+700039"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-['Inter'] text-sm text-slate-700 hover:text-blue-600 transition-colors"
+                  >
+                    41/1/3 & 41/2/1, Rai Charan Ghosh Lane, Kolkata – 700039
+                  </a>
                 </div>
               </div>
               <div className="flex gap-3">
                 <span className="text-blue-600 flex-shrink-0 text-lg">📞</span>
                 <div className="flex-1">
-                  <p className="font-['Inter'] text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Phone</p>
-                  <p className="font-['Inter'] text-sm text-slate-700">+91 (0) 000-000-0000</p>
+                  <p className="font-['Inter'] text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                    Phone
+                  </p>
+
+                  <a
+                    href="tel:+913323431562"
+                    className="font-['Inter'] text-sm text-slate-700 hover:text-blue-600 transition-colors"
+                  >
+                    +(033) 2343 1562
+                  </a>
                 </div>
               </div>
               <div className="flex gap-3">
                 <span className="text-blue-600 flex-shrink-0 text-lg">✉️</span>
                 <div className="flex-1">
-                  <p className="font-['Inter'] text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">Email</p>
-                  <p className="font-['Inter'] text-sm text-slate-700">admissions@crescentschool.edu</p>
+                  <p className="font-['Inter'] text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
+                    Email
+                  </p>
+
+                  <a
+                    href="mailto:info.thecrescentschool@gmail.com"
+                    className="font-['Inter'] text-sm text-slate-700 hover:text-blue-600 transition-colors"
+                  >
+                    info.thecrescentschool@gmail.com
+                  </a>
                 </div>
               </div>
             </div>
