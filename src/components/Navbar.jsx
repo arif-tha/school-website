@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { gsap } from "gsap";
-import logoImg from "../assets/building/logo.jpeg";
+import logoImg from "../assets/building/logo.png";
 // ─── Navigation Configuration ────────────────────────────────────────────────
 const NAV_LINKS = [
   { label: "Home", href: "/" },
