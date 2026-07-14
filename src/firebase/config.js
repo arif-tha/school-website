@@ -2,16 +2,18 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
-// REPLACE WITH YOUR ACTUAL FIREBASE CONFIG
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT_ID.appspot.com",
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyDcQ_fTolffafZdv-B0XXLWQGHegMV3WHI",
+  authDomain: "crest-school.firebaseapp.com",
+  projectId: "crest-school",
+  storageBucket: "crest-school.firebasestorage.app",
+  messagingSenderId: "24630727558",
+  appId: "1:24630727558:web:62242588b9da826962d207"
 };
 
 const app = initializeApp(firebaseConfig);
+
 export const db = getFirestore(app);
 export const auth = getAuth(app);
+
+export default app;

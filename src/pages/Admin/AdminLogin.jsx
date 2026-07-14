@@ -15,8 +15,12 @@ export default function AdminLogin() {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/admin/dashboard");
     } catch (err) {
-      setError("Invalid credentials. Access denied.");
-    }
+  console.error(err);
+  alert(err.code);
+  alert(err.message);
+
+  setError(err.code);
+}
   };
 
   return (
