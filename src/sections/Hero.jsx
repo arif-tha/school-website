@@ -141,14 +141,99 @@ export default function Hero() {
           flex-shrink: 0;
           align-self: stretch;
         }
+
+        /* ── RESPONSIVE FIXES ───────────────────────────────────── */
+
+        /* Section: use dvh where supported so mobile browser chrome
+           (address bar) doesn't push content below the fold / cause
+           extra scroll height. Falls back to 100vh everywhere else. */
+        .hero-section {
+          width: 100%;
+          height: 100vh;
+        }
+        @supports (height: 100dvh) {
+          .hero-section { height: 100dvh; }
+        }
+
+        /* Heading: word-wrap is now ALLOWED (nowrap removed) so on
+           narrow screens "SCHOOL" can drop to its own line instead
+           of forcing horizontal overflow. clamp() keeps it large on
+           desktop, identical to the original sizing there. */
+        .hero-heading {
+          font-family: 'Cormorant Garamond', serif;
+          font-weight: 300;
+          font-size: clamp(2.1rem, 9vw, 5.8rem);
+          color: white;
+          line-height: 1.05;
+          margin: 0 0 1.2rem 0;
+          text-shadow: 0 2px 24px rgba(0,0,0,0.55), 0 2px 6px rgba(0,0,0,0.85);
+        }
+
+        /* Bottom row: stats + scroll indicator.
+           Desktop/tablet: unchanged side-by-side layout.
+           Mobile: stacks vertically so the absolutely-positioned
+           scroll indicator can't overlap the stats anymore. */
+        .hero-bottom-row {
+          display: flex;
+          align-items: flex-end;
+          justify-content: space-between;
+          gap: 1.5rem;
+          flex-wrap: wrap;
+        }
+        @media (max-width: 640px) {
+          .hero-bottom-row {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2.5rem;
+          }
+        }
+
+        /* Stats row: allow wrapping instead of overflowing
+           horizontally on very small phones. */
+        .hero-stats {
+          display: flex;
+          align-items: stretch;
+          gap: 0;
+          flex-wrap: wrap;
+          row-gap: 1rem;
+        }
+        @media (max-width: 480px) {
+          .stat-divider { display: none; }
+        }
+
+        /* Scroll indicator: stays centered/absolute on tablet+desktop
+           (matches original design exactly). On mobile it drops into
+           normal flow under the stats instead of floating on top of
+           them, and hides entirely on short landscape screens where
+           it would otherwise clip against the viewport edge. */
+        .hero-scroll-indicator {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 0.4rem;
+          position: absolute;
+          bottom: clamp(1.5rem, 3.5vh, 2.5rem);
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        @media (max-width: 640px) {
+          .hero-scroll-indicator {
+            position: static;
+            transform: none;
+            align-self: center;
+            margin-top: 0.25rem;
+          }
+        }
+        @media (max-height: 480px) {
+          .hero-scroll-indicator { display: none; }
+        }
       `}</style>
 
       <section
         ref={heroRef}
+        className="hero-section"
         style={{
           position: "relative",
-          width: "100vw",
-          height: "100vh",
           overflow: "hidden",
           background: "#020817",
         }}
@@ -165,14 +250,18 @@ export default function Hero() {
           }}
         />
 
-        {/* OVERLAYS */}
+        {/* OVERLAYS — strengthened + reshaped so the zones behind the
+            heading/subtitle (top) and stats (bottom) stay reliably
+            dark across every frame of the video, while the true
+            center strip stays lighter so the footage still reads
+            through, matching the Apple/Harvard "scrim" technique. */}
         <div style={{
           position: "absolute", inset: 0, zIndex: 1,
-          background: "linear-gradient(to bottom, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.30) 45%, rgba(0,0,0,0.72) 100%)",
+          background: "linear-gradient(180deg, rgba(2,8,23,0.80) 0%, rgba(2,8,23,0.55) 28%, rgba(2,8,23,0.34) 50%, rgba(2,8,23,0.55) 72%, rgba(2,8,23,0.84) 100%)",
         }} />
         <div style={{
           position: "absolute", inset: 0, zIndex: 2,
-          background: "linear-gradient(to right, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.25) 50%, transparent 100%)",
+          background: "linear-gradient(90deg, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.30) 45%, transparent 80%)",
         }} />
 
         {/* AMBIENT LIGHT */}
@@ -200,9 +289,6 @@ export default function Hero() {
 
         {/* ═══════════════════════════════════════════════════════════
             FULL CONTENT WRAPPER
-            paddingTop = navbar height (80px) + extra breathing room
-            paddingBottom = stats height so they don't overlap
-            Everything is in ONE container — no more absolute positioning conflicts
         ═══════════════════════════════════════════════════════════ */}
         <div
           ref={contentRef}
@@ -212,11 +298,11 @@ export default function Hero() {
             zIndex: 5,
             display: "flex",
             flexDirection: "column",
-            justifyContent: "space-between",   // top = text, bottom = stats
-            paddingTop: "clamp(5rem, 12vh, 9rem)",   // clear navbar (~80px) + breathing
+            justifyContent: "space-between",
+            paddingTop: "clamp(5rem, 12vh, 9rem)",
             paddingBottom: "clamp(2rem, 5vh, 3.5rem)",
-            paddingLeft: "clamp(1.5rem, 7vw, 8vw)",
-            paddingRight: "clamp(1.5rem, 7vw, 8vw)",
+            paddingLeft: "clamp(1.25rem, 7vw, 8vw)",
+            paddingRight: "clamp(1.25rem, 7vw, 8vw)",
           }}
         >
 
@@ -232,22 +318,13 @@ export default function Hero() {
               textTransform: "uppercase",
               color: "#C9A84C",
               marginBottom: "1rem",
+              textShadow: "0 1px 8px rgba(0,0,0,0.65)",
             }}>
               EST. 2002 · KOLKATA
             </div>
 
-            {/* HEADING — each word clipped independently */}
-            <h1 style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontWeight: 300,
-              // ✅ Smaller clamp so all 3 words fit on ONE line
-              fontSize: "clamp(2.8rem, 6vw, 5.8rem)",
-              color: "white",
-              lineHeight: 1.05,
-              margin: 0,
-              marginBottom: "1.2rem",
-              whiteSpace: "nowrap",   // ✅ forces single line — no wrap/break
-            }}>
+            {/* HEADING — each word clipped independently, wraps freely now */}
+            <h1 className="hero-heading">
               <span className="hw-wrap" style={{ marginRight: "0.25em" }}>
                 <span className="hw-inner" ref={(el) => { wordRefs.current[0] = el; }}>
                   THE
@@ -274,8 +351,9 @@ export default function Hero() {
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 300, fontStyle: "italic",
               fontSize: "clamp(1rem, 1.8vw, 1.4rem)",
-              color: "rgba(255,255,255,0.72)",
+              color: "rgba(255,255,255,0.85)",
               marginBottom: "0.5rem",
+              textShadow: "0 1px 12px rgba(0,0,0,0.6)",
             }}>
               Nursery to Higher Secondary
             </div>
@@ -285,8 +363,9 @@ export default function Hero() {
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 400, fontSize: "0.72rem",
               letterSpacing: "0.12em",
-              color: "rgba(255,255,255,0.50)",
+              color: "rgba(255,255,255,0.68)",
               marginBottom: "0.4rem",
+              textShadow: "0 1px 8px rgba(0,0,0,0.6)",
             }}>
               English Medium · Girls &amp; Boys
             </div>
@@ -296,8 +375,9 @@ export default function Hero() {
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 400, fontSize: "0.58rem",
               letterSpacing: "0.07em",
-              color: "rgba(255,255,255,0.30)",
+              color: "rgba(255,255,255,0.50)",
               marginBottom: "1.4rem",
+              textShadow: "0 1px 6px rgba(0,0,0,0.6)",
             }}>
               Protected under Article 30 of the Constitution of India
             </div>
@@ -326,14 +406,10 @@ export default function Hero() {
           </div>
 
           {/* ── BOTTOM: stats row + scroll indicator ── */}
-          <div style={{
-            display: "flex",
-            alignItems: "flex-end",
-            justifyContent: "space-between",
-          }}>
+          <div className="hero-bottom-row">
 
             {/* Stats */}
-            <div style={{ display: "flex", alignItems: "stretch", gap: 0 }}>
+            <div className="hero-stats">
               {stats.map((stat, i) => (
                 <div key={stat.value} style={{ display: "flex", alignItems: "stretch" }}>
                   <div
@@ -349,6 +425,7 @@ export default function Hero() {
                       fontWeight: 600,
                       fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
                       color: "#C9A84C", lineHeight: 1,
+                      textShadow: "0 1px 10px rgba(0,0,0,0.6)",
                     }}>
                       {stat.value}
                     </span>
@@ -356,8 +433,9 @@ export default function Hero() {
                       fontFamily: "'Montserrat', sans-serif",
                       fontWeight: 400, fontSize: "0.55rem",
                       textTransform: "uppercase", letterSpacing: "0.14em",
-                      color: "rgba(255,255,255,0.40)",
+                      color: "rgba(255,255,255,0.65)",
                       marginTop: "0.2rem", whiteSpace: "nowrap",
+                      textShadow: "0 1px 6px rgba(0,0,0,0.6)",
                     }}>
                       {stat.label}
                     </span>
@@ -367,25 +445,19 @@ export default function Hero() {
               ))}
             </div>
 
-            {/* Scroll indicator — bottom center */}
-            <div ref={scrollRef} style={{
-              display: "flex", flexDirection: "column",
-              alignItems: "center", gap: "0.4rem",
-              position: "absolute",
-              bottom: "clamp(1.5rem, 3.5vh, 2.5rem)",
-              left: "50%",
-              transform: "translateX(-50%)",
-            }}>
+            {/* Scroll indicator */}
+            <div ref={scrollRef} className="hero-scroll-indicator">
               <span style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: "0.48rem", letterSpacing: "0.25em",
-                color: "rgba(255,255,255,0.25)", textTransform: "uppercase",
+                color: "rgba(255,255,255,0.45)", textTransform: "uppercase",
+                textShadow: "0 1px 6px rgba(0,0,0,0.6)",
               }}>
                 Scroll to Explore
               </span>
               <div style={{
                 width: "20px", height: "34px",
-                border: "1.5px solid rgba(255,255,255,0.25)",
+                border: "1.5px solid rgba(255,255,255,0.35)",
                 borderRadius: "10px",
                 display: "flex", alignItems: "flex-start",
                 justifyContent: "center", paddingTop: "5px",
