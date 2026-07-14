@@ -16,7 +16,12 @@
 }
 
 * {
-  cursor: none !important;
+  cursor: auto !important;
+}
+
+html,
+body {
+  cursor: auto !important;
 }
 
 html {

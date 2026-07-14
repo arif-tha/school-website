@@ -4,7 +4,6 @@ import Lenis from 'lenis';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import Cursor from './components/Cursor';
 import ScrollProgress from './components/ScrollProgress';
 import Navbar from './components/Navbar';
 import FloatingContact from './components/FloatingContact';
@@ -54,7 +53,6 @@ export default function App() {
 
   return (
     <div className="relative bg-[#03092E] text-white overflow-x-hidden">
-      <Cursor />
       <ScrollProgress />
       <Navbar />
       <FloatingContact />
