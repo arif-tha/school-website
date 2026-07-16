@@ -18,7 +18,25 @@ const quickLinks = [
 
 const schoolFeatures = ['English Medium', 'Modern Labs', 'Moral Education', 'Smart Learning', 'Sports Training', 'Competitive Preparation'];
 const affiliations = ['W.B.B.S.E.', 'W.B.C.H.S.E.', 'NIOS Accredited'];
-const socialIcons = ['f', '📸', '▶', '𝕏'];
+
+const socialLinks = [
+  {
+    icon: 'f',
+    url: 'https://www.facebook.com/share/17q7M1VCTj/'
+  },
+  {
+    icon: '📸',
+    url: 'https://www.instagram.com/the_crescent_school_kolkata/'
+  },
+  {
+    icon: '▶',
+    url: 'https://www.youtube.com/@TheCrescentSchool'
+  },
+  {
+    icon: '𝕏',
+    url: 'https://x.com/thecrescentschool'
+  }
+];
 
 export default function Footer() {
   const footerRef = useRef(null);
@@ -175,13 +193,15 @@ export default function Footer() {
             © 2025 The Crescent School. All rights reserved.
           </p>
           <div className="flex gap-3">
-            {socialIcons.map((icon, idx) => (
+            {socialLinks.map((social, idx) => (
               <a
                 key={idx}
-                href="#"
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-700 hover:text-white hover:bg-blue-600 transition-all duration-300 text-sm font-bold bg-slate-200 hover:scale-105"
               >
-                {icon}
+                {social.icon}
               </a>
             ))}
           </div>

@@ -327,7 +327,7 @@ export default function Hero() {
             <h1 className="hero-heading">
               <span className="hw-wrap" style={{ marginRight: "0.25em" }}>
                 <span className="hw-inner" ref={(el) => { wordRefs.current[0] = el; }}>
-                  THE
+                  𝔗𝔥𝔢 
                 </span>
               </span>
               <span className="hw-wrap" style={{ marginRight: "0.25em" }}>
@@ -336,12 +336,12 @@ export default function Hero() {
                   ref={(el) => { wordRefs.current[1] = el; }}
                   style={{ fontStyle: "italic", color: "#C9A84C" }}
                 >
-                  CRESCENT
+                  ℭ𝔯𝔢𝔰𝔠𝔢𝔫𝔱 
                 </span>
               </span>
               <span className="hw-wrap">
                 <span className="hw-inner" ref={(el) => { wordRefs.current[2] = el; }}>
-                  SCHOOL
+                  𝔖𝔠𝔥𝔬𝔬𝔩
                 </span>
               </span>
             </h1>

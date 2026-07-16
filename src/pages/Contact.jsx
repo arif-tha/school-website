@@ -54,7 +54,7 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-['Cormorant_Garamond'] font-bold text-2xl text-slate-900 mb-3">Phone</h3>
                   <p className="font-['Inter'] text-base text-slate-600 leading-relaxed">
-                    Admissions: +91 (0) 000-000-0000<br/>
+                    Admissions: +(033) 2343 1562<br/>
                     <span className="text-sm text-slate-500">Available Monday–Saturday</span>
                   </p>
                 </div>

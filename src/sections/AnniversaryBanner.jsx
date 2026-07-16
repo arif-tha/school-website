@@ -9,9 +9,9 @@ gsap.registerPlugin(ScrollTrigger);
 
 const STATS = [
   { value: 25, suffix: "+",        label: "Years of Excellence" },
-  { value: 12, suffix: "K+",       label: "Students Shaped"     },
+  { value: 5, suffix: "K+",       label: "Students Shaped"     },
   { value: 3,  suffix: " Streams", label: "Academic Pathways"   },
-  { value: 98, suffix: "%",        label: "Board Pass Rate"     },
+  { value: 100, suffix: "%",        label: "Board Pass Rate"     },
 ];
 
 export default function AnniversaryBanner() {

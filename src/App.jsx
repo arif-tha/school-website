@@ -33,6 +33,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
   const location = useLocation();
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -53,9 +54,9 @@ export default function App() {
 
   return (
     <div className="relative bg-[#03092E] text-white overflow-x-hidden">
-      <ScrollProgress />
-      <Navbar />
-      <FloatingContact />
+      {!isAdminRoute && <ScrollProgress />}
+      {!isAdminRoute && <Navbar />}
+      {!isAdminRoute && <FloatingContact />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
