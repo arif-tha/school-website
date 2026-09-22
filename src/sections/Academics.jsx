@@ -171,7 +171,7 @@ export default function AcademicsPreview() {
         }
       `}</style>
 
-      <section ref={sectionRef} className="academics-section bg-noise relative py-24 lg:py-36 px-5 md:px-10 lg:px-16">
+      <section id="academics" ref={sectionRef} className="academics-section bg-noise relative py-24 lg:py-36 px-5 md:px-10 lg:px-16">
         <div className="mesh-bg" />
 
         <div className="relative z-10 max-w-7xl mx-auto">

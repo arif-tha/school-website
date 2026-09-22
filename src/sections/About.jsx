@@ -123,7 +123,7 @@ export default function About() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap');
 
-        #about-section {
+        #about {
           --gold: #C9A96E;
           --bg: #0c0b0e;
           background: var(--bg);
@@ -152,7 +152,7 @@ export default function About() {
       `}</style>
 
       <section
-        id="about-section"
+        id="about"
         ref={sectionRef}
         className="relative overflow-hidden py-20 md:py-28 lg:py-32"
       >

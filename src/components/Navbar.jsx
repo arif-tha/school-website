@@ -1,15 +1,16 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import logoImg from "../assets/building/logo.png";
 // ─── Navigation Configuration ────────────────────────────────────────────────
 const NAV_LINKS = [
-  { label: "Home", href: "/" },
-  { label: "About", href: "/about" },
-  { label: "Academics", href: "/academics" },
-  { label: "Facilities", href: "/facilities" },
-  { label: "Activities", href: "/activities" },
-  { label: "Gallery", href: "/gallery" },
+  { label: "Home", href: "#home", sectionId: "home" },
+  { label: "About", href: "#about", sectionId: "about" },
+  { label: "Academics", href: "#academics", sectionId: "academics" },
+  { label: "Facilities", href: "#facilities", sectionId: "facilities" },
+  { label: "Activities", href: "#activities", sectionId: "activities" },
+  { label: "Gallery", href: "#gallery", sectionId: "gallery" },
+  { label: "Notices", href: "#notices", sectionId: "notices", isNotice: true },
   { label: "Parent Corner", href: "/parent-corner" },
   { label: "Information", href: "/information" },
   { label: "Calendar", href: "/academic-calendar" },
@@ -20,7 +21,9 @@ const NAV_LINKS = [
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
+  const navigate = useNavigate();
 
   const navbarRef = useRef(null);
   const logoRef = useRef(null);
@@ -29,6 +32,48 @@ export default function Navbar() {
   const drawerOverlayRef = useRef(null);
   const drawerLinksRef = useRef([]);
   const hamburgerRef = useRef(null);
+
+  const handleNavClick = (event, link) => {
+    setMobileOpen(false);
+
+    if (!link.sectionId) return;
+
+    setActiveSection(link.sectionId);
+    if (location.pathname !== "/") {
+      event.preventDefault();
+      navigate(`/${link.href}`);
+    }
+  };
+
+  useEffect(() => {
+    if (location.pathname !== "/") return;
+
+    const updateActiveSection = () => {
+      const sections = NAV_LINKS
+        .filter((link) => link.sectionId)
+        .map((link) => document.getElementById(link.sectionId))
+        .filter(Boolean);
+      const current = sections.reduce((active, section) => {
+        return section.getBoundingClientRect().top <= 140 ? section.id : active;
+      }, "home");
+      setActiveSection(current);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    return () => window.removeEventListener("scroll", updateActiveSection);
+  }, [location.pathname]);
+
+  const getSectionHref = (link) =>
+    location.pathname === "/" ? `#${link.sectionId}` : `/#${link.sectionId}`;
+
+  const isLinkActive = (link) => {
+    if (link.sectionId) {
+      return location.pathname === "/" && activeSection === link.sectionId;
+    }
+    return location.pathname === link.href ||
+      (link.isNotice && location.pathname.startsWith(link.href));
+  };
 
   // ─── Entrance Animation ──────────────────────────────────────────────────
   useEffect(() => {
@@ -40,7 +85,7 @@ export default function Navbar() {
         { opacity: 0, x: -24 },
         { opacity: 1, x: 0, duration: 0.9 }
       ).fromTo(
-        linksRef.current,
+        linksRef.current.filter(Boolean),
         { opacity: 0, y: -10 },
         { opacity: 1, y: 0, duration: 0.6, stagger: 0.07 },
         "-=0.5"
@@ -114,11 +159,21 @@ export default function Navbar() {
 
   // ─── Link Hover Animations ────────────────────────────────────────────────
   const handleLinkEnter = (el) => {
-    gsap.to(el, { color: "#1D395E", duration: 0.22, ease: "power2.out" });
+    const isNotice = el.dataset.notice === "true";
+    gsap.to(el, {
+      color: isNotice ? "#ffffff" : "#1D395E",
+      backgroundColor: isNotice ? "rgba(29,57,94,0.88)" : undefined,
+      boxShadow: isNotice ? "0 8px 18px rgba(29,57,94,0.18)" : undefined,
+      duration: 0.22,
+      ease: "power2.out",
+    });
   };
   const handleLinkLeave = (el, isActive) => {
+    const isNotice = el.dataset.notice === "true";
     gsap.to(el, {
-      color: isActive ? "#1D395E" : "#475569",
+      color: isNotice ? "#ffffff" : isActive ? "#1D395E" : "#475569",
+      backgroundColor: isNotice ? "#1D395E" : undefined,
+      boxShadow: isNotice ? "0 6px 16px rgba(29,57,94,0.14)" : undefined,
       duration: 0.22,
       ease: "power2.out",
     });
@@ -142,7 +197,7 @@ export default function Navbar() {
             <Link
               ref={logoRef}
               to="/"
-              className="flex items-center gap-4 flex-shrink-0 group"
+              className="navbar-anchor cursor-pointer flex items-center gap-4 flex-shrink-0 group"
               style={{ opacity: 0 }}
               aria-label="The Crescent School – Home"
             >
@@ -186,41 +241,53 @@ export default function Navbar() {
 
             {/* ── CENTER: Desktop Navigation ────────────────────────────── */}
             <nav
-              className="hidden lg:flex items-center ml-8 lg:ml-12 xl:ml-16"
+              className="hidden lg:flex items-center ml-8 lg:ml-12 xl:ml-8"
               aria-label="Primary navigation"
             >
-              <ul className="flex items-center gap-1 xl:gap-2">
-                {NAV_LINKS.map((link, i) => {
-                  const isActive = location.pathname === link.href;
+              <ul className="flex items-center gap-0 xl:gap-0">
+                {NAV_LINKS.filter((link) => !link.isNotice).map((link, i) => {
+                  const isActive = isLinkActive(link);
+                  const LinkComponent = link.sectionId ? "a" : NavLink;
+                  const linkProps = link.sectionId
+                    ? { href: getSectionHref(link) }
+                    : { to: link.href };
                   return (
                     <li key={link.href}>
-                      <NavLink
+                      <LinkComponent
                         ref={(el) => (linksRef.current[i] = el)}
-                        to={link.href}
+                        {...linkProps}
+                        data-notice={link.isNotice ? "true" : undefined}
                         onMouseEnter={(e) => handleLinkEnter(e.currentTarget)}
                         onMouseLeave={(e) =>
                           handleLinkLeave(e.currentTarget, isActive)
                         }
-                        className="relative flex flex-col items-center px-3 xl:px-4 py-2 text-sm font-medium tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E]"
+                        onClick={(event) => handleNavClick(event, link)}
+                        className={`navbar-anchor cursor-pointer relative ${link.isNotice ? "notice-nav-link" : "flex flex-col items-center"} px-2 xl:px-2 py-2 text-sm font-medium tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E]`}
                         style={{
                           color: isActive
-                            ? "rgba(29,57,94,0.98)"
-                            : "rgba(29,57,94,0.78)",
+                            ? link.isNotice ? "#ffffff" : "rgba(29,57,94,0.98)"
+                            : link.isNotice ? "#ffffff" : "rgba(29,57,94,0.78)",
+                          backgroundColor: link.isNotice ? "#1D395E" : undefined,
+                          borderRadius: link.isNotice ? "999px" : undefined,
+                          boxShadow: link.isNotice ? "0 6px 16px rgba(29,57,94,0.14)" : undefined,
+                          gap: link.isNotice ? "0.35rem" : undefined,
                           fontFamily:
                             "'Inter', 'Helvetica Neue', sans-serif",
                           fontSize: "0.82rem",
                           letterSpacing: "0.04em",
-                          opacity: 0,
+                          opacity: 1,
                         }}
                         aria-current={isActive ? "page" : undefined}
                       >
+                        {link.isNotice && <BellIcon />}
                         {link.label}
-                        {/* Active / hover underline */}
-                        <span
-                          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-[#1D395E] transition-all duration-300"
-                          style={{ width: isActive ? "60%" : "0%" }}
-                        />
-                      </NavLink>
+                        {!link.isNotice && (
+                          <span
+                            className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-[#1D395E] transition-all duration-300"
+                            style={{ width: isActive ? "60%" : "0%" }}
+                          />
+                        )}
+                      </LinkComponent>
                     </li>
                   );
                 })}
@@ -229,8 +296,37 @@ export default function Navbar() {
 
             {/* ── RIGHT: Reserved + Hamburger ───────────────────────────── */}
             <div className="flex items-center gap-4">
-              {/* Future expansion slot (desktop) */}
-              <div className="hidden lg:block w-32" aria-hidden="true" />
+              {/* Highlighted notices action */}
+              {(() => {
+                const noticeLink = NAV_LINKS.find((link) => link.isNotice);
+                const isNoticeActive = isLinkActive(noticeLink);
+                return (
+                  <a
+                    ref={(el) => (linksRef.current[NAV_LINKS.length - 1] = el)}
+                    href={getSectionHref(noticeLink)}
+                    data-notice="true"
+                    onMouseEnter={(e) => handleLinkEnter(e.currentTarget)}
+                    onMouseLeave={(e) => handleLinkLeave(e.currentTarget, isNoticeActive)}
+                    onClick={(event) => handleNavClick(event, noticeLink)}
+                    className="navbar-anchor cursor-pointer hidden lg:flex items-center px-3 xl:px-4 py-2 text-sm font-medium tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E] notice-nav-link"
+                    style={{
+                      color: "#ffffff",
+                      backgroundColor: "#1D395E",
+                      borderRadius: "999px",
+                      boxShadow: "0 6px 16px rgba(29,57,94,0.14)",
+                      gap: "0.35rem",
+                      fontFamily: "'Inter', 'Helvetica Neue', sans-serif",
+                      fontSize: "0.82rem",
+                      letterSpacing: "0.04em",
+                      opacity: 1,
+                    }}
+                    aria-current={isNoticeActive ? "page" : undefined}
+                  >
+                    <BellIcon />
+                    {noticeLink.label}
+                  </a>
+                );
+              })()}
 
               {/* Hamburger (mobile / tablet) */}
               <button
@@ -355,31 +451,41 @@ export default function Navbar() {
         <nav className="flex-1 overflow-y-auto px-5 py-6">
           <ul className="flex flex-col">
             {NAV_LINKS.map((link, i) => {
-              const isActive = location.pathname === link.href;
+              const isActive = isLinkActive(link);
+              const LinkComponent = link.sectionId ? "a" : NavLink;
+              const linkProps = link.sectionId
+                ? { href: getSectionHref(link) }
+                : { to: link.href };
               return (
                 <li key={link.href}>
-                  <NavLink
+                  <LinkComponent
                     ref={(el) => (drawerLinksRef.current[i] = el)}
-                    to={link.href}
-                    onClick={() => {
-                      setMobileOpen(false);
+                    {...linkProps}
+                    onClick={(event) => handleNavClick(event, link)}
+                    className={`navbar-anchor cursor-pointer flex items-center justify-between w-full py-4 px-3 group transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E] rounded-lg ${link.isNotice ? "notice-mobile-link hover:bg-[#1D395E]/90" : "hover:bg-[#1D395E]/10"}`}
+                    style={{
+                      opacity: 0,
+                      backgroundColor: link.isNotice ? "#1D395E" : undefined,
+                      borderRadius: link.isNotice ? "999px" : undefined,
+                      marginTop: link.isNotice ? "0.5rem" : undefined,
                     }}
-                    className="flex items-center justify-between w-full py-4 px-3 group transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E] rounded-lg hover:bg-[#1D395E]/10"
-                    style={{ opacity: 0 }}
                     aria-current={isActive ? "page" : undefined}
                   >
                     <div className="flex items-center gap-3">
-                      {/* Blue dot for active */}
-                      <span
-                        className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-300"
-                        style={{
-                          backgroundColor: isActive
-                            ? "#1D395E"
-                            : "rgba(29,57,94,0.25)",
-                          transform: isActive ? "scale(1)" : "scale(0.7)",
-                        }}
-                        aria-hidden="true"
-                      />
+                      {link.isNotice ? (
+                        <BellIcon />
+                      ) : (
+                        <span
+                          className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-300"
+                          style={{
+                            backgroundColor: isActive
+                              ? "#1D395E"
+                              : "rgba(29,57,94,0.25)",
+                            transform: isActive ? "scale(1)" : "scale(0.7)",
+                          }}
+                          aria-hidden="true"
+                        />
+                      )}
                       <span
                         className="font-medium tracking-wide"
                         style={{
@@ -387,9 +493,9 @@ export default function Navbar() {
                             "'Inter', 'Helvetica Neue', sans-serif",
                           fontSize: "0.93rem",
                           letterSpacing: "0.04em",
-                          color: isActive
-                            ? "#1D395E"
-                            : "#475569",
+                          color: link.isNotice
+                            ? "#ffffff"
+                            : isActive ? "#1D395E" : "#475569",
                         }}
                       >
                         {link.label}
@@ -402,11 +508,7 @@ export default function Navbar() {
                       viewBox="0 0 14 14"
                       fill="none"
                       className="transition-transform duration-200 group-hover:translate-x-1"
-                      style={{
-                        color: isActive
-                          ? "#1D395E"
-                          : "#94a3b8",
-                      }}
+                      style={{ color: link.isNotice ? "rgba(255,255,255,0.78)" : isActive ? "#1D395E" : "#94a3b8" }}
                     >
                       <path
                         d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5"
@@ -416,7 +518,7 @@ export default function Navbar() {
                         strokeLinejoin="round"
                       />
                     </svg>
-                  </NavLink>
+                  </LinkComponent>
 
                   {/* Separator – all but last */}
                   {i < NAV_LINKS.length - 1 && (
@@ -456,6 +558,25 @@ export default function Navbar() {
         </div>
       </aside>
     </>
+  );
+}
+
+function BellIcon() {
+  return (
+    <svg
+      width="15"
+      height="15"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+      <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+    </svg>
   );
 }
 

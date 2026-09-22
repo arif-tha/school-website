@@ -15,11 +15,13 @@ import Footer from '../sections/Footer';
 
 export default function Home() {
   useEffect(() => {
-    window.scrollTo(0, 0);
+    if (!window.location.hash) {
+      window.scrollTo(0, 0);
+    }
   }, []);
 
   return (
-    <div className="relative bg-white text-slate-900 overflow-x-hidden">
+    <div id="home" className="relative bg-white text-slate-900 overflow-x-hidden">
       <Hero />
       <AnniversaryBanner />
       <NoticeSection />

@@ -173,13 +173,13 @@ export default function CoCurricular() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap');
 
-        #cocurricular {
+        #activities {
           background: linear-gradient(135deg, #f8f9fb 0%, #ffffff 50%, #f0f4f8 100%);
           position: relative;
           overflow: hidden;
         }
 
-        #cocurricular::before {
+        #activities::before {
           content: '';
           position: absolute;
           top: 0;
@@ -343,7 +343,7 @@ export default function CoCurricular() {
         }
       `}</style>
 
-      <section id="cocurricular" className="relative py-20 md:py-28 lg:py-32">
+      <section id="activities" className="relative py-20 md:py-28 lg:py-32">
         {/* Floating blobs */}
         <FloatingBlob delay={0} size={300} position={{ top: "10%", left: "-5%", background: "rgba(30, 58, 138, 0.1)" }} />
         <FloatingBlob delay={1} size={200} position={{ top: "50%", right: "-3%", background: "rgba(168, 85, 247, 0.08)" }} />

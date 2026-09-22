@@ -24,6 +24,10 @@ body {
   cursor: auto !important;
 }
 
+.navbar-anchor {
+  cursor: pointer !important;
+}
+
 html {
   scroll-behavior: smooth;
 }

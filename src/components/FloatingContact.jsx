@@ -1,21 +1,20 @@
-import React, { useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
+import promotionalImage from "../assets/building/school building.jpeg";
+
+// Replace this single image reference when the client's final promotional artwork arrives.
+const PROMOTIONAL_IMAGE = promotionalImage;
 
 export default function FloatingContact() {
-  const navigate = useNavigate();
   const location = useLocation();
 
   const [showNotice, setShowNotice] = useState(true);
-
-  const handleViewNotice = () => {
-    navigate("/notices");
-  };
 
   const isHomePage = location.pathname === "/";
 
   return (
     <>
-      {/* NOTICE CARD */}
+      {/* HOME PROMOTIONAL POPUP */}
       {isHomePage && showNotice && (
         <div
           style={{
@@ -32,7 +31,7 @@ export default function FloatingContact() {
               background: "rgba(255,255,255,0.98)",
               backdropFilter: "blur(20px)",
               borderRadius: "18px",
-              padding: "20px",
+              padding: "10px",
               boxShadow: "0 20px 50px rgba(0,0,0,0.15)",
               border: "1px solid rgba(226,232,240,0.8)",
               position: "relative",
@@ -54,53 +53,25 @@ export default function FloatingContact() {
                 fontSize: "18px",
                 fontWeight: "700",
                 color: "#334155",
+                zIndex: 1,
               }}
+              aria-label="Close promotional image"
             >
               ×
             </button>
 
-            <h3
+            <img
+              src={PROMOTIONAL_IMAGE}
+              alt="The Crescent School campus"
               style={{
-                fontSize: "32px",
-                fontWeight: "700",
-                lineHeight: "1",
-                color: "#1D395E",
-                marginBottom: "14px",
-                fontFamily: "'Playfair Display', serif",
-              }}
-            >
-              NOTICE
-            </h3>
-
-            <p
-              style={{
-                fontSize: "14px",
-                lineHeight: "1.7",
-                color: "#475569",
-                marginBottom: "18px",
-              }}
-            >
-              Latest notices, examination updates, holiday announcements,
-              admission information and important school updates.
-            </p>
-
-            <button
-              onClick={handleViewNotice}
-              style={{
+                display: "block",
                 width: "100%",
-                border: "none",
-                cursor: "pointer",
-                padding: "12px",
-                borderRadius: "10px",
-                background:
-                  "linear-gradient(135deg,#1D395E 0%, #1D395E 100%)",
-                color: "#fff",
-                fontWeight: "600",
-                fontSize: "14px",
+                height: "auto",
+                aspectRatio: "1600 / 1065",
+                objectFit: "cover",
+                borderRadius: "12px",
               }}
-            >
-              View Notices →
-            </button>
+            />
           </div>
         </div>
       )}

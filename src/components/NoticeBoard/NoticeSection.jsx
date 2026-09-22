@@ -70,7 +70,7 @@ export default function NoticeSection() {
         }
       `}</style>
 
-      <section ref={sectionRef} className="notice-section py-20 px-6">
+      <section id="notices" ref={sectionRef} className="notice-section py-20 px-6">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between items-end mb-12">
             <div>

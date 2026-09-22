@@ -113,7 +113,7 @@ export default function FacilitiesPreview() {
         }
       `}</style>
 
-      <section ref={sectionRef} className="facilities-preview py-24 lg:py-40 px-6 sm:px-12">
+      <section id="facilities" ref={sectionRef} className="facilities-preview py-24 lg:py-40 px-6 sm:px-12">
         <div className="max-w-7xl mx-auto">
           <div ref={headerRef} className="mb-20 grid lg:grid-cols-2 gap-12 items-end opacity-0">
             <div>
