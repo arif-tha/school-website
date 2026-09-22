@@ -40,7 +40,7 @@ const toppers = [
     college: "Jadavpur University",
     stream: "Engineering",
     img: "https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=400&q=80",
-    color: "#38BDF8",
+    color: "#1D395E",
     rank: "Top 10",
   },
   {

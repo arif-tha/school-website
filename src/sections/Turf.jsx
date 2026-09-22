@@ -92,7 +92,7 @@ export default function Turf() {
           font-size: 0.75rem;
           letter-spacing: 0.2em;
           text-transform: uppercase;
-          color: #2563eb;
+          color: #1D395E;
           font-weight: 600;
         }
 
@@ -101,7 +101,7 @@ export default function Turf() {
           font-size: clamp(2rem, 4vw, 3rem);
           font-weight: 700;
           line-height: 1.1;
-          color: #1e40af;
+          color: #1D395E;
         }
 
         .turf-paragraph {
@@ -148,7 +148,7 @@ export default function Turf() {
                   className="absolute inset-0 w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -top-4 -right-4 z-20 rounded-xl px-4 py-3 bg-gradient-to-br from-blue-600 to-indigo-600 shadow-xl">
+              <div className="absolute -top-4 -right-4 z-20 rounded-xl px-4 py-3 bg-[#1D395E] shadow-xl">
                 <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#fff", fontSize: "1.25rem", fontWeight: 700 }}>International Standard</p>
               </div>
             </div>
@@ -158,7 +158,7 @@ export default function Turf() {
               
               {/* Label */}
               <div className="flex items-center gap-3">
-                <div className="w-6 h-px" style={{ background: "#2563eb" }} />
+                <div className="w-6 h-px" style={{ background: "#1D395E" }} />
                 <span className="turf-label">Sports Excellence</span>
               </div>
 
@@ -180,17 +180,17 @@ export default function Turf() {
                 
                 <div className="turf-feature">
                   <div className="turf-icon">🏏</div>
-                  <h4 style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1e40af", fontWeight: 600, fontSize: "1.1rem", marginBottom: "0.5rem" }}>Multi-Sport Ground</h4>
+                  <h4 style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1D395E", fontWeight: 600, fontSize: "1.1rem", marginBottom: "0.5rem" }}>Multi-Sport Ground</h4>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#64748b", fontSize: "0.9rem" }}>Football, Cricket & Badminton</p>
                 </div>
                 <div className="turf-feature">
                   <div className="turf-icon">🏆</div>
-                  <h4 style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1e40af", fontWeight: 600, fontSize: "1.1rem", marginBottom: "0.5rem" }}>Competitive Training</h4>
+                  <h4 style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1D395E", fontWeight: 600, fontSize: "1.1rem", marginBottom: "0.5rem" }}>Competitive Training</h4>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#64748b", fontSize: "0.9rem" }}>State level & Subrata Cup preparation</p>
                 </div>
                 <div className="turf-feature">
                   <div className="turf-icon">💪</div>
-                  <h4 style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1e40af", fontWeight: 600, fontSize: "1.1rem", marginBottom: "0.5rem" }}>Physical Training</h4>
+                  <h4 style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1D395E", fontWeight: 600, fontSize: "1.1rem", marginBottom: "0.5rem" }}>Physical Training</h4>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", color: "#64748b", fontSize: "0.9rem" }}>Regular fitness & exercise sessions</p>
                 </div>
               </div>

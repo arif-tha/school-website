@@ -8,8 +8,8 @@
 :root {
   --primary-dark: #0F172A;
   --primary-slate: #1E293B;
-  --accent-blue: #2563EB;
-  --accent-cyan: #38BDF8;
+  --accent-blue: #1D395E;
+  --accent-cyan: #1D395E;
   --neutral-light: #F8FAFC;
   --neutral-gray: #E2E8F0;
   --gold: #D4AF37;
@@ -38,7 +38,7 @@ body {
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #F8FAFC; }
-::-webkit-scrollbar-thumb { background: #2563EB; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 3px; }
 
 /* Section Spacing */
 section {
@@ -55,7 +55,7 @@ section {
 
 /* Text gradient */
 .text-gradient {
-  background: linear-gradient(135deg, #2563EB, #4f46e5);
+  background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -97,8 +97,8 @@ section {
 
 
 /* Step progress */
-.step-active { background: #2563eb; color: white; border-color: #2563eb; }
-.step-done { background: #38bdf8; color: #0a1628; border-color: #38bdf8; }
+.step-active { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
+.step-done { background: var(--accent-blue); color: white; border-color: var(--accent-blue); }
 
 /* Counter */
 @keyframes countUp {

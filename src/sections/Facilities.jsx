@@ -124,7 +124,7 @@ export default function FacilitiesPreview() {
               </h2>
             </div>
             <div>
-              <p className="text-blue-100/40 text-lg leading-relaxed max-w-md pb-2">
+              <p className="text-[#9DB5D3]/40 text-lg leading-relaxed max-w-md pb-2">
                 Every corner of our campus is engineered to spark curiosity, support collaboration, and foster a healthy, disciplined environment for students.
               </p>
             </div>

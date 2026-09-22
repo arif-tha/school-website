@@ -18,8 +18,8 @@ const academicLevels = [
     title: "Primary School",
     subtitle: "Building Blocks",
     range: "Class I – V",
-    color: "from-sky-400/20 to-blue-300/10",
-    accent: "#38BDF8",
+    color: "from-[#1D395E]/20 to-[#1D395E]/10",
+    accent: "#1D395E",
     features: ["Core academic foundation", "Curiosity-driven learning", "Interactive classroom activities"],
   },
   {

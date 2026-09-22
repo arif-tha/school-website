@@ -61,7 +61,7 @@ export default function Navbar() {
     gsap.to(navbarRef.current, {
       backgroundColor: scrolled ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0)",
       boxShadow: scrolled
-        ? "0 4px 32px rgba(37,99,235,0.15)"
+        ? "0 4px 32px rgba(29,57,94,0.15)"
         : "0 0px 0px rgba(0,0,0,0)",
       duration: 0.45,
       ease: "power2.inOut",
@@ -114,11 +114,11 @@ export default function Navbar() {
 
   // ─── Link Hover Animations ────────────────────────────────────────────────
   const handleLinkEnter = (el) => {
-    gsap.to(el, { color: "#2563eb", duration: 0.22, ease: "power2.out" });
+    gsap.to(el, { color: "#1D395E", duration: 0.22, ease: "power2.out" });
   };
   const handleLinkLeave = (el, isActive) => {
     gsap.to(el, {
-      color: isActive ? "#2563eb" : "#475569",
+      color: isActive ? "#1D395E" : "#475569",
       duration: 0.22,
       ease: "power2.out",
     });
@@ -162,7 +162,7 @@ export default function Navbar() {
                     fontSize: "1.2rem",
                     letterSpacing: "0.06em",
                     lineHeight: 1.15,
-                    color: "#1e40af",
+                    color: "#1D395E",
                   }}
                 >
                   The Crescent School
@@ -170,7 +170,7 @@ export default function Navbar() {
                 <span
                   className="mt-1"
                   style={{
-                    color: "#2563eb",
+                    color: "#1D395E",
                     fontFamily: "'Cormorant Garamond', 'Garamond', serif",
                     fontSize: "0.72rem",
                     letterSpacing: "0.14em",
@@ -201,11 +201,11 @@ export default function Navbar() {
                         onMouseLeave={(e) =>
                           handleLinkLeave(e.currentTarget, isActive)
                         }
-                        className="relative flex flex-col items-center px-3 xl:px-4 py-2 text-sm font-medium tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400"
+                        className="relative flex flex-col items-center px-3 xl:px-4 py-2 text-sm font-medium tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E]"
                         style={{
                           color: isActive
-                            ? "#2563eb"
-                            : "#475569",
+                            ? "rgba(29,57,94,0.98)"
+                            : "rgba(29,57,94,0.78)",
                           fontFamily:
                             "'Inter', 'Helvetica Neue', sans-serif",
                           fontSize: "0.82rem",
@@ -217,7 +217,7 @@ export default function Navbar() {
                         {link.label}
                         {/* Active / hover underline */}
                         <span
-                          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-blue-500 transition-all duration-300"
+                          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-[#1D395E] transition-all duration-300"
                           style={{ width: isActive ? "60%" : "0%" }}
                         />
                       </NavLink>
@@ -236,7 +236,7 @@ export default function Navbar() {
               <button
                 ref={hamburgerRef}
                 onClick={toggleMobile}
-                className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded"
+                className="lg:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E] rounded"
                 aria-label={mobileOpen ? "Close menu" : "Open menu"}
                 aria-expanded={mobileOpen}
               >
@@ -252,7 +252,7 @@ export default function Navbar() {
           className="h-px w-full transition-opacity duration-500"
           style={{
             background:
-              "linear-gradient(90deg, transparent 0%, rgba(37,99,235,0.35) 30%, rgba(37,99,235,0.6) 50%, rgba(37,99,235,0.35) 70%, transparent 100%)",
+              "linear-gradient(90deg, transparent 0%, rgba(29,57,94,0.35) 30%, rgba(29,57,94,0.6) 50%, rgba(29,57,94,0.35) 70%, transparent 100%)",
             opacity: scrolled ? 1 : 0.45,
           }}
         />
@@ -285,7 +285,7 @@ export default function Navbar() {
           className="absolute inset-0 pointer-events-none"
           style={{
             background:
-              "radial-gradient(ellipse at 80% 10%, rgba(37,99,235,0.07) 0%, transparent 60%)",
+              "radial-gradient(ellipse at 80% 10%, rgba(29,57,94,0.07) 0%, transparent 60%)",
           }}
           aria-hidden="true"
         />
@@ -294,7 +294,7 @@ export default function Navbar() {
         <div
           className="relative flex items-center justify-between px-7 pt-8 pb-6"
           style={{
-            borderBottom: "1px solid rgba(37,99,235,0.2)",
+            borderBottom: "1px solid rgba(29,57,94,0.2)",
           }}
         >
           <div className="flex items-center gap-3">
@@ -312,14 +312,14 @@ export default function Navbar() {
                   fontSize: "1.05rem",
                   letterSpacing: "0.05em",
                   lineHeight: 1.2,
-                  color: "#1e40af",
+                  color: "#1D395E",
                 }}
               >
                 The Crescent School
               </span>
               <span
                 style={{
-                  color: "#2563eb",
+                  color: "#1D395E",
                   fontFamily: "'Cormorant Garamond', 'Garamond', serif",
                   fontSize: "0.68rem",
                   letterSpacing: "0.13em",
@@ -336,7 +336,7 @@ export default function Navbar() {
           {/* Close Button */}
           <button
             onClick={() => setMobileOpen(false)}
-            className="flex items-center justify-center w-9 h-9 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 transition-colors hover:bg-blue-50"
+            className="flex items-center justify-center w-9 h-9 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E] transition-colors hover:bg-[#1D395E]/10"
             style={{ color: "#475569" }}
             aria-label="Close menu"
           >
@@ -364,7 +364,7 @@ export default function Navbar() {
                     onClick={() => {
                       setMobileOpen(false);
                     }}
-                    className="flex items-center justify-between w-full py-4 px-3 group transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 rounded-lg hover:bg-blue-50"
+                    className="flex items-center justify-between w-full py-4 px-3 group transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E] rounded-lg hover:bg-[#1D395E]/10"
                     style={{ opacity: 0 }}
                     aria-current={isActive ? "page" : undefined}
                   >
@@ -374,8 +374,8 @@ export default function Navbar() {
                         className="w-1.5 h-1.5 rounded-full flex-shrink-0 transition-all duration-300"
                         style={{
                           backgroundColor: isActive
-                            ? "#2563eb"
-                            : "rgba(37,99,235,0.25)",
+                            ? "#1D395E"
+                            : "rgba(29,57,94,0.25)",
                           transform: isActive ? "scale(1)" : "scale(0.7)",
                         }}
                         aria-hidden="true"
@@ -388,7 +388,7 @@ export default function Navbar() {
                           fontSize: "0.93rem",
                           letterSpacing: "0.04em",
                           color: isActive
-                            ? "#2563eb"
+                            ? "#1D395E"
                             : "#475569",
                         }}
                       >
@@ -404,7 +404,7 @@ export default function Navbar() {
                       className="transition-transform duration-200 group-hover:translate-x-1"
                       style={{
                         color: isActive
-                          ? "#2563eb"
+                          ? "#1D395E"
                           : "#94a3b8",
                       }}
                     >
@@ -425,7 +425,7 @@ export default function Navbar() {
                       style={{
                         height: "1px",
                         background:
-                          "linear-gradient(90deg, rgba(37,99,235,0.15), transparent)",
+                          "linear-gradient(90deg, rgba(29,57,94,0.15), transparent)",
                       }}
                       aria-hidden="true"
                     />
@@ -439,7 +439,7 @@ export default function Navbar() {
         {/* Drawer Footer */}
         <div
           className="px-8 py-5"
-          style={{ borderTop: "1px solid rgba(37,99,235,0.12)" }}
+              style={{ borderTop: "1px solid rgba(29,57,94,0.12)" }}
         >
           <p
             style={{

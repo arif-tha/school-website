@@ -109,7 +109,7 @@ export default function HandbookPreview() {
               </h2>
             </div>
             <div>
-              <p className="text-blue-100/40 text-lg leading-relaxed max-w-md pb-2">
+              <p className="text-[#9DB5D3]/40 text-lg leading-relaxed max-w-md pb-2">
                 Our handbook serves as a comprehensive guide for student conduct, institutional discipline, and official uniform regulations to foster an environment of excellence.
               </p>
             </div>

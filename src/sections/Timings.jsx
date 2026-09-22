@@ -43,7 +43,7 @@ export default function Timings() {
           font-size: 0.7rem;
           letter-spacing: 0.25em;
           text-transform: uppercase;
-          color: #1e3a8a;
+          color: #1D395E;
           font-weight: 600;
         }
 
@@ -64,7 +64,7 @@ export default function Timings() {
         }
 
         .timings-divider {
-          background: linear-gradient(to right, #1e3a8a, rgba(30, 58, 138, 0.2));
+          background: linear-gradient(to right, #1D395E, rgba(29, 57, 94, 0.2));
           height: 2px;
         }
 
@@ -115,13 +115,13 @@ export default function Timings() {
         .timings-table td:first-child {
           text-align: left;
           font-weight: 500;
-          color: #1e3a8a;
+          color: #1D395E;
           letter-spacing: 0.03em;
         }
 
         .timings-table td.girls-session {
           background: rgba(59, 130, 246, 0.04);
-          color: #1e40af;
+          color: #1D395E;
         }
 
         .timings-table td.boys-session {
@@ -150,7 +150,7 @@ export default function Timings() {
           text-align: center;
           padding: 1.5rem;
           background: rgba(30, 58, 138, 0.05);
-          border-left: 3px solid #1e3a8a;
+          border-left: 3px solid #1D395E;
           border-radius: 0.5rem;
         }
 
@@ -222,7 +222,7 @@ export default function Timings() {
             top: 50%;
             transform: translateY(-50%);
             font-weight: 600;
-            color: #1e3a8a;
+            color: #1D395E;
             font-size: 0.8rem;
             letter-spacing: 0.05em;
           }
@@ -268,9 +268,9 @@ export default function Timings() {
           <div className="flex flex-col items-center text-center mb-12 md:mb-16">
             {/* Label */}
             <div className="timings-label mb-4 flex items-center gap-3">
-              <div className="w-8 h-px" style={{ background: "#1e3a8a" }} />
+              <div className="w-8 h-px" style={{ background: "#1D395E" }} />
               SCHOOL TIMINGS
-              <div className="w-8 h-px" style={{ background: "#1e3a8a" }} />
+              <div className="w-8 h-px" style={{ background: "#1D395E" }} />
             </div>
 
             {/* Heading */}
@@ -292,7 +292,7 @@ export default function Timings() {
                 <tr>
                   <th>Classes</th>
                   <th>
-                    <span style={{ color: "#3b82f6" }}>👧 Girls - Morning</span>
+                    <span style={{ color: "#1D395E" }}>👧 Girls - Morning</span>
                   </th>
                   <th>
                     <span style={{ color: "#a855f7" }}>👦 Boys - Afternoon</span>

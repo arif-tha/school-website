@@ -22,7 +22,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const categories = ["Academic", "Examination", "Holiday", "Event", "Admission"];
 
 const categoryStyles = {
-  Academic: "bg-blue-500/10 text-blue-300 border-blue-500/25",
+  Academic: "bg-[#1D395E]/10 text-[#9DB5D3] border-[#1D395E]/25",
   Examination: "bg-red-500/10 text-red-300 border-red-500/25",
   Admission: "bg-green-500/10 text-green-300 border-green-500/25",
   Holiday: "bg-purple-500/10 text-purple-300 border-purple-500/25",
@@ -151,7 +151,7 @@ function FloatingField({ label, children }) {
 }
 
 const inputClasses =
-  "w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-white/30 focus:border-[#1D4ED8] focus:ring-4 focus:ring-[#1D4ED8]/15 focus:bg-white/[0.06]";
+  "w-full bg-white/[0.04] border border-white/10 rounded-xl px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-white/30 focus:border-[#1D395E] focus:ring-4 focus:ring-[#1D395E]/15 focus:bg-white/[0.06]";
 
 const selectOptionClasses = "bg-[#0A2342] text-white";
 
@@ -509,7 +509,7 @@ export default function AdminDashboard() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex-1 flex items-center justify-center gap-2 bg-gradient-to-r from-[#1D4ED8] to-[#4F46E5] text-white py-3 rounded-xl font-semibold text-sm shadow-lg shadow-[#1D4ED8]/20 hover:opacity-95 active:scale-[0.99] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
+                  className="flex-1 flex items-center justify-center gap-2 bg-[#1D395E] text-white py-3 rounded-xl font-semibold text-sm shadow-lg shadow-[#1D395E]/20 hover:opacity-95 active:scale-[0.99] transition-all disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {submitting ? (
                     <>
@@ -552,13 +552,13 @@ export default function AdminDashboard() {
                   placeholder="Search by title…"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full bg-white/[0.04] border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-white/30 outline-none focus:border-[#1D4ED8] focus:ring-4 focus:ring-[#1D4ED8]/15 transition-all"
+                  className="w-full bg-white/[0.04] border border-white/10 rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-white/30 outline-none focus:border-[#1D395E] focus:ring-4 focus:ring-[#1D395E]/15 transition-all"
                 />
               </div>
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-[#1D4ED8] cursor-pointer"
+                className="bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-[#1D395E] cursor-pointer"
               >
                 <option value="All" className={selectOptionClasses}>All Categories</option>
                 {categories.map((c) => (
@@ -570,7 +570,7 @@ export default function AdminDashboard() {
               <select
                 value={pinnedFilter}
                 onChange={(e) => setPinnedFilter(e.target.value)}
-                className="bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-[#1D4ED8] cursor-pointer"
+                className="bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-[#1D395E] cursor-pointer"
               >
                 <option value="All" className={selectOptionClasses}>All Notices</option>
                 <option value="Pinned" className={selectOptionClasses}>Pinned Only</option>
@@ -579,7 +579,7 @@ export default function AdminDashboard() {
               <select
                 value={sortOrder}
                 onChange={(e) => setSortOrder(e.target.value)}
-                className="bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-[#1D4ED8] cursor-pointer"
+                className="bg-white/[0.04] border border-white/10 rounded-xl px-3.5 py-2.5 text-sm text-white outline-none focus:border-[#1D395E] cursor-pointer"
               >
                 <option value="newest" className={selectOptionClasses}>Newest First</option>
                 <option value="oldest" className={selectOptionClasses}>Oldest First</option>
@@ -656,7 +656,7 @@ export default function AdminDashboard() {
                           <button
                             onClick={() => handleEdit(n)}
                             title="Edit notice"
-                            className="p-2 rounded-lg border border-white/10 bg-white/[0.03] text-white/40 hover:text-blue-300 hover:border-blue-400/40 hover:bg-blue-500/10 transition-colors"
+                            className="p-2 rounded-lg border border-white/10 bg-white/[0.03] text-white/40 hover:text-[#9DB5D3] hover:border-[#1D395E]/40 hover:bg-[#1D395E]/10 transition-colors"
                           >
                             <Icon.Edit className="w-4 h-4" />
                           </button>

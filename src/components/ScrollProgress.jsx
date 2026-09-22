@@ -19,7 +19,7 @@ export default function ScrollProgress() {
       <div
         ref={bar}
         className="h-full w-0"
-        style={{ background: 'linear-gradient(90deg, #2563eb, #38bdf8, #f59e0b)' }}
+        style={{ background: 'linear-gradient(90deg, #1D395E, #1D395E, #f59e0b)' }}
       />
     </div>
   );

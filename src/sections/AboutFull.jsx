@@ -100,7 +100,7 @@ export default function About() {
   const subHeadingSrtyle = {
     fontFamily: "'Cormorant Garamond', serif",
     fontSize: "1.25rem",
-    color: "#2563eb",
+    color: "#1D395E",
     fontWeight: 600,
     textTransform: "uppercase",
     letterSpacing: "0.15em",
@@ -179,7 +179,7 @@ export default function About() {
                 </div>
               </div>
               <div className="absolute -bottom-5 -right-4 md:-right-6 z-20 rounded-xl px-5 py-4" style={{ background: "linear-gradient(135deg, #ffffff, #f1f5f9)", border: "1px solid #e2e8f0", boxShadow: "0 8px 32px rgba(37,99,235,0.1)" }}>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2563eb", fontSize: "1.75rem", fontWeight: 700, lineHeight: 1 }}>2002</p>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1D395E", fontSize: "1.75rem", fontWeight: 700, lineHeight: 1 }}>2002</p>
                 <p style={{ color: "#64748b", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "2px" }}>Est.</p>
               </div>
             </div>
@@ -188,8 +188,8 @@ export default function About() {
             <div className="flex flex-col">
               
               <div ref={labelRef} className="flex items-center gap-3 mb-4" style={{ opacity: 0 }}>
-                <div className="w-6 h-px" style={{ background: "#2563eb" }} />
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#2563eb", fontWeight: 500 }}>
+                <div className="w-6 h-px" style={{ background: "#1D395E" }} />
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: "0.7rem", letterSpacing: "0.25em", textTransform: "uppercase", color: "#1D395E", fontWeight: 500 }}>
                   Institutional Profile
                 </span>
               </div>
@@ -201,12 +201,12 @@ export default function About() {
                   fontSize: "clamp(2.5rem, 5vw, 4rem)",
                   fontWeight: 700,
                   lineHeight: 1.1,
-                  color: "#1e40af",
+                  color: "#1D395E",
                   marginBottom: "2.5rem",
                   opacity: 0,
                 }}
               >
-                About The <span style={{ color: "#2563eb" }}>School</span>
+                About The <span style={{ color: "#1D395E" }}>School</span>
               </h2>
 
               <div className="space-y-12">

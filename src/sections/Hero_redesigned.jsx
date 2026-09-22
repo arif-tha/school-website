@@ -49,13 +49,13 @@ export default function Hero() {
   return (
     <section
       ref={heroRef}
-      className="relative w-full h-screen bg-gradient-to-br from-white via-blue-50 to-slate-100 flex items-center justify-center overflow-hidden"
+      className="relative w-full h-screen bg-gradient-to-br from-white via-[#1D395E]/5 to-slate-100 flex items-center justify-center overflow-hidden"
     >
       {/* Background Grid */}
       <div className="absolute inset-0 grid-bg opacity-40" />
 
       {/* Decorative blobs */}
-      <div className="absolute top-20 right-10 w-96 h-96 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
+      <div className="absolute top-20 right-10 w-96 h-96 bg-[#1D395E]/15 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-cyan-200 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
 
       {/* Content */}
@@ -86,10 +86,10 @@ export default function Hero() {
 
         {/* CTA Buttons */}
         <div ref={ctaRef} className="flex flex-col sm:flex-row gap-6 justify-center items-center">
-          <button className="px-10 py-4 bg-gradient-to-r from-blue-600 to-blue-500 text-white font-['Inter'] font-semibold rounded-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
+          <button className="px-10 py-4 bg-[#1D395E] text-white font-['Inter'] font-semibold rounded-full hover:shadow-lg hover:-translate-y-1 transition-all duration-300">
             Discover Our World
           </button>
-          <button className="px-10 py-4 border-2 border-slate-300 text-slate-900 font-['Inter'] font-semibold rounded-full hover:bg-slate-50 hover:border-blue-600 transition-all duration-300">
+          <button className="px-10 py-4 border-2 border-slate-300 text-slate-900 font-['Inter'] font-semibold rounded-full hover:bg-slate-50 hover:border-[#1D395E] transition-all duration-300">
             Take a Campus Tour
           </button>
         </div>

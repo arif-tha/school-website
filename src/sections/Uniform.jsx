@@ -149,7 +149,7 @@ export default function Uniform() {
           font-size: 0.7rem;
           letter-spacing: 0.25em;
           text-transform: uppercase;
-          color: #1e3a8a;
+          color: #1D395E;
           font-weight: 600;
           animation: fadeInUp 0.6s ease-out forwards;
         }
@@ -166,7 +166,7 @@ export default function Uniform() {
         }
 
         .uniform-divider {
-          background: linear-gradient(to right, #1e3a8a, rgba(30, 58, 138, 0.2));
+          background: linear-gradient(to right, #1D395E, rgba(29, 57, 94, 0.2));
           height: 2px;
           animation: scaleIn 0.8s ease-out forwards;
           animation-delay: 0.2s;
@@ -201,12 +201,12 @@ export default function Uniform() {
         }
 
         .uniform-tab.active {
-          color: #1e3a8a;
-          border-bottom-color: #1e3a8a;
+          color: #1D395E;
+          border-bottom-color: #1D395E;
         }
 
         .uniform-tab:hover {
-          color: #1e3a8a;
+          color: #1D395E;
         }
 
         .features-grid {
@@ -241,7 +241,7 @@ export default function Uniform() {
 
         .uniform-note {
           background: linear-gradient(135deg, rgba(30, 58, 138, 0.08) 0%, rgba(75, 85, 180, 0.05) 100%);
-          border-left: 4px solid #1e3a8a;
+          border-left: 4px solid #1D395E;
           border-radius: 0.75rem;
           padding: 2rem;
           text-align: center;
@@ -332,9 +332,9 @@ export default function Uniform() {
           {/* Header */}
           <div className="flex flex-col items-center text-center mb-16">
             <div className="uniform-label mb-4 flex items-center gap-3">
-              <div className="w-8 h-px" style={{ background: "#1e3a8a" }} />
+              <div className="w-8 h-px" style={{ background: "#1D395E" }} />
               SCHOOL DRESS CODE
-              <div className="w-8 h-px" style={{ background: "#1e3a8a" }} />
+              <div className="w-8 h-px" style={{ background: "#1D395E" }} />
             </div>
 
             <h2 className="uniform-heading mb-6">School Uniform</h2>
@@ -351,7 +351,7 @@ export default function Uniform() {
             {FEATURES.map((feature, i) => (
               <div key={i} className={`feature-card bg-gradient-to-br ${feature.color}`}>
                 <div className="text-4xl mb-3">{feature.icon}</div>
-                <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.2rem", fontWeight: 600, color: "#1e3a8a" }}>
+                <h4 style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "1.2rem", fontWeight: 600, color: "#1D395E" }}> 
                   {feature.title}
                 </h4>
               </div>

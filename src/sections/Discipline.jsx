@@ -84,11 +84,11 @@ function AccordionItem({ item, isOpen, onToggle, index }) {
       >
         <div className="flex items-center gap-4">
           <span className="text-3xl group-hover:scale-110 transition-transform duration-300">{item.icon}</span>
-          <h3 className="text-lg font-bold text-navy-900 text-left" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1e3a8a" }}>
+          <h3 className="text-lg font-bold text-navy-900 text-left" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1D395E" }}>
             {item.title}
           </h3>
         </div>
-        <div className={`text-xl text-navy-900 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: "#1e3a8a" }}>
+        <div className={`text-xl text-navy-900 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`} style={{ color: "#1D395E" }}>
           ▼
         </div>
       </button>
@@ -101,7 +101,7 @@ function AccordionItem({ item, isOpen, onToggle, index }) {
           <div className="space-y-3">
             {item.content.map((text, idx) => (
               <div key={idx} className="flex gap-3">
-                <span className="text-blue-500 font-bold text-lg flex-shrink-0 mt-0.5">•</span>
+                <span className="text-[#1D395E] font-bold text-lg flex-shrink-0 mt-0.5">•</span>
                 <p className="text-sm text-gray-700 leading-relaxed" style={{ fontFamily: "'DM Sans', sans-serif" }}>
                   {text}
                 </p>
@@ -122,7 +122,7 @@ function FloatingBlob({ delay, size, position }) {
         width: size,
         height: size,
         ...position,
-        background: "linear-gradient(135deg, #1e3a8a, #5a7ab8)",
+        background: "linear-gradient(135deg, #1D395E, #1D395E)",
         animation: `floatAnim 4s ease-in-out ${delay}s infinite`,
       }}
     />
@@ -199,7 +199,7 @@ export default function Discipline() {
           font-size: 0.7rem;
           letter-spacing: 0.25em;
           text-transform: uppercase;
-          color: #1e3a8a;
+          color: #1D395E;
           font-weight: 600;
           animation: fadeInUp 0.6s ease-out forwards;
         }
@@ -216,7 +216,7 @@ export default function Discipline() {
         }
 
         .discipline-divider {
-          background: linear-gradient(to right, #1e3a8a, rgba(30, 58, 138, 0.2));
+          background: linear-gradient(to right, #1D395E, rgba(29, 57, 94, 0.2));
           height: 2px;
           animation: scaleIn 0.8s ease-out forwards;
           animation-delay: 0.2s;
@@ -279,13 +279,13 @@ export default function Discipline() {
           font-family: 'Cormorant Garamond', serif;
           font-size: clamp(1.3rem, 2.5vw, 1.8rem);
           font-weight: 700;
-          color: #1e3a8a;
+          color: #1D395E;
           line-height: 1.6;
           margin-bottom: 1rem;
         }
 
         .premium-highlight {
-          background: linear-gradient(135deg, #1e3a8a 0%, #5a7ab8 100%);
+          background: linear-gradient(135deg, #1D395E 0%, #1D395E 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -394,9 +394,9 @@ export default function Discipline() {
           {/* Header */}
           <div className="flex flex-col items-center text-center mb-16" ref={headingRef}>
             <div className="discipline-label mb-4 flex items-center gap-3">
-              <div className="w-8 h-px" style={{ background: "#1e3a8a" }} />
+              <div className="w-8 h-px" style={{ background: "#1D395E" }} />
               SCHOOL VALUES
-              <div className="w-8 h-px" style={{ background: "#1e3a8a" }} />
+              <div className="w-8 h-px" style={{ background: "#1D395E" }} />
             </div>
 
             <h2 className="discipline-heading mb-6">School Guidelines & Discipline</h2>

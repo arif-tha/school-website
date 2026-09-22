@@ -28,9 +28,9 @@ export default function ContactPage() {
           {/* Contact Cards Grid */}
           <div className="grid md:grid-cols-2 gap-8 mb-24">
             {/* Address Card */}
-            <div className="premium-card p-8 md:p-10 group hover:border-blue-300">
+            <div className="premium-card p-8 md:p-10 group hover:border-[#1D395E]">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1D395E]/10 flex items-center justify-center group-hover:bg-[#1D395E]/20 transition-colors">
                   <span className="text-xl">📍</span>
                 </div>
                 <div className="flex-1">
@@ -46,9 +46,9 @@ export default function ContactPage() {
             </div>
 
             {/* Phone Card */}
-            <div className="premium-card p-8 md:p-10 group hover:border-blue-300">
+            <div className="premium-card p-8 md:p-10 group hover:border-[#1D395E]">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1D395E]/10 flex items-center justify-center group-hover:bg-[#1D395E]/20 transition-colors">
                   <span className="text-xl">📞</span>
                 </div>
                 <div className="flex-1">
@@ -62,9 +62,9 @@ export default function ContactPage() {
             </div>
 
             {/* Email Card */}
-            <div className="premium-card p-8 md:p-10 group hover:border-blue-300">
+            <div className="premium-card p-8 md:p-10 group hover:border-[#1D395E]">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1D395E]/10 flex items-center justify-center group-hover:bg-[#1D395E]/20 transition-colors">
                   <span className="text-xl">✉️</span>
                 </div>
                 <div className="flex-1">
@@ -78,9 +78,9 @@ export default function ContactPage() {
             </div>
 
             {/* Timings Card */}
-            <div className="premium-card p-8 md:p-10 group hover:border-blue-300">
+            <div className="premium-card p-8 md:p-10 group hover:border-[#1D395E]">
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center group-hover:bg-blue-100 transition-colors">
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1D395E]/10 flex items-center justify-center group-hover:bg-[#1D395E]/20 transition-colors">
                   <span className="text-xl">🕐</span>
                 </div>
                 <div className="flex-1">
@@ -99,7 +99,7 @@ export default function ContactPage() {
           <div className="h-px bg-gradient-to-r from-transparent via-slate-200 to-transparent mb-24"></div>
 
           {/* Office Info */}
-          <div className="bg-gradient-to-br from-slate-50 to-blue-50 rounded-3xl p-12 md:p-16 premium-card border-0">
+          <div className="bg-gradient-to-br from-slate-50 to-[#1D395E]/10 rounded-3xl p-12 md:p-16 premium-card border-0">
             <h2 className="font-['Playfair_Display'] font-bold text-3xl md:text-4xl text-slate-900 mb-8">Office Information</h2>
             <div className="grid md:grid-cols-2 gap-12">
               <div>

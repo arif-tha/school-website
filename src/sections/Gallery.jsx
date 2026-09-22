@@ -132,7 +132,7 @@ export default function Gallery() {
           font-size: 0.8rem;
           letter-spacing: 0.25em;
           text-transform: uppercase;
-          color: #004e98;
+          color: #1D395E;
           font-weight: 700;
           animation: fadeInUp 0.6s ease-out forwards;
           display: flex;
@@ -143,7 +143,7 @@ export default function Gallery() {
         .gallery-label-line {
           height: 2px;
           width: 40px;
-          background: #004e98;
+          background: #1D395E;
         }
 
         .gallery-heading {
@@ -213,7 +213,7 @@ export default function Gallery() {
           <div className="mt-8 text-center">
             <Link
               to="/gallery"
-              className="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-[#004e98] to-[#1e40af] text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+              className="inline-flex items-center gap-2 px-8 py-3 bg-[#1D395E] text-white font-semibold rounded-full shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
             >
               View All Photos
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

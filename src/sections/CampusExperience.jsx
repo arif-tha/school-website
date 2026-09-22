@@ -14,7 +14,7 @@ const features = [
     ),
     title: "Smart Classrooms",
     desc: "Interactive boards, digital tools, and connected learning environments.",
-    accent: "#1E3A8A",
+    accent: "#1D395E",
   },
   {
     icon: (
@@ -24,7 +24,7 @@ const features = [
     ),
     title: "Science Laboratories",
     desc: "Well-equipped labs for Physics, Chemistry, and Biology experiments.",
-    accent: "#1E40AF",
+    accent: "#1D395E",
   },
   {
     icon: (
@@ -37,7 +37,7 @@ const features = [
     ),
     title: "Computer Lab",
     desc: "High-speed internet, modern PCs, and coding-ready workstations.",
-    accent: "#1D4ED8",
+    accent: "#1D395E",
   },
   {
     icon: (
@@ -47,7 +47,7 @@ const features = [
     ),
     title: "Library & Reading",
     desc: "Thousands of curated books, journals, and a peaceful reading zone.",
-    accent: "#2563EB",
+    accent: "#1D395E",
   },
 ];
 
@@ -183,11 +183,11 @@ export default function CampusExperience() {
 
       <section
         ref={sectionRef}
-        className="campus-section relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-blue-50 py-24 lg:py-32 px-5 sm:px-8 lg:px-16"
+        className="campus-section relative overflow-hidden bg-gradient-to-br from-slate-50 via-white to-[#1D395E]/5 py-24 lg:py-32 px-5 sm:px-8 lg:px-16"
       >
         {/* Background decoration */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-blue-100 rounded-full opacity-30 blur-3xl -translate-y-1/2 translate-x-1/3" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-[#1D395E]/10 rounded-full opacity-30 blur-3xl -translate-y-1/2 translate-x-1/3" />
           <div className="absolute bottom-0 left-0 w-80 h-80 bg-indigo-100 rounded-full opacity-25 blur-3xl translate-y-1/3 -translate-x-1/4" />
           <div className="dot-pattern absolute inset-0 opacity-20" />
         </div>
@@ -198,23 +198,23 @@ export default function CampusExperience() {
             {/* Left: text */}
             <div className="flex flex-col gap-7">
               <div ref={badgeRef} className="flex items-center gap-3">
-                <span className="inline-flex items-center gap-2 bg-blue-100 text-blue-800 text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-blue-600 inline-block animate-pulse" />
+                <span className="inline-flex items-center gap-2 bg-[#1D395E]/10 text-[#1D395E] text-xs font-semibold uppercase tracking-widest px-4 py-1.5 rounded-full">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#1D395E] inline-block animate-pulse" />
                   Our Campus
                 </span>
               </div>
 
-              <div ref={lineRef} className="h-0.5 w-16 bg-gradient-to-r from-blue-600 to-indigo-400 rounded-full" />
+              <div ref={lineRef} className="h-0.5 w-16 bg-[#1D395E] rounded-full" />
 
               <h2
                 ref={headingRef}
-                className="campus-heading text-4xl sm:text-5xl xl:text-6xl font-bold text-blue-950 leading-[1.1]"
+                className="campus-heading text-4xl sm:text-5xl xl:text-6xl font-bold text-[#1D395E] leading-[1.1]"
               >
                 A Modern Campus{" "}
                 <span className="relative inline-block">
-                  <span className="relative z-10 text-blue-700">Built For</span>
+                  <span className="relative z-10 text-[#1D395E]">Built For</span>
                   <span
-                    className="absolute left-0 bottom-1 w-full h-3 bg-blue-100 rounded-sm -z-0"
+                    className="absolute left-0 bottom-1 w-full h-3 bg-[#1D395E]/10 rounded-sm -z-0"
                     style={{ bottom: "4px" }}
                   />
                 </span>{" "}
@@ -242,7 +242,7 @@ export default function CampusExperience() {
                     key={s.label}
                     className="stat-chip bg-white border border-blue-100 shadow-sm rounded-xl px-5 py-3 flex flex-col items-center min-w-[80px]"
                   >
-                    <span className="text-2xl font-bold text-blue-800 campus-heading">{s.val}</span>
+                    <span className="text-2xl font-bold text-[#1D395E] campus-heading">{s.val}</span>
                     <span className="text-xs text-slate-500 font-medium mt-0.5">{s.label}</span>
                   </div>
                 ))}
@@ -293,17 +293,17 @@ export default function CampusExperience() {
                 className="glass-card rounded-2xl p-6 shadow-md flex flex-col gap-4"
               >
                 <div className="flex items-center justify-between">
-                  <div className="card-icon w-12 h-12 rounded-xl bg-blue-50 flex items-center justify-center shadow-inner">
+                  <div className="card-icon w-12 h-12 rounded-xl bg-[#1D395E]/10 flex items-center justify-center shadow-inner">
                     {f.icon}
                   </div>
                   <span className="w-2 h-2 rounded-full bg-blue-200" />
                 </div>
                 <div>
-                  <h3 className="campus-heading text-blue-950 font-bold text-lg mb-1.5">{f.title}</h3>
+                  <h3 className="campus-heading text-[#1D395E] font-bold text-lg mb-1.5">{f.title}</h3>
                   <p className="text-slate-500 text-sm leading-relaxed font-light">{f.desc}</p>
                 </div>
                 <div className="mt-auto pt-2 border-t border-blue-50">
-                  <button className="text-blue-700 text-xs font-semibold flex items-center gap-1 hover:gap-2 transition-all duration-200">
+                  <button className="text-[#1D395E] text-xs font-semibold flex items-center gap-1 hover:gap-2 transition-all duration-200">
                     Learn more
                     <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
                       <path d="M5 12h14M12 5l7 7-7 7" />

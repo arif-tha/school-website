@@ -73,17 +73,17 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center px-6 lg:px-8 bg-gradient-to-br from-white via-blue-50 to-slate-50 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center px-6 lg:px-8 bg-gradient-to-br from-white via-[#1D395E]/5 to-slate-50 overflow-hidden"
     >
       {/* Decorative Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-gradient-to-br from-blue-100 to-transparent opacity-30 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full bg-gradient-to-br from-[#1D395E]/10 to-transparent opacity-30 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 w-96 h-96 rounded-full bg-gradient-to-tr from-slate-100 to-transparent opacity-30 blur-3xl pointer-events-none" />
 
       {/* Main Content */}
       <div className="relative max-w-4xl mx-auto text-center z-10">
         {/* Small Label */}
         <div className="mb-8">
-          <span className="font-['Inter'] font-semibold text-sm uppercase tracking-widest text-blue-600">
+          <span className="font-['Inter'] font-semibold text-sm uppercase tracking-widest text-[#1D395E]">
             Welcome to Excellence
           </span>
         </div>
@@ -119,13 +119,13 @@ export default function Hero() {
         >
           <a
             href="#about"
-            className="font-['Inter'] font-semibold px-10 py-4 rounded-full bg-gradient-to-r from-blue-600 to-blue-500 text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            className="font-['Inter'] font-semibold px-10 py-4 rounded-full bg-[#1D395E] text-white transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
           >
             Learn More
           </a>
           <a
             href="#contact"
-            className="font-['Inter'] font-semibold px-10 py-4 rounded-full border-2 border-blue-600 text-blue-600 transition-all duration-300 hover:bg-blue-50 hover:-translate-y-1"
+            className="font-['Inter'] font-semibold px-10 py-4 rounded-full border-2 border-[#1D395E] text-[#1D395E] transition-all duration-300 hover:bg-[#1D395E]/10 hover:-translate-y-1"
           >
             Contact Us
           </a>
@@ -141,7 +141,7 @@ export default function Hero() {
               Scroll to explore
             </p>
             <svg
-              className="scroll-arrow w-6 h-6 text-blue-600"
+              className="scroll-arrow w-6 h-6 text-[#1D395E]"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -154,8 +154,8 @@ export default function Hero() {
       </div>
 
       {/* Floating Elements (Optional decorative animations) */}
-      <div className="absolute top-1/4 left-10 w-2 h-2 bg-blue-400 rounded-full opacity-20 animation-float" />
-      <div className="absolute top-1/3 right-20 w-3 h-3 bg-blue-300 rounded-full opacity-15 animation-float" style={{ animationDelay: "1s" }} />
+      <div className="absolute top-1/4 left-10 w-2 h-2 bg-[#1D395E] rounded-full opacity-20 animation-float" />
+      <div className="absolute top-1/3 right-20 w-3 h-3 bg-[#1D395E] rounded-full opacity-15 animation-float" style={{ animationDelay: "1s" }} />
       <div className="absolute bottom-1/4 left-1/4 w-2 h-2 bg-slate-300 rounded-full opacity-10 animation-float" style={{ animationDelay: "2s" }} />
     </section>
   );

@@ -113,7 +113,7 @@ export default function CoCurricular() {
                     ref={(el) => {
                       if (el) cardsRef.current[idx * 6 + itemIdx] = el;
                     }}
-                    className="premium-card p-6 hover:border-blue-300 transition-all"
+                    className="premium-card p-6 hover:border-[#1D395E] transition-all"
                   >
                     <h4 className="font-['Cormorant_Garamond'] font-bold text-xl text-slate-900 mb-2">
                       {activity.name}

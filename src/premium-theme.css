@@ -5,16 +5,16 @@
    ====================================================================== */
 
 :root {
-  --primary-blue: #1e40af;
-  --accent-blue: #2563eb;
-  --accent-purple: #4f46e5;
-  --hover-blue: #1d4ed8;
-  --hover-purple: #4338ca;
+  --primary-blue: #1D395E;
+  --accent-blue: #1D395E;
+  --accent-purple: #1D395E;
+  --hover-blue: #1D395E;
+  --hover-purple: #1D395E;
   --text-dark: #1e293b;
   --text-muted: #475569;
   --bg-white: #ffffff;
   --border-color: #e2e8f0;
-  --shadow-soft: 0 4px 14px 0 rgba(37, 99, 235, 0.1);
+  --shadow-soft: 0 4px 14px 0 rgba(29, 57, 94, 0.1);
   --shadow-medium: 0 12px 20px -5px rgba(0, 0, 0, 0.08);
 }
 
@@ -115,7 +115,7 @@ section .stream-card:hover,
 section .notice-card:hover {
   box-shadow: var(--shadow-medium) !important;
   transform: translateY(-4px) !important;
-  border-color: #bfdbfe !important;
+  border-color: var(--accent-blue) !important;
 }
 
 /* --- UNIFIED BUTTONS (ONLY IN SECTIONS/PAGES) --- */
@@ -170,7 +170,7 @@ section input[type="submit"]:hover,
 .admin-page [role="button"]:hover,
 .admin-page .btn:hover {
   background: linear-gradient(135deg, var(--hover-blue) 0%, var(--hover-purple) 100%) !important;
-  box-shadow: 0 6px 20px rgba(37, 99, 235, 0.23) !important;
+  box-shadow: 0 6px 20px rgba(29, 57, 94, 0.23) !important;
   transform: translateY(-2px) !important;
   color: white !important;
 }
@@ -208,17 +208,17 @@ section a[href*="more"] * {
 .academics-section .text-amber-400\/40 {
   color: #1e293b !important;
 }
-.academics-section .gold-label { color: #2563eb !important; }
+.academics-section .gold-label { color: var(--accent-blue) !important; }
 .academics-section .divider-line {
-  background: linear-gradient(90deg, transparent, #2563eb, transparent) !important;
+  background: linear-gradient(90deg, transparent, var(--accent-blue), transparent) !important;
 }
 .academics-section .feature-pill {
-  background: rgba(37,99,235,0.05) !important;
-  border-color: rgba(37,99,235,0.2) !important;
+  background: rgba(29,57,94,0.05) !important;
+  border-color: rgba(29,57,94,0.2) !important;
 }
 .academics-section .feature-pill:hover {
-  background: rgba(37,99,235,0.1) !important;
-  border-color: rgba(37,99,235,0.35) !important;
+  background: rgba(29,57,94,0.1) !important;
+  border-color: rgba(29,57,94,0.35) !important;
 }
 .academics-section .mesh-bg,
 .academics-section .bg-noise {
@@ -229,20 +229,20 @@ section a[href*="more"] * {
   background-color: #ffffff !important;
   background: #ffffff !important;
   border-color: #e2e8f0 !important;
-  box-shadow: 0 4px 14px rgba(37,99,235,0.1) !important;
+  box-shadow: 0 4px 14px rgba(29,57,94,0.1) !important;
 }
 .academics-section .glass-card:hover,
 .academics-section .stream-card:hover {
   background-color: #f8fafc !important;
   background: #f8fafc !important;
-  border-color: #bfdbfe !important;
+  border-color: var(--accent-blue) !important;
   box-shadow: 0 12px 20px -5px rgba(0,0,0,0.08) !important;
 }
 .academics-section [style*="background: linear-gradient(180deg, transparent, rgba(201,168,76,0.5)"] {
-  background: linear-gradient(180deg, transparent, #2563eb, transparent) !important;
+  background: linear-gradient(180deg, transparent, var(--accent-blue), transparent) !important;
 }
 .academics-section .level-number {
-  color: rgba(37,99,235,0.15) !important;
+  color: rgba(29,57,94,0.15) !important;
 }
 
 /* --- HERO EXCEPTION (KEEP DARK) --- */
@@ -251,7 +251,13 @@ section a[href*="more"] * {
   color: white !important;
 }
 #hero .text-white,
-#hero h1, #hero h2, #hero h3, #hero p, #hero span { color: white !important; }
+#hero h1, #hero h2, #hero h3, #hero p { color: white !important; }
+#hero h1 { color: rgba(255,255,255,0.94) !important; }
+#hero .hero-heading-accent { color: rgba(201,168,76,0.96) !important; }
+#hero .hero-badge { color: rgba(201,168,76,0.90) !important; }
+#hero .hero-stat-value { color: rgba(201,168,76,0.95) !important; }
+#hero .hero-stat-label { color: rgba(255,255,255,0.76) !important; }
+#hero .hero-scroll-label { color: rgba(255,255,255,0.62) !important; }
 #hero .gold-label { color: #C9A84C !important; }
 
 /* --- FOOTER --- */
@@ -260,10 +266,10 @@ footer {
   border-top-color: #e2e8f0 !important;
   color: #1e293b !important;
 }
-footer h2, footer h3, footer h4 { color: #1e40af !important; }
+footer h2, footer h3, footer h4 { color: var(--primary-blue) !important; }
 footer p, footer a { color: #475569 !important; }
 
 /* --- SCROLLBAR --- */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #f8fafc; }
-::-webkit-scrollbar-thumb { background: #2563eb; border-radius: 3px; }
+::-webkit-scrollbar-thumb { background: var(--accent-blue); border-radius: 3px; }

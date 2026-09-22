@@ -92,7 +92,7 @@ export default function Academics() {
             >
               <div className="flex items-start justify-between mb-6">
                 <div>
-                  <p className="font-['Inter'] text-sm font-semibold uppercase tracking-wider text-blue-600 mb-2">
+                  <p className="font-['Inter'] text-sm font-semibold uppercase tracking-wider text-[#1D395E] mb-2">
                     Level {level.level}
                   </p>
                   <h3 className="font-['Playfair_Display'] font-bold text-2xl text-slate-900">

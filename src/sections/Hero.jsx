@@ -163,7 +163,7 @@ export default function Hero() {
           font-family: 'Cormorant Garamond', serif;
           font-weight: 300;
           font-size: clamp(2.1rem, 9vw, 5.8rem);
-          color: white;
+          color: rgba(255,255,255,0.94);
           line-height: 1.05;
           margin: 0 0 1.2rem 0;
           text-shadow: 0 2px 24px rgba(0,0,0,0.55), 0 2px 6px rgba(0,0,0,0.85);
@@ -231,6 +231,7 @@ export default function Hero() {
 
       <section
         ref={heroRef}
+        id="hero"
         className="hero-section"
         style={{
           position: "relative",
@@ -316,7 +317,7 @@ export default function Hero() {
               fontSize: "0.6rem",
               letterSpacing: "0.3em",
               textTransform: "uppercase",
-              color: "#C9A84C",
+              color: "rgba(201,168,76,0.92)",
               marginBottom: "1rem",
               textShadow: "0 1px 8px rgba(0,0,0,0.65)",
             }}>
@@ -332,9 +333,9 @@ export default function Hero() {
               </span>
               <span className="hw-wrap" style={{ marginRight: "0.25em" }}>
                 <span
-                  className="hw-inner"
+                  className="hw-inner hero-heading-accent"
                   ref={(el) => { wordRefs.current[1] = el; }}
-                  style={{ fontStyle: "italic", color: "#C9A84C" }}
+                  style={{ fontStyle: "italic", color: "rgba(201,168,76,0.96)" }}
                 >
                   ℭ𝔯𝔢𝔰𝔠𝔢𝔫𝔱 
                 </span>
@@ -351,7 +352,7 @@ export default function Hero() {
               fontFamily: "'Cormorant Garamond', serif",
               fontWeight: 300, fontStyle: "italic",
               fontSize: "clamp(1rem, 1.8vw, 1.4rem)",
-              color: "rgba(255,255,255,0.85)",
+              color: "rgba(255,255,255,0.86)",
               marginBottom: "0.5rem",
               textShadow: "0 1px 12px rgba(0,0,0,0.6)",
             }}>
@@ -363,7 +364,7 @@ export default function Hero() {
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 400, fontSize: "0.72rem",
               letterSpacing: "0.12em",
-              color: "rgba(255,255,255,0.68)",
+              color: "rgba(255,255,255,0.76)",
               marginBottom: "0.4rem",
               textShadow: "0 1px 8px rgba(0,0,0,0.6)",
             }}>
@@ -375,7 +376,7 @@ export default function Hero() {
               fontFamily: "'Montserrat', sans-serif",
               fontWeight: 400, fontSize: "0.58rem",
               letterSpacing: "0.07em",
-              color: "rgba(255,255,255,0.50)",
+              color: "rgba(255,255,255,0.70)",
               marginBottom: "1.4rem",
               textShadow: "0 1px 6px rgba(0,0,0,0.6)",
             }}>
@@ -387,11 +388,12 @@ export default function Hero() {
               {badges.map((badge, i) => (
                 <span
                   key={badge}
+                  className="hero-badge"
                   ref={(el) => { badgesRef.current[i] = el; }}
                   style={{
                     border: "1px solid rgba(201,168,76,0.30)",
                     background: "rgba(201,168,76,0.08)",
-                    color: "rgba(201,168,76,0.85)",
+                    color: "rgba(201,168,76,0.90)",
                     padding: "0.25rem 0.7rem",
                     fontFamily: "'Montserrat', sans-serif",
                     fontWeight: 500, fontSize: "0.56rem",
@@ -420,20 +422,20 @@ export default function Hero() {
                       paddingRight: "1.6rem",
                     }}
                   >
-                    <span style={{
+                    <span className="hero-stat-value" style={{
                       fontFamily: "'Cormorant Garamond', serif",
                       fontWeight: 600,
                       fontSize: "clamp(1.6rem, 3vw, 2.2rem)",
-                      color: "#C9A84C", lineHeight: 1,
+                      color: "rgba(201,168,76,0.95)", lineHeight: 1,
                       textShadow: "0 1px 10px rgba(0,0,0,0.6)",
                     }}>
                       {stat.value}
                     </span>
-                    <span style={{
+                    <span className="hero-stat-label" style={{
                       fontFamily: "'Montserrat', sans-serif",
                       fontWeight: 400, fontSize: "0.55rem",
                       textTransform: "uppercase", letterSpacing: "0.14em",
-                      color: "rgba(255,255,255,0.65)",
+                      color: "rgba(255,255,255,0.76)",
                       marginTop: "0.2rem", whiteSpace: "nowrap",
                       textShadow: "0 1px 6px rgba(0,0,0,0.6)",
                     }}>
@@ -447,10 +449,10 @@ export default function Hero() {
 
             {/* Scroll indicator */}
             <div ref={scrollRef} className="hero-scroll-indicator">
-              <span style={{
+              <span className="hero-scroll-label" style={{
                 fontFamily: "'Montserrat', sans-serif",
                 fontSize: "0.48rem", letterSpacing: "0.25em",
-                color: "rgba(255,255,255,0.45)", textTransform: "uppercase",
+                color: "rgba(255,255,255,0.62)", textTransform: "uppercase",
                 textShadow: "0 1px 6px rgba(0,0,0,0.6)",
               }}>
                 Scroll to Explore

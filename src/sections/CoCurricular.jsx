@@ -10,7 +10,7 @@ const ACTIVITIES = [
     icon: "⚽",
     title: "Sports Training",
     description: "Football, Cricket, Badminton & Karate coaching with professional mentorship",
-    color: "from-blue-500 to-blue-600",
+    color: "from-[#1D395E] to-[#1D395E]",
   },
   {
     id: 2,
@@ -24,14 +24,14 @@ const ACTIVITIES = [
     icon: "🎤",
     title: "Quiz & Public Speaking",
     description: "Confidence building through competitions and presentations",
-    color: "from-indigo-500 to-blue-600",
+    color: "from-[#1D395E] to-[#1D395E]",
   },
   {
     id: 4,
     icon: "🔬",
     title: "Science Projects",
     description: "Hands-on innovation and scientific thinking through experiments",
-    color: "from-cyan-500 to-blue-500",
+    color: "from-[#1D395E] to-[#1D395E]",
   },
   {
     id: 5,
@@ -94,7 +94,7 @@ function ActivityCard({ activity, index }) {
           </div>
 
           {/* Title */}
-          <h3 className="text-xl font-bold text-navy-900 mb-3 transition-colors duration-300" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1e3a8a" }}>
+          <h3 className="text-xl font-bold text-navy-900 mb-3 transition-colors duration-300" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1D395E" }}>
             {activity.title}
           </h3>
 
@@ -119,7 +119,7 @@ function FloatingBlob({ delay, size, position }) {
         width: size,
         height: size,
         ...position,
-        background: "linear-gradient(135deg, #1e3a8a, #5a7ab8)",
+        background: "linear-gradient(135deg, #1D395E, #1D395E)",
         animation: `floatAnim 4s ease-in-out ${delay}s infinite`,
       }}
     />
@@ -197,7 +197,7 @@ export default function CoCurricular() {
           font-size: 0.7rem;
           letter-spacing: 0.25em;
           text-transform: uppercase;
-          color: #1e3a8a;
+          color: #1D395E;
           font-weight: 600;
           animation: fadeInUp 0.6s ease-out forwards;
         }
@@ -214,7 +214,7 @@ export default function CoCurricular() {
         }
 
         .cocurricular-divider {
-          background: linear-gradient(to right, #1e3a8a, rgba(30, 58, 138, 0.2));
+          background: linear-gradient(to right, #1D395E, rgba(29, 57, 94, 0.2));
           height: 2px;
           animation: scaleIn 0.8s ease-out forwards;
           animation-delay: 0.2s;
@@ -270,13 +270,13 @@ export default function CoCurricular() {
           font-family: 'Cormorant Garamond', serif;
           font-size: clamp(1.5rem, 3vw, 2.2rem);
           font-weight: 700;
-          color: #1e3a8a;
+          color: #1D395E;
           line-height: 1.5;
           margin-bottom: 1rem;
         }
 
         .banner-highlight {
-          background: linear-gradient(135deg, #1e3a8a 0%, #5a7ab8 100%);
+          background: linear-gradient(135deg, #1D395E 0%, #1D395E 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -357,9 +357,9 @@ export default function CoCurricular() {
           {/* Header */}
           <div className="flex flex-col items-center text-center mb-16" ref={headingRef}>
             <div className="cocurricular-label mb-4 flex items-center gap-3">
-              <div className="w-8 h-px" style={{ background: "#1e3a8a" }} />
+              <div className="w-8 h-px" style={{ background: "#1D395E" }} />
               BEYOND ACADEMICS
-              <div className="w-8 h-px" style={{ background: "#1e3a8a" }} />
+              <div className="w-8 h-px" style={{ background: "#1D395E" }} />
             </div>
 
             <h2 className="cocurricular-heading mb-6">Co-Curricular & Extra-Curricular Activities</h2>

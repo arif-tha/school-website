@@ -101,7 +101,7 @@ export default function About() {
   const subHeadingSrtyle = {
     fontFamily: "'Cormorant Garamond', serif",
     fontSize: "1.25rem",
-    color: "#2563eb",
+    color: "#1D395E",
     fontWeight: 600,
     textTransform: "uppercase",
     letterSpacing: "0.15em",
@@ -180,7 +180,7 @@ export default function About() {
                 </div>
               </div>
               <div className="absolute -bottom-5 -right-4 md:-right-6 z-20 rounded-xl px-5 py-4" style={{ background: "linear-gradient(135deg, #ffffff, #f1f5f9)", border: "1px solid #e2e8f0", boxShadow: "0 8px 32px rgba(37,99,235,0.1)" }}>
-                <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2563eb", fontSize: "1.75rem", fontWeight: 700, lineHeight: 1 }}>2002</p>
+                <p style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1D395E", fontSize: "1.75rem", fontWeight: 700, lineHeight: 1 }}>2002</p>
                 <p style={{ color: "#64748b", fontSize: "0.65rem", letterSpacing: "0.2em", textTransform: "uppercase", marginTop: "2px" }}>Est.</p>
               </div>
             </div>
@@ -190,13 +190,13 @@ export default function About() {
               
               {/* Label */}
               <div ref={labelRef} className="flex items-center gap-3" style={{ opacity: 0 }}>
-                <div className="w-6 h-px" style={{ background: "#2563eb" }} />
+                <div className="w-6 h-px" style={{ background: "#1D395E" }} />
                 <span style={{
                   fontFamily: "'DM Sans', sans-serif",
                   fontSize: "0.75rem",
                   letterSpacing: "0.2em",
                   textTransform: "uppercase",
-                  color: "#2563eb",
+                  color: "#1D395E",
                   fontWeight: 600,
                 }}>
                   About The School
@@ -211,12 +211,12 @@ export default function About() {
                   fontSize: "clamp(2.5rem, 5vw, 3.8rem)",
                   fontWeight: 700,
                   lineHeight: 1.1,
-                  color: "#1e40af",
+                  color: "#1D395E",
                   opacity: 0,
                 }}
               >
                 A Journey of Academic<br />
-                <span style={{ color: "#2563eb", fontStyle: "italic", fontWeight: 400 }}>Excellence & Values</span>
+                    <span style={{ color: "#1D395E", fontStyle: "italic", fontWeight: 400 }}>Excellence & Values</span>
               </h2>
 
               {/* Paragraphs */}
@@ -245,7 +245,7 @@ export default function About() {
                   { label: "NIOS Accredited Centre", icon: "★" }
                 ].map((item, i) => (
                   <div key={i} className="flex items-center gap-3">
-                    <span style={{ color: "#2563eb", fontSize: "1.1rem" }}>{item.icon}</span>
+                    <span style={{ color: "#1D395E", fontSize: "1.1rem" }}>{item.icon}</span>
                     <span style={{ 
                       fontFamily: "'DM Sans', sans-serif", 
                       fontSize: "0.8rem", 

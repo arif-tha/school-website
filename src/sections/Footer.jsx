@@ -74,7 +74,7 @@ export default function Footer() {
           {/* Column 1: School Branding */}
           <div ref={(el) => (colsRef.current[0] = el)} className="opacity-0">
             <div className="mb-8">
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center text-white font-bold text-xl mb-4">
+              <div className="w-14 h-14 rounded-xl bg-[#1D395E] flex items-center justify-center text-white font-bold text-xl mb-4">
                 C
               </div>
               <h3 className="font-['Playfair_Display'] font-bold text-2xl text-slate-900 mb-2">
@@ -90,7 +90,7 @@ export default function Footer() {
               <div className="space-y-2">
                 {affiliations.map((aff) => (
                   <div key={aff} className="font-['Inter'] text-sm text-slate-700 flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 rounded-full bg-blue-500 flex-shrink-0" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#1D395E] flex-shrink-0" />
                     {aff}
                   </div>
                 ))}
@@ -106,9 +106,9 @@ export default function Footer() {
                 <li key={link.label}>
                   <Link
                     to={link.path}
-                    className="font-['Inter'] text-sm text-slate-600 hover:text-blue-600 transition-colors duration-300 flex items-center gap-3 group"
+                    className="font-['Inter'] text-sm text-slate-600 hover:text-[#1D395E] transition-colors duration-300 flex items-center gap-3 group"
                   >
-                    <span className="w-0 group-hover:w-1.5 h-0.5 bg-blue-600 transition-all duration-300" />
+                    <span className="w-0 group-hover:w-1.5 h-0.5 bg-[#1D395E] transition-all duration-300" />
                     {link.label}
                   </Link>
                 </li>
@@ -122,7 +122,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {schoolFeatures.map((feature) => (
                 <li key={feature} className="font-['Inter'] text-sm text-slate-600 flex items-start gap-3">
-                  <span className="text-blue-600 flex-shrink-0 font-bold">✓</span>
+                  <span className="text-[#1D395E] flex-shrink-0 font-bold">✓</span>
                   <span>{feature}</span>
                 </li>
               ))}
@@ -134,7 +134,7 @@ export default function Footer() {
             <h4 className="font-['Playfair_Display'] font-bold text-slate-900 text-lg mb-8">Contact Us</h4>
             <div className="space-y-6">
               <div className="flex gap-3">
-                <span className="text-blue-600 flex-shrink-0 text-lg">📍</span>
+                <span className="text-[#1D395E] flex-shrink-0 text-lg">📍</span>
                 <div className="flex-1">
                   <p className="font-['Inter'] text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
                     Address
@@ -144,14 +144,14 @@ export default function Footer() {
                     href="https://www.google.com/maps/search/?api=1&query=41/1/3+Rai+Charan+Ghosh+Lane+Kolkata+700039"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-['Inter'] text-sm text-slate-700 hover:text-blue-600 transition-colors"
+                    className="font-['Inter'] text-sm text-slate-700 hover:text-[#1D395E] transition-colors"
                   >
                     41/1/3 & 41/2/1, Rai Charan Ghosh Lane, Kolkata – 700039
                   </a>
                 </div>
               </div>
               <div className="flex gap-3">
-                <span className="text-blue-600 flex-shrink-0 text-lg">📞</span>
+                <span className="text-[#1D395E] flex-shrink-0 text-lg">📞</span>
                 <div className="flex-1">
                   <p className="font-['Inter'] text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
                     Phone
@@ -159,14 +159,14 @@ export default function Footer() {
 
                   <a
                     href="tel:+913323431562"
-                    className="font-['Inter'] text-sm text-slate-700 hover:text-blue-600 transition-colors"
+                    className="font-['Inter'] text-sm text-slate-700 hover:text-[#1D395E] transition-colors"
                   >
                     +(033) 2343 1562
                   </a>
                 </div>
               </div>
               <div className="flex gap-3">
-                <span className="text-blue-600 flex-shrink-0 text-lg">✉️</span>
+                <span className="text-[#1D395E] flex-shrink-0 text-lg">✉️</span>
                 <div className="flex-1">
                   <p className="font-['Inter'] text-xs font-semibold uppercase tracking-wider text-slate-500 mb-1">
                     Email
@@ -174,7 +174,7 @@ export default function Footer() {
 
                   <a
                     href="mailto:info.thecrescentschool@gmail.com"
-                    className="font-['Inter'] text-sm text-slate-700 hover:text-blue-600 transition-colors"
+                    className="font-['Inter'] text-sm text-slate-700 hover:text-[#1D395E] transition-colors"
                   >
                     info.thecrescentschool@gmail.com
                   </a>
@@ -199,7 +199,7 @@ export default function Footer() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-700 hover:text-white hover:bg-blue-600 transition-all duration-300 text-sm font-bold bg-slate-200 hover:scale-105"
+                className="w-10 h-10 rounded-lg flex items-center justify-center text-slate-700 hover:text-white hover:bg-[#1D395E] transition-all duration-300 text-sm font-bold bg-slate-200 hover:scale-105"
               >
                 {social.icon}
               </a>

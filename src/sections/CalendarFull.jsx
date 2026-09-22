@@ -224,7 +224,7 @@ export default function CalendarFull() {
           border-radius: 4px;
           font-weight: 700;
         }
-        .type-academic { background: rgba(56, 189, 248, 0.1); color: #38BDF8; }
+        .type-academic { background: rgba(29, 57, 94, 0.1); color: #1D395E; }
         .type-holiday { background: rgba(52, 211, 153, 0.1); color: #34D399; }
         .type-exam { background: rgba(251, 113, 133, 0.1); color: #FB7185; }
         .type-event { background: rgba(167, 139, 250, 0.1); color: #A78BFA; }

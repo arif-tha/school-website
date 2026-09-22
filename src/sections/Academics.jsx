@@ -150,7 +150,7 @@ export default function AcademicsPreview() {
         }
 
         .learn-more-btn {
-          background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            background: linear-gradient(135deg, #1D395E 0%, #1D395E 100%);
           color: white;
           padding: 0.75rem 2.2rem;
           border-radius: 9999px;

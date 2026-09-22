@@ -64,7 +64,7 @@ export default function FloatingContact() {
                 fontSize: "32px",
                 fontWeight: "700",
                 lineHeight: "1",
-                color: "#1e40af",
+                color: "#1D395E",
                 marginBottom: "14px",
                 fontFamily: "'Playfair Display', serif",
               }}
@@ -93,7 +93,7 @@ export default function FloatingContact() {
                 padding: "12px",
                 borderRadius: "10px",
                 background:
-                  "linear-gradient(135deg,#2563eb 0%, #4f46e5 100%)",
+                  "linear-gradient(135deg,#1D395E 0%, #1D395E 100%)",
                 color: "#fff",
                 fontWeight: "600",
                 fontSize: "14px",
@@ -149,13 +149,13 @@ export default function FloatingContact() {
             height: "60px",
             borderRadius: "50%",
             background:
-              "linear-gradient(135deg,#3b82f6 0%,#2563eb 100%)",
+              "linear-gradient(135deg,#1D395E 0%,#1D395E 100%)",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             color: "#fff",
             textDecoration: "none",
-            boxShadow: "0 10px 25px rgba(37,99,235,.35)",
+            boxShadow: "0 10px 25px rgba(29,57,94,.35)",
           }}
         >
           <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24">

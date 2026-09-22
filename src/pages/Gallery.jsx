@@ -89,7 +89,7 @@ export default function GalleryPage() {
           font-size: 0.8rem;
           letter-spacing: 0.25em;
           text-transform: uppercase;
-          color: #004e98;
+          color: #1D395E;
           font-weight: 700;
           animation: fadeInUp 0.6s ease-out forwards;
           display: flex;
@@ -100,7 +100,7 @@ export default function GalleryPage() {
         .gallery-label-line {
           height: 2px;
           width: 40px;
-          background: #004e98;
+          background: #1D395E;
         }
 
         .gallery-heading {
@@ -156,7 +156,7 @@ export default function GalleryPage() {
             <div className="flex flex-col items-center text-center mb-8" ref={headingRef}>
               <Link
                 to="/"
-                className="mb-4 inline-flex items-center gap-2 text-[#004e98] hover:text-[#1e40af] transition-colors font-medium"
+                className="mb-4 inline-flex items-center gap-2 text-[#1D395E] hover:text-[#1D395E] transition-colors font-medium"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
