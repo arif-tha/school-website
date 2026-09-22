@@ -35,12 +35,17 @@ export default function ContactPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-['Cormorant_Garamond'] font-bold text-2xl text-slate-900 mb-3">Address</h3>
-                  <p className="font-['Inter'] text-base text-slate-600 leading-relaxed">
+                  <a
+                    href="https://www.google.com/maps/search/?api=1&query=41%2F1%2F3%20%26%2041%2F2%2F1%2C%20Rai%20Charan%20Ghosh%20Lane%2C%20Kolkata%20700039%2C%20West%20Bengal%2C%20India"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block cursor-pointer font-['Inter'] text-base text-slate-600 leading-relaxed transition-colors hover:text-[#1D395E] hover:underline"
+                  >
                     41/1/3 & 41/2/1<br/>
                     Rai Charan Ghosh Lane<br/>
                     Kolkata – 700039<br/>
                     West Bengal, India
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>
@@ -54,7 +59,7 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-['Cormorant_Garamond'] font-bold text-2xl text-slate-900 mb-3">Phone</h3>
                   <p className="font-['Inter'] text-base text-slate-600 leading-relaxed">
-                    Admissions: +(033) 2343 1562<br/>
+                    Admissions: <a href="tel:+913323431562" className="cursor-pointer transition-colors hover:text-[#1D395E] hover:underline">+(033) 2343 1562</a><br/>
                     <span className="text-sm text-slate-500">Available Monday–Saturday</span>
                   </p>
                 </div>
@@ -70,7 +75,7 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-['Cormorant_Garamond'] font-bold text-2xl text-slate-900 mb-3">Email</h3>
                   <p className="font-['Inter'] text-base text-slate-600 leading-relaxed">
-                    admissions@crescentschool.edu<br/>
+                    <a href="mailto:admissions@crescentschool.edu" className="cursor-pointer transition-colors hover:text-[#1D395E] hover:underline">admissions@crescentschool.edu</a><br/>
                     <span className="text-sm text-slate-500">We respond within 24 hours</span>
                   </p>
                 </div>
@@ -92,6 +97,21 @@ export default function ContactPage() {
                   </p>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Campus Location */}
+          <div className="mb-24">
+            <h2 className="font-['Playfair_Display'] font-bold text-3xl md:text-4xl text-slate-900 mb-8">Find Us</h2>
+            <div className="overflow-hidden rounded-3xl shadow-lg ring-1 ring-[#1D395E]/10">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.2776933515524!2d88.37735387507644!3d22.53126807952122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0276c6ff7418a9%3A0x8afd46037ff59fa7!2sThe%20Crescent%20School!5e0!3m2!1sen!2sin!4v1790104883021!5m2!1sen!2sin"
+                title="The Crescent School location"
+                className="block aspect-video w-full border-0"
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="strict-origin-when-cross-origin"
+              ></iframe>
             </div>
           </div>
 
