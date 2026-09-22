@@ -36,7 +36,7 @@ export default function ContactPage() {
                 <div className="flex-1">
                   <h3 className="font-['Cormorant_Garamond'] font-bold text-2xl text-slate-900 mb-3">Address</h3>
                   <a
-                    href="https://www.google.com/maps/search/?api=1&query=41%2F1%2F3%20%26%2041%2F2%2F1%2C%20Rai%20Charan%20Ghosh%20Lane%2C%20Kolkata%20700039%2C%20West%20Bengal%2C%20India"
+                    href="https://www.google.com/maps/place/The+Crescent+School/data=!4m2!3m1!1s0x3a0276c6ff7418a9%3A0x8afd46037ff59fa7"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="block cursor-pointer font-['Inter'] text-base text-slate-600 leading-relaxed transition-colors hover:text-[#1D395E] hover:underline"
