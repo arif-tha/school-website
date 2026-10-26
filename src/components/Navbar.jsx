@@ -443,19 +443,7 @@ export default function Navbar() {
               >
                 The Crescent School
               </span>
-              <span
-                style={{
-                  color: "#FFFFFF",
-                  fontFamily: "'Cormorant Garamond', 'Garamond', serif",
-                  fontSize: "0.68rem",
-                  letterSpacing: "0.13em",
-                  fontStyle: "italic",
-                  opacity: 0.85,
-                  marginTop: "0px",
-                }}
-              >
-                Nursery to Higher Secondary
-              </span>
+             
             </div>
           </div>
 
