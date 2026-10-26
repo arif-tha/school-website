@@ -6,15 +6,29 @@ gsap.registerPlugin(ScrollTrigger);
 
 
 const achievements = [
-  { icon: "🏛️", title: "25+ Years Legacy", desc: "Trusted by families for over two decades of academic excellence" },
+
   { icon: "🇬🇧", title: "English Medium", desc: "Complete English-medium instruction for global readiness" },
   { icon: "📜", title: "WBBSE Affiliated", desc: "Affiliated with the West Bengal Board of Secondary Education" },
   { icon: "🎓", title: "WBCHSE Affiliated", desc: "Higher Secondary affiliation ensuring quality board education" },
   { icon: "🏅", title: "NIOS Accredited", desc: "Accredited centre for National Institute of Open Schooling" },
   { icon: "🕌", title: "Minority Institution", desc: "Recognized Minority Educational Institution with inclusive values" },
   { icon: "🔬", title: "Modern Labs", desc: "State-of-the-art Science & Computer laboratories for practical learning" },
-  { icon: "🏆", title: "Exam Preparation", desc: "Dedicated coaching for competitive and entrance examinations" },
-  { icon: "🌿", title: "Moral Education", desc: "Character development and ethical grounding woven into every lesson" },
+   {
+    icon: "🔬",
+    title: "Science Stream",
+    desc: "Explore Physics, Chemistry, Mathematics, and Biology with practical learning and scientific discovery."
+  },
+  {
+    icon: "📊",
+    title: "Commerce Stream",
+    desc: "Build a strong foundation in Accountancy, Business Studies, and Economics for future business careers."
+  },
+  {
+    icon: "🎨",
+    title: "Arts Stream",
+    desc: "Discover History, Geography, Political Science, and other humanities subjects to develop critical thinking."
+  }
+
 ];
 
 const stats = [
@@ -84,10 +98,9 @@ function StatCounter({ value, suffix, label, icon, started }) {
   );
 }
 
-export default function Achievements() {
+export default function Achievements({ showWhyChoose = true }) {
   const sectionRef = useRef(null);
   const headingRef = useRef(null);
-  const gridRef = useRef(null);
   const cardRefs = useRef([]);
   const statsRef = useRef(null);
   const topperRefs = useRef([]);
@@ -99,11 +112,13 @@ export default function Achievements() {
 
     const ctx = gsap.context(() => {
       // Heading
-      gsap.fromTo(headingRef.current,
-        { opacity: 0, y: 50 },
-        { opacity: 1, y: 0, duration: 1.1, ease: "power3.out",
-          scrollTrigger: { trigger: headingRef.current, start: "top 82%" } }
-      );
+      if (headingRef.current) {
+        gsap.fromTo(headingRef.current,
+          { opacity: 0, y: 50 },
+          { opacity: 1, y: 0, duration: 1.1, ease: "power3.out",
+            scrollTrigger: { trigger: headingRef.current, start: "top 82%" } }
+        );
+      }
 
       // Achievement cards
       cardRefs.current.forEach((card, i) => {
@@ -117,17 +132,19 @@ export default function Achievements() {
       });
 
       // Stats counter trigger
-      ScrollTrigger.create({
-        trigger: statsRef.current,
-        start: "top 80%",
-        onEnter: () => setStatsStarted(true),
-      });
+      if (statsRef.current) {
+        ScrollTrigger.create({
+          trigger: statsRef.current,
+          start: "top 80%",
+          onEnter: () => setStatsStarted(true),
+        });
 
-      gsap.fromTo(statsRef.current,
-        { opacity: 0, y: 40 },
-        { opacity: 1, y: 0, duration: 1, ease: "power2.out",
-          scrollTrigger: { trigger: statsRef.current, start: "top 80%" } }
-      );
+        gsap.fromTo(statsRef.current,
+          { opacity: 0, y: 40 },
+          { opacity: 1, y: 0, duration: 1, ease: "power2.out",
+            scrollTrigger: { trigger: statsRef.current, start: "top 80%" } }
+        );
+      }
 
       // Topper cards
       topperRefs.current.forEach((card, i) => {
@@ -167,6 +184,45 @@ export default function Achievements() {
           background: #020B2A;
           position: relative;
           overflow: hidden;
+        }
+        .why-choose-section,
+        .student-achievements-section {
+          position: relative;
+          padding: 6rem 1.25rem;
+        }
+        .student-achievements-section {
+          padding-top: 4rem;
+          padding-bottom: 9rem;
+        }
+        @media (min-width: 768px) {
+          .why-choose-section,
+          .student-achievements-section {
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+          }
+        }
+        @media (min-width: 1024px) {
+          .why-choose-section {
+            padding-top: 9rem;
+            padding-bottom: 7rem;
+            padding-left: 4rem;
+            padding-right: 4rem;
+          }
+          .student-achievements-section {
+            padding-top: 6rem;
+            padding-bottom: 9rem;
+            padding-left: 4rem;
+            padding-right: 4rem;
+          }
+        }
+        .why-choose-section::after {
+          content: '';
+          position: absolute;
+          left: 1.25rem;
+          right: 1.25rem;
+          bottom: 0;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(201,168,76,0.3), transparent);
         }
         .serif { font-family: 'Playfair Display', serif; }
 
@@ -313,7 +369,7 @@ export default function Achievements() {
         }
       `}</style>
 
-      <section ref={sectionRef} className="achieve-section relative py-24 lg:py-36 px-5 md:px-10 lg:px-16">
+      <div ref={sectionRef} className="achieve-section">
 
         {/* Floating orbs */}
         {[
@@ -330,15 +386,30 @@ export default function Achievements() {
           />
         ))}
 
-        <div className="relative z-10 max-w-7xl mx-auto">
+        {showWhyChoose && (
+          <section className="why-choose-section">
+          <div className="relative z-10 max-w-7xl mx-auto">
 
           {/* Header */}
           <div ref={headingRef} className="text-center mb-16 lg:mb-20">
             <p className="gold-label mb-5">Why Choose Us</p>
             <h2 className="serif text-4xl md:text-5xl xl:text-[3.75rem] text-white font-bold leading-tight mb-6 max-w-3xl mx-auto">
-              Excellence In Education<br />
-              <em className="text-amber-300/90 font-normal">With Strong Values</em>
+              Celebrating 25+ Years of Excellence<br />
+              <em className="text-amber-300/90 font-normal">With The Crescent School</em>
             </h2>
+              {/* Stats Bar */}
+            <div ref={statsRef} className="stats-bar rounded-2xl py-10 px-6 mb-20">
+              <div className="flex flex-wrap justify-around items-center gap-6">
+                {stats.map((s, i) => (
+                  <React.Fragment key={s.label}>
+                    <StatCounter {...s} started={statsStarted} />
+                    {i < stats.length - 1 && (
+                      <div className="stat-divider hidden md:block" />
+                    )}
+                  </React.Fragment>
+                ))}
+              </div>
+            </div>
             <div className="section-divider max-w-xs mx-auto mb-6" />
             <p className="text-blue-200/50 text-base leading-relaxed max-w-2xl mx-auto">
               The Crescent School combines academic excellence, modern infrastructure, moral education, and inclusive learning to prepare students for a successful future.
@@ -361,42 +432,35 @@ export default function Achievements() {
               </div>
             ))}
           </div>
-
-          {/* Stats Bar */}
-          <div ref={statsRef} className="stats-bar rounded-2xl py-10 px-6 mb-20">
-            <div className="flex flex-wrap justify-around items-center gap-6">
-              {stats.map((s, i) => (
-                <React.Fragment key={s.label}>
-                  <StatCounter {...s} started={statsStarted} />
-                  {i < stats.length - 1 && (
-                    <div className="stat-divider hidden md:block" />
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
           </div>
+        </section>
+        )}
 
-          {/* Toppers Section */}
-          <div className="mb-12">
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
-              <div>
-                <p className="gold-label mb-3">Student Achievements</p>
-                <h3 className="serif text-3xl md:text-4xl text-white font-bold">
-                  Our <em className="text-amber-300/90 font-normal">Star Achievers</em>
-                </h3>
+        <section id="student-achievements" className="student-achievements-section">
+          <div className="relative z-10 max-w-7xl mx-auto">
+            
+
+            {/* Toppers Section */}
+            <div className="mb-12">
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+                <div>
+                  <p className="gold-label mb-3">Student Achievements</p>
+                  <h3 className="serif text-3xl md:text-4xl text-white font-bold">
+                    Our <em className="text-amber-300/90 font-normal">Star Achievers</em>
+                  </h3>
+                </div>
+                <p className="text-blue-200/40 text-sm max-w-xs text-right hidden sm:block">
+                  Celebrating the success stories that inspire generations
+                </p>
               </div>
-              <p className="text-blue-200/40 text-sm max-w-xs text-right hidden sm:block">
-                Celebrating the success stories that inspire generations
-              </p>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {toppers.map((t, i) => (
-                <div
-                  key={t.name}
-                  ref={(el) => (topperRefs.current[i] = el)}
-                  className="topper-card rounded-3xl overflow-hidden"
-                >
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {toppers.map((t, i) => (
+                  <div
+                    key={t.name}
+                    ref={(el) => (topperRefs.current[i] = el)}
+                    className="topper-card rounded-3xl overflow-hidden"
+                  >
                   <div className="glow-border rounded-3xl" />
 
                   {/* Image */}
@@ -437,22 +501,23 @@ export default function Achievements() {
                       <p className="text-blue-200/45 text-xs tracking-wide">{t.college}</p>
                     </div>
                   </div>
-                </div>
-              ))}
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
 
-          {/* Bottom quote */}
-          <div className="text-center pt-8">
-            <div className="section-divider max-w-xs mx-auto mb-8" />
-            <p className="serif text-xl md:text-2xl text-white/25 font-light italic">
-              "Where every student is a story of achievement."
-            </p>
-            <p className="gold-label mt-3 opacity-50">The Crescent School</p>
-          </div>
+            {/* Bottom quote */}
+            <div className="text-center pt-8">
+              <div className="section-divider max-w-xs mx-auto mb-8" />
+              <p className="serif text-xl md:text-2xl text-white/25 font-light italic">
+                "Where every student is a story of achievement."
+              </p>
+              <p className="gold-label mt-3 opacity-50">The Crescent School</p>
+            </div>
 
+          </div>
+        </section>
         </div>
-      </section>
     </>
   );
 }

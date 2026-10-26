@@ -1,53 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { Link } from "react-router-dom";
+import { ACTIVITIES } from "../data/activities";
 
 gsap.registerPlugin(ScrollTrigger);
-
-const ACTIVITIES = [
-  {
-    id: 1,
-    icon: "⚽",
-    title: "Sports Training",
-    description: "Football, Cricket, Badminton & Karate coaching with professional mentorship",
-    color: "from-[#1D395E] to-[#1D395E]",
-  },
-  {
-    id: 2,
-    icon: "🎨",
-    title: "Music & Art",
-    description: "Creative learning through music, painting and craft activities",
-    color: "from-purple-500 to-pink-500",
-  },
-  {
-    id: 3,
-    icon: "🎤",
-    title: "Quiz & Public Speaking",
-    description: "Confidence building through competitions and presentations",
-    color: "from-[#1D395E] to-[#1D395E]",
-  },
-  {
-    id: 4,
-    icon: "🔬",
-    title: "Science Projects",
-    description: "Hands-on innovation and scientific thinking through experiments",
-    color: "from-[#1D395E] to-[#1D395E]",
-  },
-  {
-    id: 5,
-    icon: "🤝",
-    title: "Community Activities",
-    description: "Leadership, teamwork and social responsibility programs",
-    color: "from-green-500 to-teal-500",
-  },
-  {
-    id: 6,
-    icon: "🗺️",
-    title: "Excursions & Picnics",
-    description: "Learning through exploration and experiential fun",
-    color: "from-orange-500 to-red-500",
-  },
-];
 
 function ActivityCard({ activity, index }) {
   const cardRef = useRef(null);
@@ -74,9 +31,11 @@ function ActivityCard({ activity, index }) {
   }, [index]);
 
   return (
-    <div
+    <Link
+      to={`/activities?activity=${activity.slug}`}
       ref={cardRef}
-      className="group activity-card"
+      className="group activity-card block"
+      aria-label={`View details for ${activity.title}`}
     >
       <div className="relative h-full rounded-2xl overflow-hidden backdrop-blur-xl bg-white/40 border border-white/60 shadow-lg hover:shadow-2xl transition-all duration-300 p-8 hover:scale-105 hover:-translate-y-3">
         {/* Animated gradient background on hover */}
@@ -88,6 +47,13 @@ function ActivityCard({ activity, index }) {
         </div>
 
         <div className="relative z-10">
+          <img
+            src={activity.image}
+            alt={activity.title}
+            className="mb-6 h-44 w-full rounded-xl object-cover"
+            loading={index > 1 ? "lazy" : "eager"}
+          />
+
           {/* Icon */}
           <div className="text-6xl mb-6 inline-block group-hover:scale-125 group-hover:rotate-6 transition-transform duration-300">
             {activity.icon}
@@ -107,7 +73,7 @@ function ActivityCard({ activity, index }) {
           <div className={`mt-4 h-1 w-16 bg-gradient-to-r ${activity.color} rounded-full transform-gpu scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left`} />
         </div>
       </div>
-    </div>
+    </Link>
   );
 }
 
@@ -383,31 +349,7 @@ export default function CoCurricular() {
           </div>
 
           {/* Premium Banner Card */}
-          <div ref={bannerRef} className="banner-card mt-12">
-            <div className="banner-content">
-              <p className="banner-text">
-                <span className="banner-highlight">Balanced Education</span> through academics, discipline, creativity and physical development.
-              </p>
-              <div className="mt-6 flex justify-center gap-8 flex-wrap">
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl mb-2">📚</span>
-                  <span className="text-sm text-gray-600" style={{ fontFamily: "'DM Sans', sans-serif" }}>Academics</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl mb-2">⚽</span>
-                  <span className="text-sm text-gray-600" style={{ fontFamily: "'DM Sans', sans-serif" }}>Sports</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl mb-2">🎨</span>
-                  <span className="text-sm text-gray-600" style={{ fontFamily: "'DM Sans', sans-serif" }}>Creativity</span>
-                </div>
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl mb-2">🤝</span>
-                  <span className="text-sm text-gray-600" style={{ fontFamily: "'DM Sans', sans-serif" }}>Character</span>
-                </div>
-              </div>
-            </div>
-          </div>
+         
 
           {/* Multimedia Learning Card */}
         

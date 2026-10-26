@@ -1,0 +1,73 @@
+import activityImage from '../assets/activity/activity.jpeg';
+import libraryImage from '../assets/activity/library.jpeg';
+import playgroundImage from '../assets/activity/playground.jpeg';
+import scienceLabImage from '../assets/activity/science-lab.jpeg';
+
+export const ACTIVITIES = [
+  {
+    id: 1,
+    slug: 'sports-training',
+    icon: '⚽',
+    title: 'Sports Training',
+    description: 'Football, Cricket, Badminton & Karate coaching with professional mentorship',
+    details: 'Sports training gives students a structured way to build physical excellence, confidence, discipline, and teamwork beyond the classroom. The existing programme includes football, cricket, badminton, and karate coaching with professional mentorship.',
+    highlights: ['Football and cricket practice', 'Badminton and karate coaching', 'Teamwork, discipline, and physical confidence'],
+    image: playgroundImage,
+    color: 'from-[#1D395E] to-[#1D395E]',
+  },
+  {
+    id: 2,
+    slug: 'music-and-art',
+    icon: '🎨',
+    title: 'Music & Art',
+    description: 'Creative learning through music, painting and craft activities',
+    details: 'Music and art give students room to explore creative expression through sound, colour, materials, and making. These activities support imagination and help students develop confidence in sharing their ideas.',
+    highlights: ['Music exploration', 'Painting and craft activities', 'Creative expression and confidence'],
+    image: activityImage,
+    color: 'from-purple-500 to-pink-500',
+  },
+  {
+    id: 3,
+    slug: 'quiz-and-public-speaking',
+    icon: '🎤',
+    title: 'Quiz & Public Speaking',
+    description: 'Confidence building through competitions and presentations',
+    details: 'Quiz and public speaking activities help students organise their thoughts, communicate clearly, and grow comfortable presenting in front of others. Competitions and presentations turn curiosity into confident participation.',
+    highlights: ['Quiz competitions', 'Presentation practice', 'Confidence and clear communication'],
+    image: libraryImage,
+    color: 'from-[#1D395E] to-[#1D395E]',
+  },
+  {
+    id: 4,
+    slug: 'science-projects',
+    icon: '🔬',
+    title: 'Science Projects',
+    description: 'Hands-on innovation and scientific thinking through experiments',
+    details: 'Science projects make learning active through experiments, observation, and hands-on problem solving. Students are encouraged to ask questions, test ideas, and develop scientific thinking through practical exploration.',
+    highlights: ['Hands-on experiments', 'Observation and innovation', 'Practical scientific thinking'],
+    image: scienceLabImage,
+    color: 'from-[#1D395E] to-[#1D395E]',
+  },
+  {
+    id: 5,
+    slug: 'community-activities',
+    icon: '🤝',
+    title: 'Community Activities',
+    description: 'Leadership, teamwork and social responsibility programs',
+    details: 'Community activities connect learning with leadership, teamwork, and social responsibility. Students develop a stronger sense of cooperation while taking part in programmes that look beyond individual achievement.',
+    highlights: ['Leadership development', 'Teamwork and cooperation', 'Social responsibility'],
+    image: activityImage,
+    color: 'from-green-500 to-teal-500',
+  },
+  {
+    id: 6,
+    slug: 'excursions-and-picnics',
+    icon: '🗺️',
+    title: 'Excursions & Picnics',
+    description: 'Learning through exploration and experiential fun',
+    details: 'Excursions and picnics extend learning into new surroundings, where students can explore, observe, and enjoy shared experiences. The emphasis is on experiential learning, curiosity, and memorable time together.',
+    highlights: ['Exploration beyond the classroom', 'Experiential learning', 'Shared discovery and enjoyment'],
+    image: playgroundImage,
+    color: 'from-orange-500 to-red-500',
+  },
+];

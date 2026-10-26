@@ -1,22 +1,9 @@
 import { useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const quickLinks = [
-  { label: 'About', path: '/about' },
-  { label: 'Academics', path: '/academics' },
-  { label: 'Facilities', path: '/facilities' },
-  { label: 'Activities', path: '/activities' },
-  { label: 'Information', path: '/information' },
-  { label: 'Student Life', path: '/student-life' },
-  { label: 'Discipline', path: '/discipline' },
-  { label: 'Contact', path: '/contact' },
-];
-
-const schoolFeatures = ['English Medium', 'Modern Labs', 'Moral Education', 'Smart Learning', 'Sports Training', 'Competitive Preparation'];
 const affiliations = ['W.B.B.S.E.', 'W.B.C.H.S.E.', 'NIOS Accredited'];
 
 const socialLinks = [
@@ -98,39 +85,16 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
-          <div ref={(el) => (colsRef.current[1] = el)} className="opacity-0">
-            <h4 className="font-['Playfair_Display'] font-bold text-slate-900 text-lg mb-8">Quick Links</h4>
-            <ul className="space-y-4">
-              {quickLinks.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    to={link.path}
-                    className="font-['Inter'] text-sm text-slate-600 hover:text-[#1D395E] transition-colors duration-300 flex items-center gap-3 group"
-                  >
-                    <span className="w-0 group-hover:w-1.5 h-0.5 bg-[#1D395E] transition-all duration-300" />
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Column 3: School Strengths */}
-          <div ref={(el) => (colsRef.current[2] = el)} className="opacity-0">
-            <h4 className="font-['Playfair_Display'] font-bold text-slate-900 text-lg mb-8">Our Strengths</h4>
-            <ul className="space-y-3">
-              {schoolFeatures.map((feature) => (
-                <li key={feature} className="font-['Inter'] text-sm text-slate-600 flex items-start gap-3">
-                  <span className="text-[#1D395E] flex-shrink-0 font-bold">✓</span>
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
+          {/* Columns 2-3: FAQs */}
+          <div ref={(el) => (colsRef.current[1] = el)} className="opacity-0 lg:col-span-2">
+            <h4 className="font-['Playfair_Display'] font-bold text-slate-900 text-lg mb-8">FAQs</h4>
+            <p className="font-['Inter'] text-sm text-slate-600 leading-relaxed max-w-sm">
+              Frequently asked questions will be available here soon.
+            </p>
           </div>
 
           {/* Column 4: Contact Info */}
-          <div ref={(el) => (colsRef.current[3] = el)} className="opacity-0">
+          <div ref={(el) => (colsRef.current[2] = el)} className="opacity-0">
             <h4 className="font-['Playfair_Display'] font-bold text-slate-900 text-lg mb-8">Contact Us</h4>
             <div className="space-y-6">
               <div className="flex gap-3">

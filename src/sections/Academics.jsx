@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { academicLevels, streams } from "./academicsData";
 
 const features = [
   { icon: "🇬🇧", label: "English Medium" },
@@ -10,6 +11,30 @@ const features = [
   { icon: "🔬", label: "Practical Learning" },
   { icon: "🌟", label: "Character Development" },
 ];
+
+// Student Journey: weak-to-strong blue progression (earliest stage -> Higher Secondary).
+// `fg` is chosen per shade so text stays readable (dark on light, white on deep).
+const STAGE_COLORS = [
+  { bg: "#E8F3FC", fg: "#12294A", border: "rgba(29,57,94,0.14)" },   // Nursery / Pre-Primary: very light blue
+  { bg: "#BFDCF5", fg: "#0F2442", border: "rgba(29,57,94,0.18)" },   // Primary: light blue
+  { bg: "#6FA6DC", fg: "#0A1B36", border: "rgba(10,27,54,0.20)" },   // Upper Primary: medium blue
+  { bg: "#2C5C9C", fg: "#FFFFFF", border: "rgba(255,255,255,0.20)" }, // Secondary: strong blue
+  { bg: "#0F2A5C", fg: "#FFFFFF", border: "rgba(255,255,255,0.24)" }, // Higher Secondary: deep navy
+];
+
+// Maps a level's position in `academicLevels` onto the palette, so the
+// gradient still runs light -> deep even if the number of levels changes.
+const getStageColors = (index, total) => {
+  const last = STAGE_COLORS.length - 1;
+  const i = total <= 1 ? 0 : Math.round((index * last) / (total - 1));
+  return STAGE_COLORS[Math.min(Math.max(i, 0), last)];
+};
+
+const stageVars = (c) => ({
+  "--stage-bg": c.bg,
+  "--stage-fg": c.fg,
+  "--stage-border": c.border,
+});
 
 export default function AcademicsPreview() {
   const sectionRef = useRef(null);
@@ -149,6 +174,67 @@ export default function AcademicsPreview() {
           background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
         }
 
+        /* Student Journey stage colors. Each card gets --stage-bg / --stage-fg / --stage-border
+           from STAGE_COLORS. Selectors are prefixed with .academics-section so they take
+           priority over the shared glass-card / stream-card styles without !important. */
+        .academics-section .journey-card,
+        .academics-section .journey-stream-card {
+          background: var(--stage-bg);
+          border: 1px solid var(--stage-border);
+          transition: background-color 0.4s ease, border-color 0.4s ease, color 0.4s ease,
+                      transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+        }
+        .academics-section .journey-card:hover,
+        .academics-section .journey-stream-card:hover {
+          filter: brightness(1.07);
+        }
+        .academics-section .journey-card h4 {
+          color: var(--stage-fg);
+        }
+        .academics-section .journey-stream-card h4 {
+          color: var(--stage-fg);
+        }
+        .academics-section .journey-stream-card p {
+          color: rgba(219, 234, 254, 0.78);
+        }
+
+        /* Higher Secondary -> streams tree. Connector geometry shares --tree-gap with the card grid so lines hit card centers exactly. */
+        .stream-tree { --tree-gap: 0.375rem; --tree-line: rgba(201,168,76,0.7); }
+        @media (min-width: 768px) { .stream-tree { --tree-gap: 0.75rem; } }
+        .tree-grid {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          column-gap: var(--tree-gap);
+        }
+        .tree-connectors { position: relative; height: 2rem; }
+        .tree-trunk {
+          position: absolute; top: 0; left: 50%;
+          width: 1px; height: 1rem;
+          background: var(--tree-line);
+          transform: translateX(-50%);
+        }
+        .tree-bar {
+          position: absolute; top: 1rem;
+          left: calc((100% - 2 * var(--tree-gap)) / 6);
+          right: calc((100% - 2 * var(--tree-gap)) / 6);
+          height: 1px;
+          background: var(--tree-line);
+        }
+        .tree-drops { position: absolute; top: 1rem; bottom: 0; left: 0; right: 0; }
+        .tree-drop {
+          position: relative; justify-self: center;
+          width: 1px; height: 100%;
+          background: var(--tree-line);
+        }
+        .tree-drop::after {
+          content: '';
+          position: absolute; left: 50%; bottom: 0;
+          transform: translateX(-50%);
+          border-left: 4px solid transparent;
+          border-right: 4px solid transparent;
+          border-top: 6px solid #C9A84C;
+        }
+
         .learn-more-btn {
             background: linear-gradient(135deg, #1D395E 0%, #1D395E 100%);
           color: white;
@@ -209,6 +295,77 @@ export default function AcademicsPreview() {
           </div>
 
           {/* PREVIEW PAGE CONTENT ONLY */}
+          <div className="mb-16">
+            <div className="divider-line mb-8 max-w-xl" />
+            <div className="mb-6 flex items-end justify-between gap-4">
+              <div>
+                <p className="gold-label mb-3">Student Journey</p>
+                <h3 className="display-font text-3xl text-white md:text-4xl">
+                  Learning <em className="text-amber-300/90">Journey</em>
+                </h3>
+              </div>
+              <span className="hidden text-xs tracking-widest text-blue-200/50 md:block">01 → 05</span>
+            </div>
+            <div className="flex flex-col gap-3">
+              {academicLevels.map((level, index) => {
+                const stageColors = getStageColors(index, academicLevels.length);
+                const levelCard = (
+                  <div
+                    className="glass-card journey-card flex min-h-14 items-center justify-center rounded-xl px-3 py-2"
+                    style={stageVars(stageColors)}
+                  >
+                    <h4 className="display-font whitespace-nowrap text-center text-base font-semibold text-white md:text-lg">{level.title}</h4>
+                  </div>
+                );
+
+                // All levels except the last render exactly as before.
+                if (index !== academicLevels.length - 1) {
+                  return <React.Fragment key={level.level}>{levelCard}</React.Fragment>;
+                }
+
+                // Last level (Higher Secondary) is the parent of the three streams:
+                // its existing card, then connectors, then the stream cards, with nothing in between.
+                return (
+                  <div key={level.level} className="stream-tree">
+                    {levelCard}
+
+                    <div className="tree-connectors" aria-hidden="true">
+                      <span className="tree-trunk" />
+                      <span className="tree-bar" />
+                      <div className="tree-grid tree-drops">
+                        {streams.map((stream) => (
+                          <span key={stream.name} className="tree-drop" />
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="tree-grid">
+                      {streams.map((stream) => (
+                        <div
+                          key={stream.name}
+                          className="stream-card journey-stream-card min-w-0 rounded-xl p-1.5 md:p-5"
+                          style={stageVars(stageColors)}
+                        >
+                          <div className="flex flex-col items-center gap-1 text-center md:flex-row md:items-start md:gap-3 md:text-left">
+                            <span className="text-xl md:text-2xl" aria-hidden="true">{stream.icon}</span>
+                            <div className="min-w-0">
+                              <h4 className="display-font break-words text-[0.8rem] font-semibold leading-tight text-white min-[375px]:text-[0.9rem] md:text-2xl">
+                                {stream.name}
+                              </h4>
+                              <p className="mt-1 break-words text-[0.6rem] leading-snug text-blue-200/50 min-[375px]:text-[0.65rem] md:text-sm md:leading-relaxed">
+                                {stream.desc}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-12 mb-10">
             <div ref={academicYearRef}>
               <p className="gold-label mb-3">Academic Overview</p>

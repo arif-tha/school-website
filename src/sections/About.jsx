@@ -259,6 +259,140 @@ export default function About() {
                 ))}
               </div>
 
+          {/* Contact information relocated from the standalone Contact page */}
+          <div ref={el => contentSectionsRef.current[4] = el} className="mt-20 md:mt-28" style={{ opacity: 0 }}>
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-6 h-px" style={{ background: "#1D395E" }} />
+              <span style={{
+                fontFamily: "'DM Sans', sans-serif",
+                fontSize: "0.7rem",
+                letterSpacing: "0.25em",
+                textTransform: "uppercase",
+                color: "#1D395E",
+                fontWeight: 500,
+              }}>
+                Get in Touch
+              </span>
+            </div>
+
+            <h3 style={{
+              fontFamily: "'Cormorant Garamond', Georgia, serif",
+              fontSize: "clamp(2rem, 4vw, 3rem)",
+              fontWeight: 700,
+              lineHeight: 1.1,
+              color: "#1D395E",
+              marginBottom: "1.5rem",
+            }}>
+              Contact The Crescent School
+            </h3>
+
+            <p style={{ ...paragraphStyle, maxWidth: "42rem" }}>
+              Have questions about admissions, academics, or school life? We're here to help. Reach out to us through any of the channels below.
+            </p>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 group hover:border-[#1D395E] transition-colors">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1D395E]/10 flex items-center justify-center group-hover:bg-[#1D395E]/20 transition-colors">
+                    <span className="text-xl">📍</span>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-['Cormorant_Garamond'] font-bold text-2xl text-slate-900 mb-3">Address</h4>
+                    <a
+                      href="https://www.google.com/maps/place/The+Crescent+School/data=!4m2!3m1!1s0x3a0276c6ff7418a9%3A0x8afd46037ff59fa7"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block font-['Inter'] text-base text-slate-600 leading-relaxed transition-colors hover:text-[#1D395E] hover:underline"
+                    >
+                      41/1/3 & 41/2/1<br />
+                      Rai Charan Ghosh Lane<br />
+                      Kolkata – 700039<br />
+                      West Bengal, India
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 group hover:border-[#1D395E] transition-colors">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1D395E]/10 flex items-center justify-center group-hover:bg-[#1D395E]/20 transition-colors">
+                    <span className="text-xl">📞</span>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-['Cormorant_Garamond'] font-bold text-2xl text-slate-900 mb-3">Phone</h4>
+                    <p className="font-['Inter'] text-base text-slate-600 leading-relaxed">
+                      Admissions: <a href="tel:+913323431562" className="transition-colors hover:text-[#1D395E] hover:underline">+(033) 2343 1562</a><br />
+                      <span className="text-sm text-slate-500">Available Monday–Saturday</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 group hover:border-[#1D395E] transition-colors">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1D395E]/10 flex items-center justify-center group-hover:bg-[#1D395E]/20 transition-colors">
+                    <span className="text-xl">✉️</span>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-['Cormorant_Garamond'] font-bold text-2xl text-slate-900 mb-3">Email</h4>
+                    <p className="font-['Inter'] text-base text-slate-600 leading-relaxed">
+                      <a href="mailto:admissions@crescentschool.edu" className="transition-colors hover:text-[#1D395E] hover:underline">admissions@crescentschool.edu</a><br />
+                      <span className="text-sm text-slate-500">We respond within 24 hours</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-white rounded-2xl p-6 md:p-8 border border-slate-200 group hover:border-[#1D395E] transition-colors">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-full bg-[#1D395E]/10 flex items-center justify-center group-hover:bg-[#1D395E]/20 transition-colors">
+                    <span className="text-xl">🕐</span>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="font-['Cormorant_Garamond'] font-bold text-2xl text-slate-900 mb-3">School Hours</h4>
+                    <p className="font-['Inter'] text-base text-slate-600 leading-relaxed">
+                      Monday–Saturday<br />
+                      8:00 AM – 3:00 PM<br />
+                      <span className="text-sm text-slate-500">Closed on Sundays & Public Holidays</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mb-12">
+              <h4 className="font-['Playfair_Display'] font-bold text-3xl text-slate-900 mb-6">Find Us</h4>
+              <div className="overflow-hidden rounded-2xl shadow-lg ring-1 ring-[#1D395E]/10">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.2776933515524!2d88.37735387507644!3d22.53126807952122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0276c6ff7418a9%3A0x8afd46037ff59fa7!2sThe%20Crescent%20School!5e0!3m2!1sen!2sin!4v1790104883021!5m2!1sen!2sin"
+                  title="The Crescent School location"
+                  className="block aspect-video w-full border-0"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                />
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-br from-slate-50 to-[#1D395E]/10 rounded-2xl p-8 md:p-12 border border-slate-200">
+              <h4 className="font-['Playfair_Display'] font-bold text-3xl text-slate-900 mb-6">Office Information</h4>
+              <div className="grid md:grid-cols-2 gap-8">
+                <div>
+                  <h5 className="font-['Cormorant_Garamond'] font-bold text-lg text-slate-900 mb-3">Admissions Enquiries</h5>
+                  <p className="font-['Inter'] text-slate-600 leading-relaxed">
+                    For any questions regarding admissions, eligibility, or our academic programs, please feel free to contact our admissions office. We welcome inquiries from parents and students.
+                  </p>
+                </div>
+                <div>
+                  <h5 className="font-['Cormorant_Garamond'] font-bold text-lg text-slate-900 mb-3">Campus Visits</h5>
+                  <p className="font-['Inter'] text-slate-600 leading-relaxed">
+                    We encourage prospective parents to visit our campus. Personalized guided tours can be arranged. Please call our office to schedule your visit at a convenient time.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
               {/* Button */}
               <div ref={el => contentSectionsRef.current[3] = el} style={{ opacity: 0 }}>
                 <Link 

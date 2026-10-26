@@ -1,61 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { academicLevels, streams } from "./academicsData";
 
-
-const academicLevels = [
-  {
-    level: "01",
-    title: "Nursery",
-    subtitle: "The Wonder Years",
-    range: "Early Childhood",
-    color: "from-amber-400/20 to-yellow-300/10",
-    accent: "#F59E0B",
-    features: ["Activity-based learning", "Rhymes, stories & games", "Creative expression"],
-  },
-  {
-    level: "02",
-    title: "Primary School",
-    subtitle: "Building Blocks",
-    range: "Class I – V",
-    color: "from-[#1D395E]/20 to-[#1D395E]/10",
-    accent: "#1D395E",
-    features: ["Core academic foundation", "Curiosity-driven learning", "Interactive classroom activities"],
-  },
-  {
-    level: "03",
-    title: "Middle School",
-    subtitle: "Expanding Horizons",
-    range: "Class VI – VIII",
-    color: "from-violet-400/20 to-purple-300/10",
-    accent: "#A78BFA",
-    features: ["Analytical thinking", "Reading habits", "Practical understanding"],
-  },
-  {
-    level: "04",
-    title: "Secondary",
-    subtitle: "Academic Discipline",
-    range: "Class IX – X",
-    color: "from-emerald-400/20 to-teal-300/10",
-    accent: "#34D399",
-    features: ["Board exam preparation", "Strong academic discipline", "Concept-focused education"],
-  },
-  {
-    level: "05",
-    title: "Higher Secondary",
-    subtitle: "Future Ready",
-    range: "Class XI – XII",
-    color: "from-rose-400/20 to-pink-300/10",
-    accent: "#FB7185",
-    features: ["Career-oriented streams", "Competitive exam support", "Advanced subject specialization"],
-  },
-];
-
-const streams = [
-  { name: "Science", icon: "⚗️", desc: "Physics, Chemistry, Biology & Mathematics" },
-  { name: "Commerce", icon: "📊", desc: "Accounts, Economics & Business Studies" },
-  { name: "Humanities", icon: "🌐", desc: "History, Political Science & Sociology" },
-];
 
 const features = [
   { icon: "🇬🇧", label: "English Medium" },
@@ -64,6 +11,34 @@ const features = [
   { icon: "🔬", label: "Practical Learning" },
   { icon: "🌟", label: "Character Development" },
 ];
+
+// Admission form PDFs live in /public/admission-forms/ (served from the site root by Vite).
+// One common form is used for all classes. To use a different form for a class,
+// add an override keyed by its `level` value from academicsData.
+const DEFAULT_ADMISSION_FORM = "/admission-forms/admission-form.pdf";
+const ADMISSION_FORM_OVERRIDES = {
+  // e.g. "XI": "/admission-forms/admission-form-class-xi-xii.pdf",
+};
+
+const slugify = (s) =>
+  String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+
+function AdmissionDownloadButton({ lvl }) {
+  const href = ADMISSION_FORM_OVERRIDES[lvl.level] || DEFAULT_ADMISSION_FORM;
+  return (
+    <a
+      href={href}
+      download={`Crescent-School-Admission-Form-${slugify(lvl.title)}.pdf`}
+      className="admission-btn mt-5 inline-flex items-center justify-center gap-2 w-full rounded-full px-4 py-2.5 text-xs font-medium tracking-widest uppercase"
+      aria-label={`Download admission form for ${lvl.title}`}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16" />
+      </svg>
+      Download Admission Form
+    </a>
+  );
+}
 
 export default function AcademicsFull() {
   const sectionRef = useRef(null);
@@ -285,6 +260,20 @@ export default function AcademicsFull() {
           border-color: rgba(201,168,76,0.3);
         }
 
+        .admission-btn {
+          color: #C9A84C;
+          background: rgba(201,168,76,0.08);
+          border: 1px solid rgba(201,168,76,0.35);
+          transition: all 0.3s ease;
+        }
+        .admission-btn:hover,
+        .admission-btn:focus-visible {
+          background: rgba(201,168,76,0.18);
+          border-color: rgba(201,168,76,0.7);
+          color: #E6C46A;
+          outline: none;
+        }
+
         .divider-line {
           height: 1px;
           background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
@@ -433,6 +422,7 @@ export default function AcademicsFull() {
                               </li>
                             ))}
                           </ul>
+                          <AdmissionDownloadButton lvl={lvl} />
                         </div>
                       </div>
                     );
@@ -475,6 +465,7 @@ export default function AcademicsFull() {
                               </li>
                             ))}
                           </ul>
+                          <AdmissionDownloadButton lvl={lvl} />
                         </div>
                       </div>
                     );

@@ -39,6 +39,94 @@ body {
   overflow-x: hidden;
 }
 
+.route-page {
+  width: 100%;
+  overflow-x: clip;
+}
+
+.scroll-to-top {
+  position: fixed;
+  right: 96px;
+  bottom: 28px;
+  z-index: 9996;
+  display: flex;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(29, 57, 94, 0.2);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--accent-blue);
+  box-shadow: 0 8px 20px rgba(29, 57, 94, 0.16);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, background-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.scroll-to-top:hover {
+  background: var(--accent-blue);
+  color: white;
+  box-shadow: 0 10px 24px rgba(29, 57, 94, 0.24);
+  transform: translateY(-2px);
+}
+
+.scroll-to-top:focus-visible {
+  outline: 2px solid var(--accent-blue);
+  outline-offset: 3px;
+}
+
+.scroll-to-top svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+}
+
+@media (max-width: 768px) {
+  .scroll-to-top {
+    right: 16px;
+    bottom: 176px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+}
+
+section.scroll-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+section.scroll-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  section.scroll-reveal,
+  section.scroll-reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #F8FAFC; }

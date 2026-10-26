@@ -2,20 +2,22 @@ import { useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import { gsap } from "gsap";
 import logoImg from "../assets/building/logo.png";
+import { scrollToSection } from "../utils/scrollNavigation";
 // ─── Navigation Configuration ────────────────────────────────────────────────
 const NAV_LINKS = [
   { label: "Home", href: "#home", sectionId: "home" },
   { label: "About", href: "#about", sectionId: "about" },
   { label: "Academics", href: "#academics", sectionId: "academics" },
-  { label: "Facilities", href: "#facilities", sectionId: "facilities" },
   { label: "Activities", href: "#activities", sectionId: "activities" },
-  { label: "Gallery", href: "#gallery", sectionId: "gallery" },
-  { label: "Notices", href: "#notices", sectionId: "notices", isNotice: true },
-  { label: "Parent Corner", href: "/parent-corner" },
-  { label: "Information", href: "/information" },
+  { label: "Gallery", href: "/gallery" },
+  { label: "Facilities", href: "/facilities" },
+  { label: "Notices", href: "/notices", isNotice: true },
   { label: "Calendar", href: "/academic-calendar" },
-  { label: "Contact", href: "/contact" },
 ];
+
+// A link is a Home-page section link if it has a `sectionId`; otherwise it
+// points to a separate route. Notices is a route too, but has its own button.
+const isPageLink = (link) => !link.sectionId && !link.isNotice;
 
 // ─── Navbar Component ─────────────────────────────────────────────────────────
 export default function Navbar() {
@@ -33,16 +35,29 @@ export default function Navbar() {
   const drawerLinksRef = useRef([]);
   const hamburgerRef = useRef(null);
 
+  // Nav text color follows the existing `scrolled` state
+  const navTextColor = scrolled ? "#1D395E" : "#FFFFFF";
+
+  // Subtle pill styling for links that open a separate page
+  const pageBorder = scrolled ? "rgba(29,57,94,0.28)" : "rgba(255,255,255,0.42)";
+  const pageTint = scrolled ? "rgba(29,57,94,0.08)" : "rgba(255,255,255,0.16)";
+  const pageClear = scrolled ? "rgba(29,57,94,0)" : "rgba(255,255,255,0)";
+
   const handleNavClick = (event, link) => {
     setMobileOpen(false);
 
     if (!link.sectionId) return;
 
+    event.preventDefault();
     setActiveSection(link.sectionId);
     if (location.pathname !== "/") {
       event.preventDefault();
       navigate(`/${link.href}`);
+      return;
     }
+
+    navigate(`/#${link.sectionId}`);
+    window.requestAnimationFrame(() => scrollToSection(link.sectionId));
   };
 
   useEffect(() => {
@@ -158,21 +173,36 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   // ─── Link Hover Animations ────────────────────────────────────────────────
+  // Notices button always stays white on dark blue; all other links use the
+  // color for the current `scrolled` state (read fresh on every render).
   const handleLinkEnter = (el) => {
     const isNotice = el.dataset.notice === "true";
+    const isPage = el.dataset.page === "true";
     gsap.to(el, {
-      color: isNotice ? "#ffffff" : "#1D395E",
-      backgroundColor: isNotice ? "rgba(29,57,94,0.88)" : undefined,
+      color: isNotice ? "#FFFFFF" : navTextColor,
+      backgroundColor: isNotice
+        ? "rgba(29,57,94,0.88)"
+        : isPage
+        ? pageTint
+        : undefined,
       boxShadow: isNotice ? "0 8px 18px rgba(29,57,94,0.18)" : undefined,
       duration: 0.22,
       ease: "power2.out",
     });
   };
-  const handleLinkLeave = (el, isActive) => {
+  const handleLinkLeave = (el) => {
     const isNotice = el.dataset.notice === "true";
+    const isPage = el.dataset.page === "true";
+    const isActivePage = el.dataset.active === "true";
     gsap.to(el, {
-      color: isNotice ? "#ffffff" : isActive ? "#1D395E" : "#475569",
-      backgroundColor: isNotice ? "#1D395E" : undefined,
+      color: isNotice ? "#FFFFFF" : navTextColor,
+      backgroundColor: isNotice
+        ? "#1D395E"
+        : isPage
+        ? isActivePage
+          ? pageTint
+          : pageClear
+        : undefined,
       boxShadow: isNotice ? "0 6px 16px rgba(29,57,94,0.14)" : undefined,
       duration: 0.22,
       ease: "power2.out",
@@ -217,25 +247,13 @@ export default function Navbar() {
                     fontSize: "1.2rem",
                     letterSpacing: "0.06em",
                     lineHeight: 1.15,
-                    color: "#1D395E",
+                    color: navTextColor,
+                    transition: "color 0.45s ease",
                   }}
                 >
                   The Crescent School
                 </span>
-                <span
-                  className="mt-1"
-                  style={{
-                    color: "#1D395E",
-                    fontFamily: "'Cormorant Garamond', 'Garamond', serif",
-                    fontSize: "0.72rem",
-                    letterSpacing: "0.14em",
-                    fontStyle: "italic",
-                    opacity: 0.9,
-                    lineHeight: 1.4,
-                  }}
-                >
-                  Nursery to Higher Secondary
-                </span>
+               
               </div>
             </Link>
 
@@ -247,28 +265,36 @@ export default function Navbar() {
               <ul className="flex items-center gap-0 xl:gap-0">
                 {NAV_LINKS.filter((link) => !link.isNotice).map((link, i) => {
                   const isActive = isLinkActive(link);
+                  const isPage = isPageLink(link);
                   const LinkComponent = link.sectionId ? "a" : NavLink;
                   const linkProps = link.sectionId
                     ? { href: getSectionHref(link) }
                     : { to: link.href };
                   return (
-                    <li key={link.href}>
+                    <li key={link.href} className={isPage ? "mx-0.5" : undefined}>
                       <LinkComponent
                         ref={(el) => (linksRef.current[i] = el)}
                         {...linkProps}
                         data-notice={link.isNotice ? "true" : undefined}
+                        data-page={isPage ? "true" : undefined}
+                        data-active={isPage && isActive ? "true" : undefined}
                         onMouseEnter={(e) => handleLinkEnter(e.currentTarget)}
                         onMouseLeave={(e) =>
-                          handleLinkLeave(e.currentTarget, isActive)
+                          handleLinkLeave(e.currentTarget)
                         }
                         onClick={(event) => handleNavClick(event, link)}
-                        className={`navbar-anchor cursor-pointer relative ${link.isNotice ? "notice-nav-link" : "flex flex-col items-center"} px-2 xl:px-2 py-2 text-sm font-medium tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E]`}
+                        className={`navbar-anchor cursor-pointer relative ${link.isNotice ? "notice-nav-link" : "flex flex-col items-center"} ${isPage ? "border px-3" : "px-2 xl:px-2"} py-2 text-sm font-medium tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E]`}
                         style={{
-                          color: isActive
-                            ? link.isNotice ? "#ffffff" : "rgba(29,57,94,0.98)"
-                            : link.isNotice ? "#ffffff" : "rgba(29,57,94,0.78)",
-                          backgroundColor: link.isNotice ? "#1D395E" : undefined,
-                          borderRadius: link.isNotice ? "999px" : undefined,
+                          color: navTextColor,
+                          backgroundColor: link.isNotice
+                            ? "#1D395E"
+                            : isPage
+                            ? isActive
+                              ? pageTint
+                              : pageClear
+                            : undefined,
+                          borderColor: isPage ? pageBorder : undefined,
+                          borderRadius: link.isNotice || isPage ? "999px" : undefined,
                           boxShadow: link.isNotice ? "0 6px 16px rgba(29,57,94,0.14)" : undefined,
                           gap: link.isNotice ? "0.35rem" : undefined,
                           fontFamily:
@@ -281,7 +307,7 @@ export default function Navbar() {
                       >
                         {link.isNotice && <BellIcon />}
                         {link.label}
-                        {!link.isNotice && (
+                        {!link.isNotice && !isPage && (
                           <span
                             className="absolute bottom-0 left-1/2 -translate-x-1/2 h-px bg-[#1D395E] transition-all duration-300"
                             style={{ width: isActive ? "60%" : "0%" }}
@@ -300,13 +326,17 @@ export default function Navbar() {
               {(() => {
                 const noticeLink = NAV_LINKS.find((link) => link.isNotice);
                 const isNoticeActive = isLinkActive(noticeLink);
+                const NoticeLinkComponent = noticeLink.sectionId ? "a" : NavLink;
+                const noticeLinkProps = noticeLink.sectionId
+                  ? { href: getSectionHref(noticeLink) }
+                  : { to: noticeLink.href };
                 return (
-                  <a
+                  <NoticeLinkComponent
                     ref={(el) => (linksRef.current[NAV_LINKS.length - 1] = el)}
-                    href={getSectionHref(noticeLink)}
+                    {...noticeLinkProps}
                     data-notice="true"
                     onMouseEnter={(e) => handleLinkEnter(e.currentTarget)}
-                    onMouseLeave={(e) => handleLinkLeave(e.currentTarget, isNoticeActive)}
+                    onMouseLeave={(e) => handleLinkLeave(e.currentTarget)}
                     onClick={(event) => handleNavClick(event, noticeLink)}
                     className="navbar-anchor cursor-pointer hidden lg:flex items-center px-3 xl:px-4 py-2 text-sm font-medium tracking-wide transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E] notice-nav-link"
                     style={{
@@ -324,7 +354,7 @@ export default function Navbar() {
                   >
                     <BellIcon />
                     {noticeLink.label}
-                  </a>
+                  </NoticeLinkComponent>
                 );
               })()}
 
@@ -369,7 +399,7 @@ export default function Navbar() {
         className="fixed top-0 right-0 bottom-0 z-50 w-[82vw] max-w-sm flex-col lg:hidden"
         style={{
           display: "none",
-          backgroundColor: "#ffffff",
+          backgroundColor: "#0F172A",
           transform: "translateX(100%)",
         }}
         aria-label="Mobile navigation"
@@ -408,14 +438,14 @@ export default function Navbar() {
                   fontSize: "1.05rem",
                   letterSpacing: "0.05em",
                   lineHeight: 1.2,
-                  color: "#1D395E",
+                  color: "#FFFFFF",
                 }}
               >
                 The Crescent School
               </span>
               <span
                 style={{
-                  color: "#1D395E",
+                  color: "#FFFFFF",
                   fontFamily: "'Cormorant Garamond', 'Garamond', serif",
                   fontSize: "0.68rem",
                   letterSpacing: "0.13em",
@@ -433,7 +463,7 @@ export default function Navbar() {
           <button
             onClick={() => setMobileOpen(false)}
             className="flex items-center justify-center w-9 h-9 rounded-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1D395E] transition-colors hover:bg-[#1D395E]/10"
-            style={{ color: "#475569" }}
+            style={{ color: "#FFFFFF" }}
             aria-label="Close menu"
           >
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -493,9 +523,7 @@ export default function Navbar() {
                             "'Inter', 'Helvetica Neue', sans-serif",
                           fontSize: "0.93rem",
                           letterSpacing: "0.04em",
-                          color: link.isNotice
-                            ? "#ffffff"
-                            : isActive ? "#1D395E" : "#475569",
+                          color: "#FFFFFF",
                         }}
                       >
                         {link.label}
@@ -508,7 +536,7 @@ export default function Navbar() {
                       viewBox="0 0 14 14"
                       fill="none"
                       className="transition-transform duration-200 group-hover:translate-x-1"
-                      style={{ color: link.isNotice ? "rgba(255,255,255,0.78)" : isActive ? "#1D395E" : "#94a3b8" }}
+                      style={{ color: "#FFFFFF" }}
                     >
                       <path
                         d="M3 7H11M11 7L7.5 3.5M11 7L7.5 10.5"
